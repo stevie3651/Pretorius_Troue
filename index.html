@@ -1210,3 +1210,19 @@ document.addEventListener('click', function(e){
     background-color: var(--accentPinkHover) !important;
   }
 </style>
+
+<style id="alt-accom-link-fix">
+  /* Force black, centered links inside the Alternatiewe Akkommodasie dropdown */
+  #alternative-accommodation,
+  #alternative-accommodation .suite-card {
+    text-align: center !important;
+  }
+  #alternative-accommodation a {
+    color: #000 !important;
+    text-decoration-color: #000 !important;
+  }
+  /* Make anchors behave nicely when centered text is used */
+  #alternative-accommodation .suite-card a {
+    display: inline-block;
+  }
+</style>
