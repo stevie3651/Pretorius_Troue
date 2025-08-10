@@ -511,6 +511,7 @@ header.hero{ overflow: hidden !important; }
     font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
     padding: .6rem .9rem !important;
   }
+  
 </style><style id="add-guest-match-rsvp">
   /* Make the add-guest button same SIZE and WIDTH as the RSVP button */
   #addGuestBtn{
@@ -536,6 +537,20 @@ header.hero{ overflow: hidden !important; }
   }
 </style>
 
+<style id="gift-poem-style">
+/* Elegant cursive styling for the gift poem */
+.gift-poem{
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.4rem, 4.2vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+  color: #000;
+  margin: .5rem auto 0;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  font-variant-ligatures: discretionary-ligatures;
+}
+</style>
 </head>
 <body>
 <!-- NAV -->
@@ -605,6 +620,7 @@ header.hero{ overflow: hidden !important; }
 <div>
 <h3 style="text-align:left;">🗓 Wanneer?</h3>
 <p><strong>Vrydag, 28 November 2025</strong></p>
+<p>Ons vra dat almal teen 31 September sal RSVP.</p>
 <p>om 16:00 uur</p>
 <div>
 <div aria-hidden="true" class="v-divider"></div>
@@ -697,7 +713,7 @@ header.hero{ overflow: hidden !important; }
 <h2 class="section-title" id="gift-title">Geskenkregister</h2>
 <div style="margin-top:.25rem">
 <p><strong>Geskenkregister skakel:</strong> <a href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" rel="noopener" style="color: black; font-weight:700; text-decoration:underline" target="_blank">Klik hier om te besoek</a></p>
-<p>n Geskenkie is nie oorbodig, maar n geldjie is meer wat wat ons benodig, spaar jou voette die loop, ons sal eerder self wil koop.</p>
+<p class="gift-poem">n Geskenkie is nie oorbodig, maar n geldjie is meer wat wat ons benodig, spaar jou voette die loop, ons sal eerder self wil koop.</p>
 </div>
 </section>
 <!-- RSVP -->
@@ -1194,6 +1210,5 @@ document.addEventListener('click', function(e){
   .rsvp-container button.primary:hover{
     background-color: var(--accentPinkHover) !important;
   }
-  <p>Ons vra dat almal teen 31 September sal RSVP.</p>
-<div>
+
 </style>
