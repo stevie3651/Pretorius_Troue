@@ -460,7 +460,42 @@ header.hero{ overflow: hidden !important; }
 #countdown.rounded, .countdown-bg.rounded {
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
 }
-</style></head>
+</style>
+<style id="countdown-card-override">
+/* === Countdown card width/rounding to match Inligting === */
+.countdown-sec{
+  position: relative;
+  background: none !important;
+  padding: clamp(8px, 2vw, 16px) 0;
+}
+.countdown-card{
+  position: relative;
+  max-width: 1000px;          /* match .glass-card */
+  margin: 0 auto;
+  min-height: clamp(320px, 52svh, 560px);
+  background: url('thumb-1920-677024.jpeg') no-repeat center top / cover;
+  border: 2px solid #ffffff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+}
+.countdown-card .countdown-inner{
+  position: absolute;
+  left: 50%;
+  top: 34%;
+  transform: translate(-50%, -50%);
+  width: min(520px, 88%);
+  text-align: center;
+}
+@media (max-width: 420px){
+  .countdown-card{ min-height: 340px; }
+  .countdown-card .countdown-inner{ top: 30%; width: 92%; }
+}
+@media (min-width: 900px){
+  .countdown-card .countdown-inner{ top: 36%; width: 540px; }
+}
+</style>
+</head>
 <body>
 <!-- NAV -->
 <nav class="top-nav">
@@ -510,11 +545,14 @@ header.hero{ overflow: hidden !important; }
 </header>
 <!-- COUNTDOWN -->
 <!-- COUNTDOWN -->
+<!-- COUNTDOWN -->
 <section aria-labelledby="countdown-title" class="countdown-sec" id="countdown-sec">
-<h2 class="visually-hidden" id="countdown-title">Tot Ons Groot Dag</h2>
-<div class="countdown-inner">
-<div aria-live="polite" class="countdown rounded" id="countdown" role="timer" style="border-radius:22px;overflow:hidden"></div>
-</div>
+  <h2 class="visually-hidden" id="countdown-title">Tot Ons Groot Dag</h2>
+  <div class="countdown-card">
+    <div class="countdown-inner">
+      <div aria-live="polite" class="countdown rounded" id="countdown" role="timer"></div>
+    </div>
+  </div>
 </section>
 <div id="falling-zone"></div>
 <div id="petal-overlay"></div>
