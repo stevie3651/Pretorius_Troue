@@ -331,20 +331,6 @@
   z-index: 999;
 }
 
-
-
-
-
-/* === Mobile tweak: prevent banner overlapping next section on small phones === */
-@media (max-width: 520px){
-  .hero-banner{ position: relative !important; top: auto !important; margin-top: .5rem !important; }
-}
-
-/* === Fix overlap: clip hero images to the header === */
-header.hero{ overflow: hidden !important; }
-
-/* === Adjust hero names lower === */
-.hero-banner{ margin-top: 5rem !important; }
 </style>
 
 </head>
@@ -373,7 +359,7 @@ header.hero{ overflow: hidden !important; }
     <img src="hero9.jpeg"  alt="" />
     <img src="hero10.jpeg" alt="" />
     <img src="hero11.jpeg" alt="" />
-    <img src="hero12.jpeg" alt="" />
+    <img src="hero13.jpeg" alt="" />
     <!-- duplicates -->
     <img src="hero1.jpeg"  alt="" loading="lazy" />
     <img src="hero2.jpeg"  alt="" loading="lazy" />
@@ -386,7 +372,7 @@ header.hero{ overflow: hidden !important; }
     <img src="hero9.jpeg"  alt="" loading="lazy" />
     <img src="hero10.jpeg" alt="" loading="lazy" />
     <img src="hero11.jpeg" alt="" loading="lazy" />
-    <img src="hero12.jpeg" alt="" loading="lazy" />
+    <img src="hero13.jpeg" alt="" loading="lazy" />
   </div>
 
   <div id="hero-banner" class="hero-banner">
@@ -401,9 +387,12 @@ header.hero{ overflow: hidden !important; }
 
 <!-- COUNTDOWN -->
 <section aria-labelledby="countdown-title">
+  <div class="cloud-wrap">
+    <div class="cloud-bubble" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">☁️ Klik my</div>
   </div>
   <h2 id="countdown-title" class="section-title">Tot Ons Groot Dag</h2>
   <div id="countdown" class="countdown" role="timer" aria-live="polite"></div>
+  <div class="pulse-icons" aria-hidden="true"><span class="icon">❤️</span><span class="icon">💍</span></div>
 </section>
 
 <div id="falling-zone"></div>
@@ -575,8 +564,8 @@ header.hero{ overflow: hidden !important; }
   });
 
   // (old toggle removed)
-  
-  
+  document.addEventListener('scroll', onScrollBanner, {passive:true});
+  onScrollBanner();
 
 
   // RSVP submit (AJAX)
