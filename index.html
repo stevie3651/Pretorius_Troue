@@ -333,12 +333,15 @@
 
 
 
-}
+
 
 /* === Mobile tweak: prevent banner overlapping next section on small phones === */
 @media (max-width: 520px){
   .hero-banner{ position: relative !important; top: auto !important; margin-top: .5rem !important; }
 }
+
+/* === Fix overlap: clip hero images to the header === */
+header.hero{ overflow: hidden !important; }
 </style>
 
 </head>
@@ -396,7 +399,7 @@
 <!-- COUNTDOWN -->
 <section aria-labelledby="countdown-title">
   <div class="cloud-wrap">
-    <div class="cloud-bubble" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">☁️ Klik my</div>
+    <div class="cloud-bubble" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">RSVP</div>
   </div>
   <h2 id="countdown-title" class="section-title">Tot Ons Groot Dag</h2>
   <div id="countdown" class="countdown" role="timer" aria-live="polite"></div>
