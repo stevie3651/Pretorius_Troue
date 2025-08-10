@@ -513,6 +513,19 @@ header.hero{ overflow: hidden !important; }
   }
 </style>
 
+
+<style id="add-guest-css">
+  /* Guest input rows */
+  #guestsWrapper { display: grid; gap: .5rem; }
+  .guest-row { display: grid; grid-template-columns: 1fr auto; gap: .5rem; align-items: center; }
+  .guest-row input[type="text"] { width: 100%; padding: .8rem .9rem; border: 1px solid #ddd; border-radius: 10px; font: inherit; }
+  .remove-guest {
+    background: transparent; border: 0; cursor: pointer; font-size: 1.1rem;
+    line-height: 1; width: 2.2rem; height: 2.2rem; border-radius: 999px;
+  }
+  .remove-guest:hover { opacity: .8; }
+</style>
+
 </head>
 <body>
 <!-- NAV -->
@@ -683,11 +696,11 @@ header.hero{ overflow: hidden !important; }
 <form action="https://formspree.io/f/mkgzqawq" id="rsvpForm" method="POST">
 <label>Jou Naam:</label>
 <input name="name" required="" type="text"/>
-<div id="guestsWrapper">
+<div id="guestsWrapper"><div class="guest-row"><input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required /><button type="button" class="remove-guest" aria-label="Verwyder gas" title="Verwyder">✕</button></div>
 <label>Name van Gaste wat jy RSVP vir:</label>
 <input name="guests[]" placeholder="Bv. Stephan Pretorius" required="" type="text"/>
 </div>
-<button onclick="addGuestField()" style="background:#FFD7D7; color:#000000; border:none; padding:.6rem .9rem; border-radius:999px; font-weight:800; justify-self:start" type="button">➕ Voeg nog 'n gas by</button>
+<button  id=\"addGuestBtn\"  style="background:#FFD7D7; color:#000000; border:none; padding:.6rem .9rem; border-radius:999px; font-weight:800; justify-self:start" type="button">➕ Voeg nog 'n gas by</button>
 <label>Enige Spesiale Boodskap of Dieetvereistes:</label>
 <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
 <button class="primary" type="submit">💌 Stuur RSVP</button>
@@ -1099,6 +1112,53 @@ document.addEventListener('click', function(e){
   text-align-last: center !important;
 }
 </style>
+
+<script id="add-guest-js">
+(function(){
+  const wrapper = document.getElementById('guestsWrapper');
+  const addBtn  = document.getElementById('addGuestBtn');
+
+  function makeRow(placeholder){
+    const row = document.createElement('div');
+    row.className = 'guest-row';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'guests[]';
+    input.placeholder = placeholder || "Nog 'n naam...";
+    input.required = true;
+
+    const del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'remove-guest';
+    del.setAttribute('aria-label', 'Verwyder gas');
+    del.textContent = '✕';
+
+    del.addEventListener('click', () => row.remove());
+
+    row.appendChild(input);
+    row.appendChild(del);
+    return { row, input };
+  }
+
+  // Global fallback (if something else tries to call it)
+  window.addGuestField = function(){
+    const made = makeRow("Nog 'n naam...");
+    wrapper.appendChild(made.row);
+    // Focus + scroll so you can see the new field
+    made.input.focus({preventScroll:false});
+    made.input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
+
+  if(addBtn){
+    addBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      window.addGuestField();
+    }, { passive:false });
+  }
+})();
+</script>
+
 </body>
 </html>
 <style id="pink-button-overrides">
