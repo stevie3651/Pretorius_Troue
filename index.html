@@ -233,7 +233,7 @@
   @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}}
 
   .suite-card{
-    border:1px solid #ee0a74; border-radius:14px; padding:.9rem 1rem; margin:.6rem 0;
+    border:1px solid #ffffff; border-radius:14px; padding:.9rem 1rem; margin:.6rem 0;
     box-shadow: 0 4px 12px rgba(0,0,0,.06);
   }
   .pulse-button{ color:#111 !important;
@@ -562,6 +562,26 @@ header.hero{ overflow: hidden !important; }
   text-decoration-color: #000 !important;
 }
 </style>
+<style id='suite-card-pink'>
+/* Pink background for suite cards in both sections */
+#de-haven-oost-list .suite-card,
+#alternative-accommodation .suite-card {
+  background-color: #facbcb !important;
+}
+</style>
+
+<style id="spacing-halved">
+  /* Halve general section padding */
+  section {
+    padding: clamp(1rem, 2.5vw, 2rem) 0.5rem !important;
+  }
+  /* Halve the extra spacing around the countdown block */
+  .countdown-sec{
+    padding: clamp(1rem, 2.5vw, 2rem) 0.5rem !important;
+    margin-top: clamp(1rem, 2.5vw, 2rem) !important;
+  }
+</style>
+
 </head>
 <body>
 <!-- NAV -->
@@ -639,7 +659,7 @@ header.hero{ overflow: hidden !important; }
 <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Trou Venue</strong> gehou.</p>
 <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
 <p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" rel="noopener" target="_blank" style="color:#000; text-decoration-color:#000;">➤ Open in Google Maps</a></p>
-<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Ons nooi gaste uit om hul eie verblyf te reël, aangesien akkommodasie nie by die geleentheid ingesluit is nie.Verblyf is beskikbaar op die trouperseel.</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" rel="noopener" target="_blank"><br>De Haven Oost</a></p>
+<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste is self verantwoordelik vir die reëlings van hul verblyf.<br>Verblyf is beskikbaar op die trouperseel.</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" rel="noopener" target="_blank"><br>De Haven Oost</a></p>
 <div class="dropdown-toggle">Akkommodasie by De Haven Oost</div>
 <div class="dropdown-content" id="de-haven-oost-list" style="display:none">
 <div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Max 2 Gaste</p><p>1 Double Bed. Bath. Tea &amp; Coffee. Room Only.</p></div>
@@ -735,6 +755,7 @@ header.hero{ overflow: hidden !important; }
 <h2 id="rsvp-title">RSVP</h2>
 <strong>Ons vra dat almal teen 31 September 2025 sal RSVP.</strong>
 <div>
+  <br>
 <form action="https://formspree.io/f/mkgzqawq" id="rsvpForm" method="POST">
 <label>Jou naam:</label>
 <input name="name" required="" type="text"/>
@@ -930,32 +951,41 @@ document.addEventListener('click', function(e){
   content.style.display = isOpen ? 'none' : 'block';
 });
 </script>
+
 <script>
   (function(){
     const PETAL_LIMIT = 16;
     const EMOJIS = ['🤍','🌻','💍'];
     const overlay = document.getElementById('petal-overlay');
     const startSec = document.getElementById('geskenke');
-    const endSec   = document.getElementById('rsvp-button-size-override');
 
     let petals = 0;
 
     function positionOverlay(){
-      if(!overlay || !startSec || !endSec) return;
+      if(!overlay || !startSec) return;
       const s = startSec.getBoundingClientRect();
-      const e = endSec.getBoundingClientRect();
-      const topAbs    = window.scrollY + s.top;
-      const bottomAbs = window.scrollY + e.bottom;
-      const height    = Math.max(0, bottomAbs - topAbs);
+      const topAbs = window.scrollY + s.top;
+      const docHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+      const height = Math.max(0, docHeight - topAbs);
 
-      overlay.style.top    = topAbs + 'px';
+      overlay.style.top = topAbs + 'px';
       overlay.style.height = height + 'px';
+      overlay.style.left = 0;
+      overlay.style.right = 0;
       overlay.style.position = 'absolute';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.overflow = 'hidden';
+      overlay.style.zIndex = 3;
     }
 
     function spawnPetal(){
       if (!overlay) return;
       if (petals >= PETAL_LIMIT) return;
+
       const ovRect = overlay.getBoundingClientRect();
       const visible = ovRect.bottom > 0 && ovRect.top < window.innerHeight;
       if(!visible) return;
@@ -966,6 +996,7 @@ document.addEventListener('click', function(e){
 
       const x = Math.random() * Math.max(overlay.clientWidth - 10, 0);
       p.style.left = x + 'px';
+      p.style.top = '0px';
       p.style.setProperty('--dur', (7 + Math.random()*4) + 's');
 
       overlay.appendChild(p);
@@ -986,6 +1017,7 @@ document.addEventListener('click', function(e){
     setInterval(spawnPetal, 850);
   })();
 </script>
+
 <style id="justify-overrides">
 /* === Justify all buttons, headings, and text from “Trou Inligting” down === */
 #trou-inligting, #algemene-vrae, #geskenke, #rsvp {
