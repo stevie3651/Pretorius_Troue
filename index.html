@@ -450,6 +450,16 @@ header.hero{ overflow: hidden !important; }
 #trou-inligting .info-split { justify-content: flex-start !important; }
 #trou-inligting .info-split > div { text-align: left !important; }
 .section-title.akkommodasie-left { text-align: left !important; }
+</style><style>
+/* Rounded corners for the countdown background */
+#countdown, #countdown .countdown-card, .countdown-bg {
+  border-radius: 22px;
+  overflow: hidden;
+}
+/* Optional: soft shadow to match the style */
+#countdown.rounded, .countdown-bg.rounded {
+  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+}
 </style></head>
 <body>
 <!-- NAV -->
@@ -503,7 +513,7 @@ header.hero{ overflow: hidden !important; }
 <section aria-labelledby="countdown-title" class="countdown-sec" id="countdown-sec">
 <h2 class="visually-hidden" id="countdown-title">Tot Ons Groot Dag</h2>
 <div class="countdown-inner">
-<div aria-live="polite" class="countdown" id="countdown" role="timer"></div>
+<div aria-live="polite" class="countdown rounded" id="countdown" role="timer" style="border-radius:22px;overflow:hidden"></div>
 </div>
 </section>
 <div id="falling-zone"></div>
@@ -524,7 +534,7 @@ header.hero{ overflow: hidden !important; }
 <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Troue Tenue</strong> gehou.</p>
 <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
 <p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" rel="noopener" target="_blank">➤ Open in Google Maps</a></p>
-<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie</h2><div><p><strong>Ons nooi gaste uit om hul eie verblyf te reël, aangesien akkommodasie nie by die geleentheid ingesluit is nie.Verblyf is beskikbaar op die trouperseel.</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" rel="noopener" target="_blank">De Haven Oost</a></p>
+<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie</h2><div><p><strong>Ons nooi gaste uit om hul eie verblyf te reël, aangesien akkommodasie nie by die geleentheid ingesluit is nie.Verblyf is beskikbaar op die trouperseel,</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" rel="noopener" target="_blank">De Haven Oost</a></p>
 <div class="dropdown-toggle"> Beskikbare Kamers by De Haven Oost</div>
 <div class="dropdown-content">
 <div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Max 2 Gaste</p><p>1 Double Bed. Bath. Tea &amp; Coffee. Room Only.</p></div>
@@ -533,7 +543,7 @@ header.hero{ overflow: hidden !important; }
 <div class="suite-card"><h4>Suite C</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Shower. Bar Fridge &amp; Microwave. Room Only.</p></div>
 <div class="suite-card"><h4>Suite D</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Bath &amp; Shower. Bar Fridge &amp; Microwave. Room Only.</p></div>
 </div>
-<p><strong>Alternatiewe akkommodasie is ook beskikbaar, wat nie ver van die trouperseel geleë is nie.</strong></p>
+<p><strong>Alternatiewe akkommodasie is ook beskikbaar, wat nie ver van die trouperseel geleë is nie</strong></p>
 <div class="dropdown-toggle">Alternatiewe Akkommodasie</div>
 <div class="dropdown-content" id="alternative-accommodation" style="display:none">
 <div class="suite-card"><strong>Liebencharm Guest House</strong><br/>
