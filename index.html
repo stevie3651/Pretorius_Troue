@@ -6,6 +6,28 @@
 <title>Chané & Stephan Troue</title>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
 <style>
+
+/* --- Falling petals (scoped to overlay) --- */
+#petal-overlay{
+  position:absolute;       /* JS will place it between the two sections */
+  left:0; right:0;
+  pointer-events:none;
+  z-index:3;
+  overflow:hidden;         /* keep inside the zone */
+}
+.falling-petal{
+  position:absolute;
+  top:-24px;               /* start just above the overlay */
+  font-size:1.3rem;
+  opacity:.9;
+  will-change: transform, opacity;
+  animation: fall var(--dur,9s) linear forwards;
+}
+@keyframes fall{
+  90% { transform: translateY(100%); opacity:.9; }
+  100%{ transform: translateY(100%); opacity:0; }
+}
+
   :root{
     --pink:#cf5da9;
     --sage:#0f4d17;
@@ -702,6 +724,64 @@ document.addEventListener('click', function(e){
 
 
 
+
+
+<script>
+  (function(){
+    const PETAL_LIMIT = 16;
+    const EMOJIS = ['🤍','🌻','💍'];
+    const overlay = document.getElementById('petal-overlay');
+    const startSec = document.getElementById('trou-inligting');
+    const endSec   = document.getElementById('geskenke');
+
+    let petals = 0;
+
+    function positionOverlay(){
+      if(!overlay || !startSec || !endSec) return;
+      const s = startSec.getBoundingClientRect();
+      const e = endSec.getBoundingClientRect();
+      const topAbs    = window.scrollY + s.top;
+      const bottomAbs = window.scrollY + e.bottom;
+      const height    = Math.max(0, bottomAbs - topAbs);
+
+      overlay.style.top    = topAbs + 'px';
+      overlay.style.height = height + 'px';
+      overlay.style.position = 'absolute';
+    }
+
+    function spawnPetal(){
+      if (!overlay) return;
+      if (petals >= PETAL_LIMIT) return;
+      const ovRect = overlay.getBoundingClientRect();
+      const visible = ovRect.bottom > 0 && ovRect.top < window.innerHeight;
+      if(!visible) return;
+
+      const p = document.createElement('div');
+      p.className = 'falling-petal';
+      p.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+
+      const x = Math.random() * Math.max(overlay.clientWidth - 10, 0);
+      p.style.left = x + 'px';
+      p.style.setProperty('--dur', (7 + Math.random()*4) + 's');
+
+      overlay.appendChild(p);
+      petals++;
+
+      p.addEventListener('animationend', () => {
+        p.remove();
+        petals--;
+      }, { once:true });
+    }
+
+    const reflow = () => positionOverlay();
+    window.addEventListener('load', reflow, { passive:true });
+    window.addEventListener('resize', reflow, { passive:true });
+    window.addEventListener('scroll', reflow, { passive:true });
+    positionOverlay();
+
+    setInterval(spawnPetal, 850);
+  })();
+</script>
 
 </body>
 </html>
