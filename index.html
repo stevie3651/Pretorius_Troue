@@ -30,10 +30,10 @@
 
   :root{
     --pink: #000000;
-    --sage:#0f4d17;
+    --sage:#C0CBC2;
     --sun:#c4a664;
     --bg: transparent;
-    --sageBar:#CFE3D1; /* soft sage */
+    --sageBar:#C0CBC2; /* soft sage */
     --glass: rgba(255,255,255,0.82);
     --navH: 56px;
     --shadow: 0 10px 25px rgba(0,0,0,.12);
@@ -214,7 +214,7 @@
     font-size: clamp(2.2rem, 6vw, 3.5rem);
     margin:.25rem 0 .5rem;
   }
-  .glow-link{ color:#2c6e2f; font-weight:700; text-decoration:underline; text-decoration-color:#2c6e2f }
+  .glow-link{ color:#C0CBC2; font-weight:700; text-decoration:underline; text-decoration-color:#C0CBC2 }
   .glow-link:active{ opacity:.8 }
 
   /* ---------- FAQ + ACCOM ---------- */
@@ -256,7 +256,7 @@
   }
   button.primary{
     width:100%; padding: .95rem 1rem; border:none; border-radius:999px;
-    background:#1b7427; color:#000; font-weight:800; font-size: clamp(2.2rem, 6vw, 3.5rem);
+    background:#C0CBC2; color:#000; font-weight:800; font-size: clamp(2.2rem, 6vw, 3.5rem);
     box-shadow: 0 8px 18px rgba(0,0,0,.15); cursor:pointer;
   }
 
@@ -296,7 +296,7 @@
   .collapsible{overflow:hidden; max-height:0; transition:max-height .35s ease; margin-top:.75rem}
   .collapsible.open{max-height:2000px} /* large enough for content */
   .suite-card h4{margin:0 0 .25rem}
-  .suite-card a{color:#2c6e2f; font-weight:700; text-decoration:underline}
+  .suite-card a{color:#C0CBC2; font-weight:700; text-decoration:underline}
 
 
 
@@ -362,7 +362,7 @@ body {
 #algemene-vrae .glass-card,
 #geskenke .glass-card,
 #rsvp .rsvp-container {
-  background: #4bcc76fb !important;      /* inside the thin border */
+  background: #C0CBC2 !important;      /* inside the thin border */
   border: 2px solid #ffffff !important; /* crisp white border */
   backdrop-filter: none !important;     /* ensure color is solid, not glass */
 }
@@ -372,7 +372,7 @@ body {
 
 
 /* === Update per request: light sage inside cards, subtle baby-pink dropdowns === */
-:root{ --sageBar: #CFE3D1; } /* light sage */
+:root{ --sageBar: #C0CBC2; } /* light sage */
 
 #trou-inligting .glass-card,
 #algemene-vrae .glass-card,
@@ -435,6 +435,15 @@ header.hero{ overflow: hidden !important; }
 
 /* === Adjust hero names lower === */
 .hero-banner{ margin-top: 5rem !important; }
+</style>
+
+
+<style id="info-title-center-override">
+  #trou-inligting #info-title.section-title{
+    text-align: center !important;
+    text-align-last: center !important;
+    -moz-text-align-last: center !important;
+  }
 </style>
 
 </head>
@@ -644,7 +653,7 @@ header.hero{ overflow: hidden !important; }
       <button class="primary" type="submit">💌 Stuur RSVP</button>
     </form>
     <div id="thankYou" style="display:none; text-align:center; margin-top:1rem">
-      <h3 style="color:#2b9348; font-size: clamp(1.2rem, 5vw, 1.6rem)">Dankie! 💍</h3>
+      <h3 style="color:#C0CBC2; font-size: clamp(1.2rem, 5vw, 1.6rem)">Dankie! 💍</h3>
       <p>Ons het jou RSVP ontvang en kan nie wag om julle te sien nie!</p>
     </div>
   </div>
