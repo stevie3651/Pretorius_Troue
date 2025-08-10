@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="af">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Chané & Stephan Troue</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Chané &amp; Stephan Troue</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Playfair+Display:wght@400;600&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <style>
 
 /* --- Falling petals (scoped to overlay) --- */
@@ -436,8 +437,6 @@ header.hero{ overflow: hidden !important; }
 /* === Adjust hero names lower === */
 .hero-banner{ margin-top: 5rem !important; }
 </style>
-
-
 <style id="info-title-center-override">
   #trou-inligting #info-title.section-title{
     text-align: center !important;
@@ -445,220 +444,197 @@ header.hero{ overflow: hidden !important; }
     -moz-text-align-last: center !important;
   }
 </style>
-
-</head>
+<style>
+/* Overrides requested: left-align Wanneer?, Waar?, and Akkommodasie */
+#trou-inligting h3 { text-align: left !important; }
+#trou-inligting .info-split { justify-content: flex-start !important; }
+#trou-inligting .info-split > div { text-align: left !important; }
+.section-title.akkommodasie-left { text-align: left !important; }
+</style></head>
 <body>
-
 <!-- NAV -->
 <nav class="top-nav">
-  <a href="#tuis">Tuis</a>
-  <a href="#trou-inligting">Inligting</a>
-  <a href="#algemene-vrae">Vrae</a>
-  <a href="#geskenke">Register</a>
-  <a href="#rsvp">RSVP</a>
+<a href="#tuis">Tuis</a>
+<a href="#trou-inligting">Inligting</a>
+<a href="#algemene-vrae">Vrae</a>
+<a href="#geskenke">Register</a>
+<a href="#rsvp">RSVP</a>
 </nav>
-
 <!-- HERO -->
-<header id="tuis" class="hero" aria-label="Foto-skyfie van paartjie">
-  <div class="hero-track" aria-hidden="true">
-    <img src="hero1.jpeg"  alt="" />
-    <img src="hero2.jpeg"  alt="" />
-    <img src="hero3.jpeg"  alt="" />
-    <img src="hero4.jpeg"  alt="" />
-    <img src="hero5.jpeg"  alt="" />
-    <img src="hero6.jpeg"  alt="" />
-    <img src="hero7.jpeg"  alt="" />
-    <img src="hero8.jpeg"  alt="" />
-    <img src="hero9.jpeg"  alt="" />
-    <img src="hero10.jpeg" alt="" />
-    <img src="hero11.jpeg" alt="" />
-    <img src="hero12.jpeg" alt="" />
-    <!-- duplicates -->
-    <img src="hero1.jpeg"  alt="" loading="lazy" />
-    <img src="hero2.jpeg"  alt="" loading="lazy" />
-    <img src="hero3.jpeg"  alt="" loading="lazy" />
-    <img src="hero4.jpeg"  alt="" loading="lazy" />
-    <img src="hero5.jpeg"  alt="" loading="lazy" />
-    <img src="hero6.jpeg"  alt="" loading="lazy" />
-    <img src="hero7.jpeg"  alt="" loading="lazy" />
-    <img src="hero8.jpeg"  alt="" loading="lazy" />
-    <img src="hero9.jpeg"  alt="" loading="lazy" />
-    <img src="hero10.jpeg" alt="" loading="lazy" />
-    <img src="hero11.jpeg" alt="" loading="lazy" />
-    <img src="hero12.jpeg" alt="" loading="lazy" />
-  </div>
-
-  <div id="hero-banner" class="hero-banner">
-    <h1 class="hero-title">
-      <span>Stephan</span>
-      <span class="hero-heart">&</span>
-      <span>Chané</span>
-    </h1>
-    <p class="hero-date">28 November 2025 om 16:00</p>
-  </div>
+<header aria-label="Foto-skyfie van paartjie" class="hero" id="tuis">
+<div aria-hidden="true" class="hero-track">
+<img alt="" src="hero1.jpeg"/>
+<img alt="" src="hero2.jpeg"/>
+<img alt="" src="hero3.jpeg"/>
+<img alt="" src="hero4.jpeg"/>
+<img alt="" src="hero5.jpeg"/>
+<img alt="" src="hero6.jpeg"/>
+<img alt="" src="hero7.jpeg"/>
+<img alt="" src="hero8.jpeg"/>
+<img alt="" src="hero9.jpeg"/>
+<img alt="" src="hero10.jpeg"/>
+<img alt="" src="hero11.jpeg"/>
+<img alt="" src="hero12.jpeg"/>
+<!-- duplicates -->
+<img alt="" loading="lazy" src="hero1.jpeg"/>
+<img alt="" loading="lazy" src="hero2.jpeg"/>
+<img alt="" loading="lazy" src="hero3.jpeg"/>
+<img alt="" loading="lazy" src="hero4.jpeg"/>
+<img alt="" loading="lazy" src="hero5.jpeg"/>
+<img alt="" loading="lazy" src="hero6.jpeg"/>
+<img alt="" loading="lazy" src="hero7.jpeg"/>
+<img alt="" loading="lazy" src="hero8.jpeg"/>
+<img alt="" loading="lazy" src="hero9.jpeg"/>
+<img alt="" loading="lazy" src="hero10.jpeg"/>
+<img alt="" loading="lazy" src="hero11.jpeg"/>
+<img alt="" loading="lazy" src="hero12.jpeg"/>
+</div>
+<div class="hero-banner" id="hero-banner">
+<h1 class="hero-title">
+<span>Stephan</span>
+<span class="hero-heart">&amp;</span>
+<span>Chané</span>
+</h1>
+<p class="hero-date">28 November 2025 om 16:00</p>
+</div>
 </header>
-
 <!-- COUNTDOWN -->
-
 <!-- COUNTDOWN -->
-<section id="countdown-sec" class="countdown-sec" aria-labelledby="countdown-title">
-  <h2 id="countdown-title" class="visually-hidden">Tot Ons Groot Dag</h2>
-  <div class="countdown-inner">
-    <div id="countdown" class="countdown" role="timer" aria-live="polite"></div>
-  </div>
+<section aria-labelledby="countdown-title" class="countdown-sec" id="countdown-sec">
+<h2 class="visually-hidden" id="countdown-title">Tot Ons Groot Dag</h2>
+<div class="countdown-inner">
+<div aria-live="polite" class="countdown" id="countdown" role="timer"></div>
+</div>
 </section>
-
-
 <div id="falling-zone"></div>
 <div id="petal-overlay"></div>
-
 <!-- INFO: Waar & Wanneer -->
-<section id="trou-inligting" aria-labelledby="info-title">
-  <div class="glass-card">
-    <h2 id="info-title" class="section-title" style="margin-bottom:1rem">Inligting</h2>
-    <div class="info-split">
-      <div>
-        <h3>🗓 Wanneer?</h3>
-        <p><strong>Vrydag, 28 November 2025</strong></p>
-        <p>om 16:00 uur</p>
-      </div>
-      <div class="v-divider" aria-hidden="true"></div>
-      <div>
-        <h3>📍 Waar?</h3>
-        <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Troue Tenue</strong> gehou.</p>
-        <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
-        <p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" target="_blank" rel="noopener">➤ Open in Google Maps</a></p>
-        <h2 class="section-title" style="margin-top:1rem">🏠  Akkommodasie</h3>
-    <p><strong>Ons nooi gaste uit om hul eie verblyf te reël, aangesien akkommodasie nie by die geleentheid ingesluit is nie.Verblyf is beskikbaar op die trouperseel,</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" target="_blank" rel="noopener">De Haven Oost</a></p>
-
-    <div class="dropdown-toggle"> Beskikbare Kamers by De Haven Oost</div>
-    <div class="dropdown-content">
-      <div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Max 2 Gaste</p><p>1 Double Bed. Bath. Tea & Coffee. Room Only.</p></div>
-      <div class="suite-card"><h4>Suite E–H</h4><p><strong>R2 340.00</strong> – Max 3 Gaste</p><p>1 Double + 1 Single Bed. Shower. Bar Fridge & Microwave. Room Only.</p></div>
-      <div class="suite-card"><h4>Suite B</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>1 Double Bed + 2 Single Beds. Shower. Bar Fridge & Microwave. Room Only.</p></div>
-      <div class="suite-card"><h4>Suite C</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Shower. Bar Fridge & Microwave. Room Only.</p></div>
-      <div class="suite-card"><h4>Suite D</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Bath & Shower. Bar Fridge & Microwave. Room Only.</p></div>
-    </div>
+<section aria-labelledby="info-title" id="trou-inligting">
+<div class="glass-card">
+<h2 class="section-title" id="info-title" style="margin-bottom:1rem">Inligting</h2>
+<div class="info-split">
+<div>
+<h3 style="text-align:left;">🗓 Wanneer?</h3>
+<p><strong>Vrydag, 28 November 2025</strong></p>
+<p>om 16:00 uur</p>
+</div>
+<div aria-hidden="true" class="v-divider"></div>
+<div>
+<h3 style="text-align:left;">📍 Waar?</h3>
+<p>Die trou seremonie en onthaal word by <strong>De Haven Oost Troue Tenue</strong> gehou.</p>
+<p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
+<p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" rel="noopener" target="_blank">➤ Open in Google Maps</a></p>
+<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠 Akkommodasie?
+<p><strong>Ons nooi gaste uit om hul eie verblyf te reël, aangesien akkommodasie nie by die geleentheid ingesluit is nie.Verblyf is beskikbaar op die trouperseel.</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" rel="noopener" target="_blank">De Haven Oost</a></p>
+<div class="dropdown-toggle"> Beskikbare Kamers by De Haven Oost</div>
+<div class="dropdown-content">
+<div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Max 2 Gaste</p><p>1 Double Bed. Bath. Tea &amp; Coffee. Room Only.</p></div>
+<div class="suite-card"><h4>Suite E–H</h4><p><strong>R2 340.00</strong> – Max 3 Gaste</p><p>1 Double + 1 Single Bed. Shower. Bar Fridge &amp; Microwave. Room Only.</p></div>
+<div class="suite-card"><h4>Suite B</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>1 Double Bed + 2 Single Beds. Shower. Bar Fridge &amp; Microwave. Room Only.</p></div>
+<div class="suite-card"><h4>Suite C</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Shower. Bar Fridge &amp; Microwave. Room Only.</p></div>
+<div class="suite-card"><h4>Suite D</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Bath &amp; Shower. Bar Fridge &amp; Microwave. Room Only.</p></div>
+</div>
 <p><strong>Alternatiewe akkommodasie is ook beskikbaar, wat nie ver van die trouperseel geleë is nie</strong></p>
-
-    <div class="dropdown-toggle">Alternatiewe Akkommodasie</div>
-<div id="alternative-accommodation" class="dropdown-content" style="display:none">
-  <div class="suite-card"><strong>Liebencharm Guest House</strong><br>
-    Website: <a href="https://www.liebencharm.co.za" target="_blank" rel="noopener">www.liebencharm.co.za</a><br>
-    Kontak: 083 417 5873<br>
-    E-pos: <a href="mailto:elsabe.liebencharm@gmail.com">elsabe.liebencharm@gmail.com</a><br>
+<div class="dropdown-toggle">Alternatiewe Akkommodasie</div>
+<div class="dropdown-content" id="alternative-accommodation" style="display:none">
+<div class="suite-card"><strong>Liebencharm Guest House</strong><br/>
+    Website: <a href="https://www.liebencharm.co.za" rel="noopener" target="_blank">www.liebencharm.co.za</a><br/>
+    Kontak: 083 417 5873<br/>
+    E-pos: <a href="mailto:elsabe.liebencharm@gmail.com">elsabe.liebencharm@gmail.com</a><br/>
     Afstand van De Haven Oost: 3.4 km</div>
-
-  <div class="suite-card"><strong>Diamantvallei</strong><br>
-    Website: <a href="https://www.diamantvallei.co.za" target="_blank" rel="noopener">www.diamantvallei.co.za</a><br>
-    Kontak: 012 941 9296<br>
-    E-pos: <a href="mailto:info@diamantvallei.co.za">info@diamantvallei.co.za</a><br>
+<div class="suite-card"><strong>Diamantvallei</strong><br/>
+    Website: <a href="https://www.diamantvallei.co.za" rel="noopener" target="_blank">www.diamantvallei.co.za</a><br/>
+    Kontak: 012 941 9296<br/>
+    E-pos: <a href="mailto:info@diamantvallei.co.za">info@diamantvallei.co.za</a><br/>
     Afstand: 5 km</div>
-
-  <div class="suite-card"><strong>Amanvari</strong><br>
-    Website: <a href="https://www.amanvari.co.za" target="_blank" rel="noopener">www.amanvari.co.za</a><br>
-    Kontak: 082 975 8352<br>
-    E-pos: <a href="mailto:bookings@amanvari.co.za">bookings@amanvari.co.za</a><br>
+<div class="suite-card"><strong>Amanvari</strong><br/>
+    Website: <a href="https://www.amanvari.co.za" rel="noopener" target="_blank">www.amanvari.co.za</a><br/>
+    Kontak: 082 975 8352<br/>
+    E-pos: <a href="mailto:bookings@amanvari.co.za">bookings@amanvari.co.za</a><br/>
     Afstand: 5.2 km</div>
-
-  <div class="suite-card"><strong>Die Skaapkraal</strong><br>
-    Website: <a href="https://www.dieskaapkraal.co.za" target="_blank" rel="noopener">www.dieskaapkraal.co.za</a><br>
-    Kontak: 082 929 4977<br>
-    E-pos: <a href="mailto:eloise@dieskaapkraal.co.za">eloise@dieskaapkraal.co.za</a><br>
+<div class="suite-card"><strong>Die Skaapkraal</strong><br/>
+    Website: <a href="https://www.dieskaapkraal.co.za" rel="noopener" target="_blank">www.dieskaapkraal.co.za</a><br/>
+    Kontak: 082 929 4977<br/>
+    E-pos: <a href="mailto:eloise@dieskaapkraal.co.za">eloise@dieskaapkraal.co.za</a><br/>
     Afstand: 5.5 km</div>
-
-  <div class="suite-card"><strong>Ambers And Grace</strong><br>
-    Website: <a href="https://www.ambersandgrace.co.za" target="_blank" rel="noopener">www.ambersandgrace.co.za</a><br>
-    Kontak: 082 589 0847<br>
-    E-pos: <a href="mailto:info@ambersandgrace.co.za">info@ambersandgrace.co.za</a><br>
+<div class="suite-card"><strong>Ambers And Grace</strong><br/>
+    Website: <a href="https://www.ambersandgrace.co.za" rel="noopener" target="_blank">www.ambersandgrace.co.za</a><br/>
+    Kontak: 082 589 0847<br/>
+    E-pos: <a href="mailto:info@ambersandgrace.co.za">info@ambersandgrace.co.za</a><br/>
     Afstand: 7.3 km</div>
-
-  <div class="suite-card"><strong>Silver Fig Guest House</strong><br>
-    Website: <a href="https://silverfigguesthouse.co.za" target="_blank" rel="noopener">silverfigguesthouse.co.za</a><br>
-    Kontak: 012 802 4017<br>
-    E-pos: <a href="mailto:silverfig@mweb.co.za">silverfig@mweb.co.za</a><br>
+<div class="suite-card"><strong>Silver Fig Guest House</strong><br/>
+    Website: <a href="https://silverfigguesthouse.co.za" rel="noopener" target="_blank">silverfigguesthouse.co.za</a><br/>
+    Kontak: 012 802 4017<br/>
+    E-pos: <a href="mailto:silverfig@mweb.co.za">silverfig@mweb.co.za</a><br/>
     Afstand: 10 km</div>
-
-  <div class="suite-card"><strong>Soetwaters</strong><br>
-    Website: <a href="https://www.soetwaters.co.za" target="_blank" rel="noopener">www.soetwaters.co.za</a><br>
-    Kontak: 079 163 4084<br>
-    E-pos: <a href="mailto:info@soetwaters.co.za">info@soetwaters.co.za</a><br>
+<div class="suite-card"><strong>Soetwaters</strong><br/>
+    Website: <a href="https://www.soetwaters.co.za" rel="noopener" target="_blank">www.soetwaters.co.za</a><br/>
+    Kontak: 079 163 4084<br/>
+    E-pos: <a href="mailto:info@soetwaters.co.za">info@soetwaters.co.za</a><br/>
     Afstand: 11 km</div>
-
-  <div class="suite-card"><strong>Guesthouse56</strong><br>
-    Website: <a href="https://www.guesthouse56.com" target="_blank" rel="noopener">www.guesthouse56.com</a><br>
-    Kontak: 072 486 8877<br>
-    E-pos: <a href="mailto:info@guesthouse56.com">info@guesthouse56.com</a><br>
+<div class="suite-card"><strong>Guesthouse56</strong><br/>
+    Website: <a href="https://www.guesthouse56.com" rel="noopener" target="_blank">www.guesthouse56.com</a><br/>
+    Kontak: 072 486 8877<br/>
+    E-pos: <a href="mailto:info@guesthouse56.com">info@guesthouse56.com</a><br/>
     Afstand: 14.5 km</div>
 </div>
-      </div>
-    </div>
-
-    
-</section>
-
-<!-- FAQ + Accommodation -->
-<section id="algemene-vrae" aria-labelledby="faq-title">
-  <div class="glass-card">
-    <h2 id="faq-title" class="section-title">Algemene Vrae</h2>
-
-    <div class="dropdown-toggle">Wanneer kan ons arriveer?</div>
-    <div class="dropdown-content">
-      <p>Gaste is welkom om vanaf 15:00 uur by die trouperseel te arriveer. Die seremonie begin om 16:00. Ons vra dat gaste teen 15:50 hul sitplekke inneem.</p>
-      <p>Gaste wat oorslaap is welkom vanaf 14:00 uur.</p>
-    </div>
-
-    <div class="dropdown-toggle">Waar moet ek sit?</div>
-    <div class="dropdown-content">
-      <p>“Kies gerus ’n sitplek, nie ’n kant nie.”</p>
-      <p>Ons volg nie die tradisionele gebruik van ’n bruid & bruidegom kant nie. Julle is welkom om te sit waar julle gemaklik voel.</p>
-      <p>By die onthaal sal daar ’n sitkaart wees wat wys by watter tafel julle sit.</p>
-    </div>
-
-    <div class="dropdown-toggle left-align">Ander Vrae?</div>
-    <div class="dropdown-content">
-      <p>Indien daar enige ander vrae is, bel of stuur gerus ’n boodskap aan Chané of Stephan.</p>
-      <p><strong>Chané:</strong> 066 207 2851<br><strong>Stephan:</strong> 079 112 6024</p>
-    </div>
+</h2></div>
 </div>
-
-  
+</div></section>
+<!-- FAQ + Accommodation -->
+<section aria-labelledby="faq-title" id="algemene-vrae">
+<div class="glass-card">
+<h2 class="section-title" id="faq-title">Algemene Vrae</h2>
+<div class="dropdown-toggle">Wanneer kan ons arriveer?</div>
+<div class="dropdown-content">
+<p>Gaste is welkom om vanaf 15:00 uur by die trouperseel te arriveer. Die seremonie begin om 16:00. Ons vra dat gaste teen 15:50 hul sitplekke inneem.</p>
+<p>Gaste wat oorslaap is welkom vanaf 14:00 uur.</p>
+</div>
+<div class="dropdown-toggle">Waar moet ek sit?</div>
+<div class="dropdown-content">
+<p>“Kies gerus ’n sitplek, nie ’n kant nie.”</p>
+<p>Ons volg nie die tradisionele gebruik van ’n bruid &amp; bruidegom kant nie. Julle is welkom om te sit waar julle gemaklik voel.</p>
+<p>By die onthaal sal daar ’n sitkaart wees wat wys by watter tafel julle sit.</p>
+</div>
+<div class="dropdown-toggle left-align">Ander Vrae?</div>
+<div class="dropdown-content">
+<p>Indien daar enige ander vrae is, bel of stuur gerus ’n boodskap aan Chané of Stephan.</p>
+<p><strong>Chané:</strong> 066 207 2851<br/><strong>Stephan:</strong> 079 112 6024</p>
+</div>
+</div>
 </section>
-
 <!-- Gifts -->
-<section id="geskenke" aria-labelledby="gift-title">
-  <div class="glass-card">
-    <h2 id="gift-title" class="section-title">Geskenkregister</h2>
-    <div style="margin-top:.25rem">
-      <p><strong>Geskenkregister skakel:</strong> <a href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" target="_blank" rel="noopener" style="color: black; font-weight:700; text-decoration:underline">Klik hier om te besoek</a></p>
-      <p><strong>Bank Besonderhede:</strong><br>Bank: FNB / RMB<br>Rekeninghouer: Chané Jacobs<br>Rekeningtipe: FNBy Next (Spaarrekening)<br>Rekeningnommer: 629 2812 3819<br>Tak Kode: 250655</p>
-    </div>
-  </div>
+<section aria-labelledby="gift-title" id="geskenke">
+<div class="glass-card">
+<h2 class="section-title" id="gift-title">Geskenkregister</h2>
+<div style="margin-top:.25rem">
+<p><strong>Geskenkregister skakel:</strong> <a href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" rel="noopener" style="color: black; font-weight:700; text-decoration:underline" target="_blank">Klik hier om te besoek</a></p>
+<p><strong>Bank Besonderhede:</strong><br/>Bank: FNB / RMB<br/>Rekeninghouer: Chané Jacobs<br/>Rekeningtipe: FNBy Next (Spaarrekening)<br/>Rekeningnommer: 629 2812 3819<br/>Tak Kode: 250655</p>
+</div>
+</div>
 </section>
-
 <!-- RSVP -->
-<section id="rsvp" aria-labelledby="rsvp-title">
-  <div class="rsvp-container">
-    <h2 id="rsvp-title">RSVP na ons troue 💖</h2>
-    <form id="rsvpForm" action="https://formspree.io/f/mkgzqawq" method="POST">
-      <label>Jou Naam:</label>
-      <input type="text" name="name" required />
-      <div id="guestsWrapper">
-        <label>Name van Gaste wat jy RSVP vir:</label>
-        <input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
-      </div>
-      <button type="button" onclick="addGuestField()" style="background:#FFD7D7; color:#000000; border:none; padding:.6rem .9rem; border-radius:999px; font-weight:800; justify-self:start">➕ Voeg nog 'n gas by</button>
-      <label>Enige Spesiale Boodskap of Dieetvereistes:</label>
-      <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
-      <button class="primary" type="submit">💌 Stuur RSVP</button>
-    </form>
-    <div id="thankYou" style="display:none; text-align:center; margin-top:1rem">
-      <h3 style="color:#C0CBC2; font-size: clamp(1.2rem, 5vw, 1.6rem)">Dankie! 💍</h3>
-      <p>Ons het jou RSVP ontvang en kan nie wag om julle te sien nie!</p>
-    </div>
-  </div>
+<section aria-labelledby="rsvp-title" id="rsvp">
+<div class="rsvp-container">
+<h2 id="rsvp-title">RSVP na ons troue 💖</h2>
+<form action="https://formspree.io/f/mkgzqawq" id="rsvpForm" method="POST">
+<label>Jou Naam:</label>
+<input name="name" required="" type="text"/>
+<div id="guestsWrapper">
+<label>Name van Gaste wat jy RSVP vir:</label>
+<input name="guests[]" placeholder="Bv. Stephan Pretorius" required="" type="text"/>
+</div>
+<button onclick="addGuestField()" style="background:#FFD7D7; color:#000000; border:none; padding:.6rem .9rem; border-radius:999px; font-weight:800; justify-self:start" type="button">➕ Voeg nog 'n gas by</button>
+<label>Enige Spesiale Boodskap of Dieetvereistes:</label>
+<textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
+<button class="primary" type="submit">💌 Stuur RSVP</button>
+</form>
+<div id="thankYou" style="display:none; text-align:center; margin-top:1rem">
+<h3 style="color:#C0CBC2; font-size: clamp(1.2rem, 5vw, 1.6rem)">Dankie! 💍</h3>
+<p>Ons het jou RSVP ontvang en kan nie wag om julle te sien nie!</p>
+</div>
+</div>
 </section>
-
 <script>
   // Dropdowns
   document.querySelectorAll('.dropdown-toggle').forEach(t => {
@@ -696,7 +672,6 @@ header.hero{ overflow: hidden !important; }
 
   /* Gift animation removed per request; details are static now. */
 </script>
-
 <style id="sunflower-countdown">
 /* Visually hidden (keeps semantics for aria-labelledby without showing text) */
 .visually-hidden{
@@ -769,8 +744,6 @@ header.hero{ overflow: hidden !important; }
   .countdown-sec .countdown-inner{ top: 36%; width: 540px; }
 }
 </style>
-
-
 <script>
   // Petals (limit number for performance) — start below countdown section only
   const PETAL_LIMIT = 12;
@@ -796,8 +769,6 @@ header.hero{ overflow: hidden !important; }
   }
   setInterval(spawnPetal, 900);
 </script>
-
-
 <script id="countdown-js">
 (function(){
   function ensure(){
@@ -829,8 +800,6 @@ header.hero{ overflow: hidden !important; }
   setInterval(tick, 1000);
 })();
 </script>
-
-
 <script id="faq-toggle-fix">
 // Robust delegated toggle for FAQ/Accommodation dropdowns
 document.addEventListener('click', function(e){
@@ -843,15 +812,6 @@ document.addEventListener('click', function(e){
   content.style.display = isOpen ? 'none' : 'block';
 });
 </script>
-
-
-
-
-
-
-
-
-
 <script>
   (function(){
     const PETAL_LIMIT = 16;
@@ -908,8 +868,6 @@ document.addEventListener('click', function(e){
     setInterval(spawnPetal, 850);
   })();
 </script>
-
-
 <style id="justify-overrides">
 /* === Justify all buttons, headings, and text from “Trou Inligting” down === */
 #trou-inligting, #algemene-vrae, #geskenke, #rsvp {
@@ -982,7 +940,6 @@ document.addEventListener('click', function(e){
   text-justify: inter-word;
 }
 </style>
-
 <style id="left-align-ander-vrae">
 /* Override: left-align ONLY the 'Ander Vrae?' dropdown toggle (higher specificity) */
 #algemene-vrae .dropdown-toggle.left-align{
@@ -999,7 +956,6 @@ document.addEventListener('click', function(e){
 </style>
 </body>
 </html>
-
 <style id="pink-button-overrides">
   /* Unified darker baby pink controls */
   :root{
