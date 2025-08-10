@@ -332,8 +332,10 @@
 }
 
 
-/* === Fix: remove hero sliding animation & prevent overlap on small phones === */
-.hero-track{ animation: none !important; transform: none !important; }
+
+}
+
+/* === Mobile tweak: prevent banner overlapping next section on small phones === */
 @media (max-width: 520px){
   .hero-banner{ position: relative !important; top: auto !important; margin-top: .5rem !important; }
 }
