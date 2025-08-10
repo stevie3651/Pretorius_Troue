@@ -368,7 +368,11 @@ body {
 }
 
 
-
+/* Override: FAQ bars baby pink with black text */
+.dropdown-toggle{
+  background-color: #f4c2c2 !important;
+  color: #000 !important;
+}
 
 
 /* === Update per request: light sage inside cards, subtle baby-pink dropdowns === */
@@ -390,10 +394,18 @@ body {
 }
 
 
+/* Override: set dropdown button pink to #F8CECE */
+.dropdown-toggle{
+  background-color: #F8CECE !important;
+  color:#000 !important;
+}
 
 
-
-
+/* Override: make selection dropdown buttons a much lighter baby pink */
+.dropdown-toggle{
+  background-color: #FDEFF2 !important;
+  color:#000 !important;
+}
 
 /* Also lighten the inline 'Add guest' button to match */
 button[onclick^="addGuestField"]{
@@ -502,7 +514,7 @@ header.hero{ overflow: hidden !important; }
 <!-- INFO: Waar & Wanneer -->
 <section id="trou-inligting" aria-labelledby="info-title">
   <div class="glass-card">
-    <h2 id="info-title" class="section-title" style="margin-bottom:1rem">Inligting</h2>
+    <h2 id="info-title" class="section-title" style="margin-bottom:1rem">Trou Inligting</h2>
     <div class="info-split">
       <div>
         <h3>🗓 Wanneer?</h3>
@@ -512,13 +524,13 @@ header.hero{ overflow: hidden !important; }
       <div class="v-divider" aria-hidden="true"></div>
       <div>
         <h3>📍 Waar?</h3>
-        <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Troue Tenue</strong> gehou.</p>
+        <p>Die trou seremonie en onthaal word by <strong>De Haven Oost troue venue</strong> gehou.</p>
         <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
         <p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" target="_blank" rel="noopener">➤ Open in Google Maps</a></p>
-        <h2 class="section-title" style="margin-top:1rem">🏠Akkommodasie</h3>
-    <p><strong>Ons nooi gaste uit om hul eie verblyf te reël, aangesien akkommodasie nie by die geleentheid ingesluit is nie.Verblyf is beskikbaar op die trouperseel,</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" target="_blank" rel="noopener">De Haven Oost.</a></p>
+        <h2 class="section-title" style="margin-top:1rem">🏠  Akkommodasie</h2>
+    <p><strong>Op perseel:</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/" target="_blank" rel="noopener">De Haven Oost</a> (Suite A–H beskikbaar)</p>
 
-    <div class="dropdown-toggle"> Beskikbare Kamers by De Haven Oost (Druk Op My)</div>
+    <div class="dropdown-toggle">🏨 Beskikbare Kamers by De Haven Oost (Druk Op My)</div>
     <div class="dropdown-content">
       <div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Max 2 Gaste</p><p>1 Double Bed. Bath. Tea & Coffee. Room Only.</p></div>
       <div class="suite-card"><h4>Suite E–H</h4><p><strong>R2 340.00</strong> – Max 3 Gaste</p><p>1 Double + 1 Single Bed. Shower. Bar Fridge & Microwave. Room Only.</p></div>
@@ -526,7 +538,6 @@ header.hero{ overflow: hidden !important; }
       <div class="suite-card"><h4>Suite C</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Shower. Bar Fridge & Microwave. Room Only.</p></div>
       <div class="suite-card"><h4>Suite D</h4><p><strong>R3 120.00</strong> – Max 4 Gaste</p><p>2 Double Beds. Bath & Shower. Bar Fridge & Microwave. Room Only.</p></div>
     </div>
-<p><strong>Alternatiewe akkommodasie is ook beskikbaar, wat nie ver van die trouperseel geleë is nie.</strong></p>
 
     <div class="dropdown-toggle">Alternatiewe Akkommodasie (Klik op my)</div>
 <div id="alternative-accommodation" class="dropdown-content" style="display:none">
@@ -863,37 +874,32 @@ document.addEventListener('click', function(e){
 </body>
 </html>
 
-<style id="pink-button-overrides">
-  /* Unified darker baby pink controls */
-  :root{
-    --accentPink: #F4C2C2;       /* darker baby pink */
-    --accentPinkHover: #EAB1B1;  /* hover shade */
+<style id="global-justify">
+  /* Make ALL text on the site justified */
+  html, body {
+    text-align: justify !important;
+    text-justify: inter-word;
+    hyphens: auto;
   }
-
-  /* All dropdown toggle buttons */
-  .dropdown-toggle{
-    background-color: var(--accentPink) !important;
-    color: #000 !important;
+  /* Ensure common text-bearing elements also inherit justification */
+  p, li, a, span, strong, em, small, label, input::placeholder, textarea::placeholder,
+  h1, h2, h3, h4, h5, h6, blockquote, figcaption, th, td, dt, dd, button, .btn,
+  .dropdown-toggle, .card, .section-title, .section-intro, .rsvp-container, nav, footer {
+    text-align: justify !important;
+    text-justify: inter-word;
+    hyphens: auto;
   }
+</style>
 
-  /* Inline 'add guest' button (uses inline style; we still force it) */
-  button[onclick^="addGuestField"]{
-    background-color: var(--accentPink) !important;
-    color:#000 !important;
-  }
-
-  /* Big RSVP submit button */
-  #rsvpForm button.primary,
-  .rsvp-container button.primary{
-    background-color: var(--accentPink) !important;
-    color:#000 !important;
-  }
-
-  /* Visual feedback */
-  .dropdown-toggle:hover,
-  button[onclick^="addGuestField"]:hover,
-  #rsvpForm button.primary:hover,
-  .rsvp-container button.primary:hover{
-    background-color: var(--accentPinkHover) !important;
+<style id="justify-headings-buttons-override">
+  /* Explicitly justify headings and all button-like controls */
+  h1, h2, h3, h4, h5, h6,
+  .section-title, .section-intro, header .title,
+  button, .btn, .dropdown-toggle, button.primary,
+  [role="button"], input[type="submit"], input[type="button"],
+  .rsvp-container button {
+    text-align: justify !important;
+    text-justify: inter-word;
+    hyphens: auto;
   }
 </style>
