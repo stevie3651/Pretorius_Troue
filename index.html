@@ -368,11 +368,7 @@ body {
 }
 
 
-/* Override: FAQ bars baby pink with black text */
-.dropdown-toggle{
-  background-color: #f4c2c2 !important;
-  color: #000 !important;
-}
+
 
 
 /* === Update per request: light sage inside cards, subtle baby-pink dropdowns === */
@@ -394,18 +390,10 @@ body {
 }
 
 
-/* Override: set dropdown button pink to #F8CECE */
-.dropdown-toggle{
-  background-color: #F8CECE !important;
-  color:#000 !important;
-}
 
 
-/* Override: make selection dropdown buttons a much lighter baby pink */
-.dropdown-toggle{
-  background-color: #FDEFF2 !important;
-  color:#000 !important;
-}
+
+
 
 /* Also lighten the inline 'Add guest' button to match */
 button[onclick^="addGuestField"]{
@@ -447,24 +435,7 @@ header.hero{ overflow: hidden !important; }
 
 /* === Adjust hero names lower === */
 .hero-banner{ margin-top: 5rem !important; }
-
-/* === Two-shades-darker baby pink, applied to dropdowns and RSVP button === */
-.dropdown-toggle{
-  background-color: #F7D3D9 !important;
-  color:#000 !important;
-}
-button[onclick^="addGuestField"]{
-  background-color: #F7D3D9 !important;
-  color:#000 !important;
-}
-/* Big RSVP button at the bottom */
-button.primary{
-  background-color: #F7D3D9 !important;
-  color:#000 !important;
-  border:none !important;
-}
-
-\1
+</style>
 
 </head>
 <body>
@@ -658,8 +629,6 @@ button.primary{
     <form id="rsvpForm" action="https://formspree.io/f/mkgzqawq" method="POST">
       <label>Jou Naam:</label>
       <input type="text" name="name" required />
-      <label>Jou E-posadres:</label>
-      <input type="email" name="email" required />
       <div id="guestsWrapper">
         <label>Name van Gaste wat jy RSVP vir:</label>
         <input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
@@ -892,3 +861,38 @@ document.addEventListener('click', function(e){
 
 </body>
 </html>
+
+<style id="pink-button-overrides">
+  /* Unified darker baby pink controls */
+  :root{
+    --accentPink: #F4C2C2;       /* darker baby pink */
+    --accentPinkHover: #EAB1B1;  /* hover shade */
+  }
+
+  /* All dropdown toggle buttons */
+  .dropdown-toggle{
+    background-color: var(--accentPink) !important;
+    color: #000 !important;
+  }
+
+  /* Inline 'add guest' button (uses inline style; we still force it) */
+  button[onclick^="addGuestField"]{
+    background-color: var(--accentPink) !important;
+    color:#000 !important;
+  }
+
+  /* Big RSVP submit button */
+  #rsvpForm button.primary,
+  .rsvp-container button.primary{
+    background-color: var(--accentPink) !important;
+    color:#000 !important;
+  }
+
+  /* Visual feedback */
+  .dropdown-toggle:hover,
+  button[onclick^="addGuestField"]:hover,
+  #rsvpForm button.primary:hover,
+  .rsvp-container button.primary:hover{
+    background-color: var(--accentPinkHover) !important;
+  }
+</style>
