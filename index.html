@@ -511,19 +511,19 @@ header.hero{ overflow: hidden !important; }
     font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
     padding: .6rem .9rem !important;
   }
-</style>
-
-
-<style id="add-guest-css">
-  /* Guest input rows */
-  #guestsWrapper { display: grid; gap: .5rem; }
-  .guest-row { display: grid; grid-template-columns: 1fr auto; gap: .5rem; align-items: center; }
-  .guest-row input[type="text"] { width: 100%; padding: .8rem .9rem; border: 1px solid #ddd; border-radius: 10px; font: inherit; }
-  .remove-guest {
-    background: transparent; border: 0; cursor: pointer; font-size: 1.1rem;
-    line-height: 1; width: 2.2rem; height: 2.2rem; border-radius: 999px;
+</style><style id="add-guest-match-rsvp">
+  /* Make the add-guest button same SIZE and WIDTH as the RSVP button */
+  #addGuestBtn{
+    width:100% !important;
+    display:block !important;
+    font-weight:800 !important;
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important; /* mirrors the RSVP override */
+    padding:.6rem .9rem !important;                    /* mirrors the RSVP override */
+    border-radius:999px !important;
+    border:none !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,.15) !important;
+    margin-top:.35rem !important;
   }
-  .remove-guest:hover { opacity: .8; }
 </style>
 
 </head>
@@ -696,7 +696,8 @@ header.hero{ overflow: hidden !important; }
 <form action="https://formspree.io/f/mkgzqawq" id="rsvpForm" method="POST">
 <label>Jou Naam:</label>
 <input name="name" required="" type="text"/>
-<div id="guestsWrapper"><div class="guest-row"><input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required /><button type="button" class="remove-guest" aria-label="Verwyder gas" title="Verwyder">✕</button></div>
+<div id="guestsWrapper">
+<input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
 <label>Name van Gaste wat jy RSVP vir:</label>
 <input name="guests[]" placeholder="Bv. Stephan Pretorius" required="" type="text"/>
 </div>
@@ -1113,41 +1114,28 @@ document.addEventListener('click', function(e){
 }
 </style>
 
+
 <script id="add-guest-js">
 (function(){
   const wrapper = document.getElementById('guestsWrapper');
   const addBtn  = document.getElementById('addGuestBtn');
 
-  function makeRow(placeholder){
-    const row = document.createElement('div');
-    row.className = 'guest-row';
-
+  function createGuestInput(ph){
     const input = document.createElement('input');
     input.type = 'text';
     input.name = 'guests[]';
-    input.placeholder = placeholder || "Nog 'n naam...";
+    input.placeholder = ph || "Nog 'n naam...";
     input.required = true;
-
-    const del = document.createElement('button');
-    del.type = 'button';
-    del.className = 'remove-guest';
-    del.setAttribute('aria-label', 'Verwyder gas');
-    del.textContent = '✕';
-
-    del.addEventListener('click', () => row.remove());
-
-    row.appendChild(input);
-    row.appendChild(del);
-    return { row, input };
+    // small spacing to keep inputs readable
+    input.style.marginTop = '.5rem';
+    return input;
   }
 
-  // Global fallback (if something else tries to call it)
   window.addGuestField = function(){
-    const made = makeRow("Nog 'n naam...");
-    wrapper.appendChild(made.row);
-    // Focus + scroll so you can see the new field
-    made.input.focus({preventScroll:false});
-    made.input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const field = createGuestInput("Nog 'n naam...");
+    wrapper.appendChild(field);
+    field.focus({preventScroll:false});
+    field.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   if(addBtn){
@@ -1158,6 +1146,7 @@ document.addEventListener('click', function(e){
   }
 })();
 </script>
+    
 
 </body>
 </html>
