@@ -495,6 +495,13 @@ header.hero{ overflow: hidden !important; }
   .countdown-card .countdown-inner{ top: 36%; width: 540px; }
 }
 </style>
+<style id="countdown-spacing-fix">
+/* Ensure countdown section spacing matches other sections and sits lower under the hero */
+.countdown-sec{
+  padding: clamp(2rem, 5vw, 4rem) 1rem !important; /* same as default section padding */
+  margin-top: clamp(2rem, 5vw, 4rem);              /* add the missing gap beneath the hero */
+}
+</style>
 </head>
 <body>
 <!-- NAV -->
