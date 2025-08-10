@@ -374,6 +374,25 @@ body {
   color: #000 !important;
 }
 
+
+/* === Update per request: light sage inside cards, subtle baby-pink dropdowns === */
+:root{ --sageBar: #CFE3D1; } /* light sage */
+
+#trou-inligting .glass-card,
+#algemene-vrae .glass-card,
+#geskenke .glass-card,
+#rsvp .rsvp-container{
+  background-color: var(--sageBar) !important;   /* inside the border */
+  border: 2px solid #ffffff !important;          /* crisp white border */
+  backdrop-filter: none !important;
+}
+
+/* Dropdown toggles (selection buttons) — subtle baby pink, black text */
+.dropdown-toggle{
+  background-color: #f7d9e3 !important;  /* softer baby pink */
+  color:#000 !important;
+}
+
 </style>
 
 <style id="countdown-css">
