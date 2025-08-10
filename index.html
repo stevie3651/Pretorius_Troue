@@ -1008,6 +1008,88 @@ document.addEventListener('click', function(e){
   width: 0 !important;
 }
 </style>
+<style id="center-overrides">
+/* Center ALL text in content sections */
+#trou-inligting, #algemene-vrae, #geskenke, #rsvp {
+  text-align: center !important;
+  text-justify: auto !important;
+}
+
+/* Paragraphs, list items, labels, and small blocks */
+#trou-inligting p, #trou-inligting li, #trou-inligting div, #trou-inligting span, #trou-inligting label,
+#algemene-vrae p, #algemene-vrae li, #algemene-vrae div, #algemene-vrae span, #algemene-vrae label,
+#geskenke p, #geskenke li, #geskenke div, #geskenke span, #geskenke label,
+#rsvp p, #rsvp li, #rsvp div, #rsvp span, #rsvp label {
+  text-align: center !important;
+  text-align-last: center !important;
+  -moz-text-align-last: center !important;
+  text-justify: auto !important;
+}
+
+/* Headings */
+#trou-inligting h1, #trou-inligting h2, #trou-inligting h3, #trou-inligting h4, #trou-inligting h5, #trou-inligting h6,
+#algemene-vrae h1, #algemene-vrae h2, #algemene-vrae h3, #algemene-vrae h4, #algemene-vrae h5, #algemene-vrae h6,
+#geskenke h1, #geskenke h2, #geskenke h3, #geskenke h4, #geskenke h5, #geskenke h6,
+#rsvp h1, #rsvp h2, #rsvp h3, #rsvp h4, #rsvp h5, #rsvp h6 {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Specific fixes for "Wanneer?", "Waar?", and Akkommodasie title */
+#trou-inligting h3,
+.section-title.akkommodasie-left {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Buttons (dropdowns and RSVP) */
+#trou-inligting .dropdown-toggle,
+#algemene-vrae .dropdown-toggle,
+#geskenke .dropdown-toggle,
+#rsvp .dropdown-toggle,
+#trou-inligting .pulse-button,
+#algemene-vrae .pulse-button,
+#geskenke .pulse-button,
+#rsvp button,
+#rsvp .primary {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* Remove previous justify hacks */
+#trou-inligting .dropdown-toggle::after,
+#algemene-vrae .dropdown-toggle::after,
+#geskenke .dropdown-toggle::after,
+#rsvp .dropdown-toggle::after,
+#trou-inligting .pulse-button::after,
+#algemene-vrae .pulse-button::after,
+#geskenke .pulse-button::after,
+#rsvp button::after,
+#rsvp .primary::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+}
+
+/* Suite cards & alt accommodation blocks */
+#trou-inligting .suite-card,
+#alternative-accommodation .suite-card {
+  text-align: center !important;
+  text-justify: auto !important;
+}
+
+/* Inputs and textareas */
+#rsvp input[type="text"],
+#rsvp input[type="email"],
+#rsvp textarea {
+  text-align: center !important;
+}
+/* Override the prior 'left-align Ander Vrae?' rule */
+#algemene-vrae .dropdown-toggle.left-align{
+  text-align: center !important;
+  text-align-last: center !important;
+}
+</style>
 </body>
 </html>
 <style id="pink-button-overrides">
