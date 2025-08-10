@@ -400,11 +400,24 @@ body {
   color:#000 !important;
 }
 
-</style>
+
+/* Override: make selection dropdown buttons a much lighter baby pink */
+.dropdown-toggle{
+  background-color: #FDEFF2 !important;
+  color:#000 !important;
+}
+
+/* Also lighten the inline 'Add guest' button to match */
+button[onclick^="addGuestField"]{
+  background-color: #FDEFF2 !important;
+  color:#000 !important;
+}
+
+\1
 
 <style id="countdown-css">
   #countdown{margin:1rem auto 0; display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
-  #countdown .cd-box{background:#ffffff00; border-radius:16px; min-width:84px; padding:14px 16px; text-align:center;
+  #countdown .cd-box{background:#ffffffb9; border-radius:16px; min-width:84px; padding:14px 16px; text-align:center;
     box-shadow: 0 8px 18px rgba(0,0,0,.15); font-family:'Playfair Display',serif; font-weight:700;
     font-size: clamp(20px, 5vw, 28px)}
   #countdown .cd-box span{display:block; font-size:.55em; color:#ffffff; font-weight:600; margin-top:6px}
@@ -491,7 +504,7 @@ header.hero{ overflow: hidden !important; }
 <!-- COUNTDOWN -->
 <section aria-labelledby="countdown-title">
   </div>
-  <h2 id="countdown-title" class="section-title">Tot 28 November</h2>
+  <h2 id="countdown-title" class="section-title">Tot 28 November 2025</h2>
   <div id="countdown" class="countdown" role="timer" aria-live="polite"></div>
 </section>
 
