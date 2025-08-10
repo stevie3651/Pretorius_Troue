@@ -331,6 +331,12 @@
   z-index: 999;
 }
 
+
+/* === Fix: remove hero sliding animation & prevent overlap on small phones === */
+.hero-track{ animation: none !important; transform: none !important; }
+@media (max-width: 520px){
+  .hero-banner{ position: relative !important; top: auto !important; margin-top: .5rem !important; }
+}
 </style>
 
 </head>
@@ -359,7 +365,7 @@
     <img src="hero9.jpeg"  alt="" />
     <img src="hero10.jpeg" alt="" />
     <img src="hero11.jpeg" alt="" />
-    <img src="hero12.jpeg" alt="" />
+    <img src="hero13.jpeg" alt="" />
     <!-- duplicates -->
     <img src="hero1.jpeg"  alt="" loading="lazy" />
     <img src="hero2.jpeg"  alt="" loading="lazy" />
@@ -372,7 +378,7 @@
     <img src="hero9.jpeg"  alt="" loading="lazy" />
     <img src="hero10.jpeg" alt="" loading="lazy" />
     <img src="hero11.jpeg" alt="" loading="lazy" />
-    <img src="hero12.jpeg" alt="" loading="lazy" />
+    <img src="hero13.jpeg" alt="" loading="lazy" />
   </div>
 
   <div id="hero-banner" class="hero-banner">
@@ -564,8 +570,8 @@
   });
 
   // (old toggle removed)
-  document.addEventListener('scroll', onScrollBanner, {passive:true});
-  onScrollBanner();
+  
+  
 
 
   // RSVP submit (AJAX)
