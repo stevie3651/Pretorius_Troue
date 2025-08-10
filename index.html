@@ -697,11 +697,10 @@ header.hero{ overflow: hidden !important; }
 <label>Jou Naam:</label>
 <input name="name" required="" type="text"/>
 <div id="guestsWrapper">
-<input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
-<label>Name van Gaste wat jy RSVP vir:</label>
-<input name="guests[]" placeholder="Bv. Stephan Pretorius" required="" type="text"/>
+  <label>Naam van gaste vir wie jy RSVP:</label>
+  <input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
 </div>
-<button  id=\"addGuestBtn\"  style="background:#FFD7D7; color:#000000; border:none; padding:.6rem .9rem; border-radius:999px; font-weight:800; justify-self:start" type="button">➕ Voeg nog 'n gas by</button>
+<button  id="addGuestBtn" onclick="addGuestField()"   style="background:#FFD7D7; color:#000000; border:none; border-radius:999px" type="button">➕ Voeg nog 'n gas by</button>
 <label>Enige Spesiale Boodskap of Dieetvereistes:</label>
 <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
 <button class="primary" type="submit">💌 Stuur RSVP</button>
