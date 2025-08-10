@@ -490,7 +490,7 @@ header.hero{ overflow: hidden !important; }
 </header>
 
 <!-- COUNTDOWN -->
-<section aria-labelledby="countdown-title">
+<section aria-labelledby="countdown-title" class="countdown-hero">
   </div>
   <h2 id="countdown-title" class="section-title">Tot 28 November 2025</h2>
   <div id="countdown" class="countdown" role="timer" aria-live="polite"></div>
@@ -946,6 +946,83 @@ document.addEventListener('click', function(e){
   content: none !important;
   display: none !important;
   width: 0 !important;
+}
+</style>
+<style id="countdown-hero-styles">
+/* Countdown hero with sunflower wreath background */
+.countdown-hero{
+  --hero-min-h: clamp(380px, 70vh, 760px);
+  --title-top: 16%;
+  --countdown-top: 36%;
+  position: relative;
+  min-height: var(--hero-min-h);
+  padding: 0; /* let the art breathe; we position content */
+  background-image: url('thumb-1920-677024.jpeg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Soft readable layer (very subtle) */
+.countdown-hero::before{
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 32%, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+/* Place the heading and timer precisely within the wreath opening */
+.countdown-hero #countdown-title{
+  position: absolute;
+  left: 50%;
+  top: var(--title-top);
+  transform: translateX(-50%);
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+
+.countdown-hero #countdown{
+  position: absolute;
+  left: 50%;
+  top: var(--countdown-top);
+  transform: translate(-50%, -50%);
+  width: min(92%, 900px);
+  display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center;
+}
+
+/* Make numbers crisp on the background */
+.countdown-hero .cd-box{
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(1.5px);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.28);
+}
+
+/* Labels below numbers */
+.countdown-hero .cd-box span{
+  color: #f8f8f8;
+}
+
+/* Tiny screens: lower the Y positions a touch and scale text */
+@media (max-width: 480px){
+  .countdown-hero{
+    --title-top: 12%;
+    --countdown-top: 34%;
+    --hero-min-h: 70vh;
+  }
+  .countdown-hero .cd-box{
+    min-width: 64px;
+    padding: .65rem .7rem;
+  }
+}
+
+/* Narrow tall phones */
+@media (max-width: 360px){
+  .countdown-hero{ --countdown-top: 33%; }
+  .countdown-hero .cd-box{ min-width: 58px; }
 }
 </style>
 </body>
