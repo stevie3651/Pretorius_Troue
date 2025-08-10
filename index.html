@@ -503,6 +503,16 @@ header.hero{ overflow: hidden !important; }
   margin-top: clamp(2rem, 5vw, 4rem);              /* add the missing gap beneath the hero */
 }
 </style>
+
+<style id="rsvp-button-size-override">
+  /* Smaller 'Stuur RSVP' button */
+  #rsvpForm button.primary,
+  .rsvp-container button.primary{
+    font-size: clamp(1rem, 3.5vw, 1.25rem) !important;
+    padding: .6rem .9rem !important;
+  }
+</style>
+
 </head>
 <body>
 <!-- NAV -->
