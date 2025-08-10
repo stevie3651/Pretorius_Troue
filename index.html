@@ -344,7 +344,7 @@
 header.hero{ overflow: hidden !important; }
 
 /* === Adjust hero names lower === */
-.hero-banner{ margin-top: 2rem !important; }
+.hero-banner{ margin-top: 5rem !important; }
 </style>
 
 </head>
@@ -401,8 +401,10 @@ header.hero{ overflow: hidden !important; }
 
 <!-- COUNTDOWN -->
 <section aria-labelledby="countdown-title">
+  <div class="cloud-wrap">
+    <div class="cloud-bubble" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">RSVP</div>
   </div>
-  <h2 id="countdown-title" class="section-title">Tot 28 November 2025</h2>
+  <h2 id="countdown-title" class="section-title">Tot Ons Groot Dag</h2>
   <div id="countdown" class="countdown" role="timer" aria-live="polite"></div>
   <div class="pulse-icons" aria-hidden="true"><span class="icon">❤️</span><span class="icon">💍</span></div>
 </section>
