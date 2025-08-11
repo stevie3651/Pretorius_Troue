@@ -125,7 +125,7 @@
     position:absolute; inset:0;
     display:flex; width:max-content;
     will-change:transform;
-    animation:hero-scroll 45s linear infinite;
+    animation:hero-scroll 90s linear infinite;
   }
   .hero-track img{
     width:100vw; height:100svh; object-fit:cover; flex:0 0 auto;
@@ -811,12 +811,40 @@ header.hero{ overflow: hidden !important; }
   });
 
   // Add guest field
-  function addGuestField(){
-    const wrap = document.getElementById('guestsWrapper');
-    const input = document.createElement('input');
-    input.type='text'; input.name='guests[]'; input.placeholder="Nog 'n naam..."; input.required=true;
-    wrap.appendChild(input);
-  }
+function addGuestField(){
+  const wrap = document.getElementById('guestsWrapper');
+  const row = document.createElement('div');
+  row.style.display = 'flex';
+  row.style.alignItems = 'center';
+  row.style.gap = '.5rem';
+  row.style.marginTop = '.5rem';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'guests[]';
+  input.placeholder = "Nog 'n naam...";
+  input.required = true;
+  input.style.flex = '1 1 auto';
+
+  const removeBtn = document.createElement('button');
+  removeBtn.type = 'button';
+  removeBtn.setAttribute('aria-label', 'Verwyder hierdie gas');
+  removeBtn.textContent = '✖';
+  removeBtn.style.background = 'transparent';
+  removeBtn.style.border = 'none';
+  removeBtn.style.fontSize = '1.1rem';
+  removeBtn.style.cursor = 'pointer';
+  removeBtn.style.lineHeight = '1';
+  removeBtn.style.padding = '.45rem .65rem';
+  removeBtn.style.borderRadius = '10px';
+  removeBtn.addEventListener('click', () => row.remove());
+
+  row.appendChild(input);
+  row.appendChild(removeBtn);
+  wrap.appendChild(row);
+  input.focus({preventScroll:false});
+  row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
   /* Gift animation removed per request; details are static now. */
 </script>
@@ -1202,22 +1230,44 @@ document.addEventListener('click', function(e){
   const wrapper = document.getElementById('guestsWrapper');
   const addBtn  = document.getElementById('addGuestBtn');
 
-  function createGuestInput(ph){
+  function createGuestRow(ph){
+    const row = document.createElement('div');
+    row.style.display = 'flex';
+    row.style.alignItems = 'center';
+    row.style.gap = '.5rem';
+    row.style.marginTop = '.5rem';
+
     const input = document.createElement('input');
     input.type = 'text';
     input.name = 'guests[]';
     input.placeholder = ph || "Nog 'n naam...";
     input.required = true;
-    // small spacing to keep inputs readable
-    input.style.marginTop = '.5rem';
-    return input;
+    input.style.flex = '1 1 auto';
+
+    const removeBtn = document.createElement('button');
+    removeBtn.type = 'button';
+    removeBtn.setAttribute('aria-label', 'Verwyder hierdie gas');
+    removeBtn.textContent = '✖';
+    removeBtn.style.background = 'transparent';
+    removeBtn.style.border = 'none';
+    removeBtn.style.fontSize = '1.1rem';
+    removeBtn.style.cursor = 'pointer';
+    removeBtn.style.lineHeight = '1';
+    removeBtn.style.padding = '.45rem .65rem';
+    removeBtn.style.borderRadius = '10px';
+    removeBtn.addEventListener('click', () => row.remove());
+
+    row.appendChild(input);
+    row.appendChild(removeBtn);
+    return row;
   }
 
   window.addGuestField = function(){
-    const field = createGuestInput("Nog 'n naam...");
-    wrapper.appendChild(field);
-    field.focus({preventScroll:false});
-    field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const fieldRow = createGuestRow("Nog 'n naam...");
+    wrapper.appendChild(fieldRow);
+    const input = fieldRow.querySelector('input');
+    if(input){ input.focus({preventScroll:false}); }
+    fieldRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
   if(addBtn){
