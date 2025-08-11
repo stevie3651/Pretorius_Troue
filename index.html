@@ -770,7 +770,7 @@ header.hero{ overflow: hidden !important; }
   <label>Naam van gaste vir wie jy RSVP:</label>
   <input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
 </div>
-<button  id="addGuestBtn" onclick="addGuestField()"   style="background:#FFD7D7; color:#000000; border:none; border-radius:999px" type="button">➕ Voeg nog 'n gas by</button>
+<button  id="addGuestBtn"   style="background:#FFD7D7; color:#000000; border:none; border-radius:999px" type="button">➕ Voeg nog 'n gas by</button>
 <label>Enige spesiale boodskap of dieetvereistes:</label>
 <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
 <button class="primary" type="submit">💌 Stuur RSVP</button>
@@ -804,46 +804,11 @@ header.hero{ overflow: hidden !important; }
     if (res.ok){
       rsvpForm.reset(); rsvpForm.style.display='none'; document.getElementById('thankYou').style.display='block';
     } else {
-      alert('Daar was \\'n probleem met jou RSVP. Probeer asseblief weer.');
-    }
-  });
+      alert('Daar was \'n probleem met jou RSVP. Probeer asseblief weer.');
+        }
+        });
 
-  // Add guest field
-function addGuestField(){
-  const wrap = document.getElementById('guestsWrapper');
-  const row = document.createElement('div');
-  row.style.display = 'flex';
-  row.style.alignItems = 'center';
-  row.style.gap = '.5rem';
-  row.style.marginTop = '.5rem';
-
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.name = 'guests[]';
-  input.placeholder = "Nog 'n naam...";
-  input.required = true;
-  input.style.flex = '1 1 auto';
-
-  const removeBtn = document.createElement('button');
-  removeBtn.type = 'button';
-  removeBtn.setAttribute('aria-label', 'Verwyder hierdie gas');
-  removeBtn.textContent = '✖';
-  removeBtn.style.background = 'transparent';
-  removeBtn.style.border = 'none';
-  removeBtn.style.fontSize = '1.1rem';
-  removeBtn.style.cursor = 'pointer';
-  removeBtn.style.lineHeight = '1';
-  removeBtn.style.padding = '.45rem .65rem';
-  removeBtn.style.borderRadius = '10px';
-  removeBtn.addEventListener('click', () => row.remove());
-
-  row.appendChild(input);
-  row.appendChild(removeBtn);
-  wrap.appendChild(row);
-  input.focus({preventScroll:false});
-  row.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
+  
   /* Gift animation removed per request; details are static now. */
 </script>
 <style id="sunflower-countdown">
