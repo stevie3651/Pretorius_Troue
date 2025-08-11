@@ -1243,6 +1243,67 @@ document.addEventListener('click', function(e){
 </script>
     
 
+
+<!-- UNIVERSAL INTERACTIVITY HOTFIX -->
+<style id="universal-interactivity-fix">
+  /* Ensure interactive dropdowns sit above decorative layers */
+  .dropdown-toggle, .dropdown-content{
+    position: relative !important;
+    z-index: 50 !important;
+    pointer-events: auto !important;
+  }
+  /* Titles/overlays should not block taps */
+  .stephan-chane-title,
+  .hero-banner,
+  .hero-track,
+  .hero-overlay,
+  #petal-overlay{
+    pointer-events: none !important;
+  }
+  /* Sections must be above any fixed backgrounds */
+  main, section, .content, .container{
+    position: relative;
+    z-index: 10;
+  }
+</style>
+
+<script id="universal-dropdown-handler">
+(function(){
+  function getContent(toggle){
+    var c = toggle && toggle.nextElementSibling;
+    return (c && c.classList && c.classList.contains('dropdown-content')) ? c : null;
+  }
+  // idempotent: remove duplicate listeners by cloning
+  document.querySelectorAll('.dropdown-toggle').forEach(function(t){
+    if(!t.hasAttribute('role')) t.setAttribute('role','button');
+    if(!t.hasAttribute('tabindex')) t.setAttribute('tabindex','0');
+  });
+
+  function toggleContent(t){
+    var content = getContent(t);
+    if(!content) return;
+    var isOpen = getComputedStyle(content).display === 'block';
+    content.style.display = isOpen ? 'none' : 'block';
+  }
+
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('.dropdown-toggle');
+    if(!t) return;
+    e.preventDefault();
+    toggleContent(t);
+  }, {capture:false});
+
+  document.addEventListener('keydown', function(e){
+    // Activate with Enter or Space when focused on toggle
+    var active = document.activeElement;
+    if(!active || !active.classList || !active.classList.contains('dropdown-toggle')) return;
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      toggleContent(active);
+    }
+  });
+})();
+</script>
 </body>
 </html>
 <style id="pink-button-overrides">
