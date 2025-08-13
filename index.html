@@ -692,6 +692,38 @@ section {
 /* Prevent accidental overscroll from any absolute/fixed layers */
 html, body{ overscroll-behavior-y: contain; }
 </style>
+
+<style id="mobile-countdown-fix">
+/* Keep the hero beautiful on phones and keep the timer off the title */
+@media (max-width: 560px){
+  .countdown-sec{
+    /* Start the timer lower so it doesn't cover the text at the top */
+    align-items: flex-start;
+    padding-top: clamp(56px, 12svh, 88px);
+    height: clamp(520px, 90svh, 640px);
+  }
+  .countdown-inner{
+    padding: 6px 8px;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    background: rgba(255,255,255,0.30);
+  }
+  #countdown{ gap: 4px; }
+  #countdown .cd-box{
+    min-width: 44px;
+    padding: 6px 8px;
+    border-radius: 10px;
+    /* Much smaller numbers on phones */
+    font-size: clamp(14px, 4.2vw, 16px);
+    box-shadow: 0 4px 10px rgba(0,0,0,.12);
+  }
+  #countdown .cd-box span{
+    margin-top: 2px;
+    font-size: clamp(9px, 3.2vw, 11px);
+  }
+}
+</style>
+
 </head>
 <body>
 <!-- NAV -->
