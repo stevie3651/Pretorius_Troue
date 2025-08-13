@@ -1304,30 +1304,6 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
-
-<!-- === Algemene Vrae: center section + full-width FAQ rows === -->
-<style id="algemene-vrae-center-fix">
-  @media (min-width: 1024px){
-    #algemene-vrae .glass-card{
-      width: min(96vw, 1600px) !important;
-      max-width: min(96vw, 1600px) !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-      text-align: center !important;
-    }
-    #algemene-vrae h2, #algemene-vrae h3, #algemene-vrae p, #algemene-vrae a{
-      text-align: center !important; margin-left: auto !important; margin-right: auto !important;
-    }
-    #algemene-vrae .dropdown-toggle{
-      display: block !important;
-      width: 100% !important;
-      max-width: none !important;
-      margin-left: 0 !important;
-      margin-right: 0 !important;
-      text-align: center !important;
-    }
-  }
-</style>
 </body>
 </html>
 <style id="pink-button-overrides">
@@ -1378,5 +1354,28 @@ document.addEventListener('click', function(e){
   /* Make anchors behave nicely when centered text is used */
   #alternative-accommodation .suite-card a {
     display: inline-block;
+  }
+</style>
+<!-- === FINAL OVERRIDE: kill the justify that forces left; lock true center on desktop === -->
+<style id="final-center-override">
+  /* This rule overrides the late `.section-title { text-align: justify !important; }` */
+  #trou-inligting .section-title,
+  #algemene-vrae .section-title,
+  #geskenke .section-title,
+  #rsvp .section-title{
+    text-align: center !important;
+    text-align-last: center !important;
+    -moz-text-align-last: center !important;
+  }
+
+  @media (min-width:1024px){
+    /* Center all content in these sections */
+    #trou-inligting, #algemene-vrae, #geskenke, #rsvp{ text-align:center !important; }
+    #trou-inligting *, #algemene-vrae *, #geskenke *, #rsvp *{
+      text-align: inherit;
+    }
+
+    /* Make the Algemene Vrae rows span the full card width */
+    #algemene-vrae .dropdown-toggle{ display:block !important; width:100% !important; margin:0 !important; }
   }
 </style>
