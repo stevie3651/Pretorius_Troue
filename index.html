@@ -296,7 +296,7 @@
 
   /* Collapsible panel for alternative accommodation */
   .collapsible{overflow:hidden; max-height:0; transition:max-height .35s ease; margin-top:.75rem}
-  .collapsible.open{max-height:2000px} /* large enough for content */
+  .collapsible.open{max-height:1200px} /* large enough for content */
   .suite-card h4{margin:0 0 .25rem}
   .suite-card a{color:#C0CBC2; font-weight:700; text-decoration:underline}
 
@@ -473,8 +473,8 @@ header.hero{ overflow: hidden !important; }
   position: relative;
   max-width: 1000px;          /* match .glass-card */
   margin: 0 auto;
-  min-height: clamp(320px, 52svh, 560px);
-  background: url('thumb-1920-677024.jpeg') no-repeat center top / cover;
+  height: clamp(560px, 80svh, 880px);
+  background: url('thumb-1920-677024.jpeg') no-repeat center / contain;
   border: 2px solid #ffffff;
   border-radius: 22px;
   overflow: hidden;
@@ -582,6 +582,116 @@ header.hero{ overflow: hidden !important; }
   }
 </style>
 
+<style id="pc-wide-optimizations">
+/* === Desktop/Wide optimizations (>=1024px) === */
+@media (min-width: 1024px){
+  /* Slightly increase spacing for breathing room on big screens */
+  section{ padding: clamp(2.5rem, 4vw, 5rem) 1rem !important; }
+
+  /* Center all main cards and content */
+  .glass-card, .rsvp-container{
+    margin-left:auto !important;
+    margin-right:auto !important;
+    text-align: center !important;
+  }
+
+  /* Center headings and paragraphs inside Inligting */
+  #trou-inligting h3,
+  #trou-inligting p,
+  #trou-inligting .section-title{
+    text-align: center !important;
+  }
+
+  /* Keep the split columns but ensure they sit in the middle */
+  #trou-inligting .info-split{
+    grid-template-columns: 1fr 2px 1fr;
+    justify-content: center !important;
+  }
+
+  /* Ensure countdown block is perfectly centered */
+  .countdown-card{ margin-left:auto !important; margin-right:auto !important; }
+}
+
+/* Remove conflicting left-align overrides specifically on desktop */
+@media (min-width: 1024px){
+  #trou-inligting h3 { text-align: center !important; }
+  #trou-inligting .info-split > div { text-align: center !important; }
+  .section-title.akkommodasie-left { text-align: center !important; }
+}
+
+/* Make Geskenke section the petal zone only */
+#geskenke{ position: relative; }
+#geskenke #petal-overlay{
+  position:absolute !important;
+  inset:0 !important;
+  pointer-events:none !important;
+  z-index: 3 !important;
+  overflow: hidden !important;
+}
+
+</style>
+
+<style id="block-width-widening">
+/* Wider blocks with gentle gutters + rounded edges */
+:root{ --page-gutter: clamp(12px, 3vw, 36px); }
+
+/* Apply to common block containers */
+.glass-card,
+.suite-card,
+.countdown-card,
+.rsvp-container {
+  width: calc(100% - (var(--page-gutter) * 2)) !important;
+  max-width: none !important;
+  margin-left: var(--page-gutter) !important;
+  margin-right: var(--page-gutter) !important;
+  border-radius: clamp(16px, 2vw, 28px) !important;
+  overflow: hidden;
+}
+
+/* Ensure sections themselves stretch nicely while preserving breathing room */
+section {
+  padding-left: var(--page-gutter);
+  padding-right: var(--page-gutter);
+}
+
+/* Make sure the Inligting split stays centered but uses full width */
+#trou-inligting .info-split{
+  justify-content: center;
+  width: 100%;
+}
+
+/* Petal overlay must sit on top of content */
+#geskenke{ position: relative; }
+#geskenke #petal-overlay{
+  position:absolute; inset:0;
+  pointer-events:none;
+  z-index: 999;
+  overflow: hidden;
+}
+</style>
+
+<style id="hero-countdown-fixes">
+/* Full hero image visible + countdown centered */
+.countdown-sec{
+  display:flex; align-items:center; justify-content:center;
+}
+.countdown-card{
+  background-color: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  display:flex; align-items:center; justify-content:center;
+  padding: 0 !important;
+}
+.countdown-inner{ 
+  display:flex; align-items:center; justify-content:center; 
+  padding: clamp(12px, 1.5vw, 18px);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(6px);
+}
+/* Prevent accidental overscroll from any absolute/fixed layers */
+html, body{ overscroll-behavior-y: contain; }
+</style>
 </head>
 <body>
 <!-- NAV -->
@@ -823,9 +933,9 @@ header.hero{ overflow: hidden !important; }
 /* Sunflower background section and precise countdown placement */
 .countdown-sec{
   position: relative;
-  background: url('thumb-1920-677024.jpeg') no-repeat center top/cover;
+  background: url('thumb-1920-677024.jpeg') no-repeat center/contain;
   /* keep the section reasonably short so we stay close to the wreath */
-  min-height: clamp(320px, 52svh, 560px);
+  height: clamp(560px, 80svh, 880px);
 }
 
 /* Place the countdown inside the wreath, above the "Pretorius Troue" text */
@@ -1304,6 +1414,121 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
+
+<script>
+// === Limit falling petals to the Geskenke section only, and center experience on desktop ===
+(function(){
+  const geskenke = document.querySelector('#geskenke');
+  if(!geskenke) return;
+
+  // Reuse or create the overlay, but move it into #geskenke so petals only fall there
+  let overlay = document.querySelector('#petal-overlay');
+  if(!overlay){
+    overlay = document.createElement('div');
+    overlay.id = 'petal-overlay';
+  }
+  geskenke.appendChild(overlay);
+
+  let timer = null;
+  let active = 0;
+  const MAX_ACTIVE = 16;         // cap concurrent petals
+  const EMOJIS = ['🌸','💮','💖','🌺','🌷','💐'];
+  const rand = (a,b)=>Math.random()*(b-a)+a;
+
+  function spawnPetal(){
+    if(active >= MAX_ACTIVE) return;
+    const p = document.createElement('span');
+    p.className = 'falling-petal';
+    p.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    // random horizontal start inside overlay
+    p.style.left = rand(0, 100) + '%';
+    // random duration and slight size variance
+    p.style.setProperty('--dur', rand(7, 12) + 's');
+    p.style.fontSize = rand(16, 26) + 'px';
+    overlay.appendChild(p);
+    active++;
+    // Clean up when animation ends
+    p.addEventListener('animationend', () => {
+      p.remove();
+      active--;
+    });
+  }
+
+  function start(){
+    if(timer) return;
+    // gentle rate
+    timer = setInterval(() => {
+      for(let i=0;i<3;i++) spawnPetal();
+    }, 1200);
+  }
+  function stop(){
+    if(timer){
+      clearInterval(timer);
+      timer = null;
+    }
+    // remove any remaining petals
+    overlay.querySelectorAll('.falling-petal').forEach(el => el.remove());
+    active = 0;
+  }
+
+  // Only run petals when Geskenke is at least 40% in view
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry => {
+      if(entry.isIntersecting && entry.intersectionRatio >= 0.4){
+        start();
+      }else{
+        stop();
+      }
+    });
+  }, { threshold: [0, 0.4, 0.75, 1] });
+  io.observe(geskenke);
+
+  // Defensive: also stop on page hidden
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden) stop();
+  });
+})();
+</script>
+
+
+<script id="petal-visibility-tweak">
+// Make the petals easier to trigger and ensure they render on top
+(function(){
+  const geskenke = document.querySelector('#geskenke');
+  if(!geskenke) return;
+  const overlay = document.querySelector('#petal-overlay');
+  if(overlay){
+    overlay.style.zIndex = '999';
+  }
+  // Reconnect the observer with a lower threshold so it starts sooner
+  if(window.__petalObserver) {
+    try { window.__petalObserver.disconnect(); } catch(e){}
+  }
+  window.__petalObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry => {
+      const ev = new CustomEvent('petal-visibility', { detail: { visible: entry.isIntersecting && entry.intersectionRatio >= 0.1 }});
+      document.dispatchEvent(ev);
+    });
+  }, { threshold: [0, 0.1, 0.5, 1] });
+  window.__petalObserver.observe(geskenke);
+
+  // Hook into the earlier script if present
+  document.addEventListener('petal-visibility', (e)=>{
+    const visible = e.detail.visible;
+    const startEvt = new Event(visible ? 'petals-start' : 'petals-stop');
+    document.dispatchEvent(startEvt);
+  });
+
+  // If the earlier script didn't listen for our events, try to restart by toggling visibility
+  setTimeout(()=>{
+    const rect = geskenke.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    const ev = new CustomEvent('petal-visibility', { detail: { visible: inView }});
+    document.dispatchEvent(ev);
+  }, 200);
+})();
+</script>
+
 </body>
 </html>
 <style id="pink-button-overrides">
