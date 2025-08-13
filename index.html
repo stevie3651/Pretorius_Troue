@@ -1304,6 +1304,30 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
+
+<!-- === Algemene Vrae: center section + full-width FAQ rows === -->
+<style id="algemene-vrae-center-fix">
+  @media (min-width: 1024px){
+    #algemene-vrae .glass-card{
+      width: min(96vw, 1600px) !important;
+      max-width: min(96vw, 1600px) !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+    }
+    #algemene-vrae h2, #algemene-vrae h3, #algemene-vrae p, #algemene-vrae a{
+      text-align: center !important; margin-left: auto !important; margin-right: auto !important;
+    }
+    #algemene-vrae .dropdown-toggle{
+      display: block !important;
+      width: 100% !important;
+      max-width: none !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      text-align: center !important;
+    }
+  }
+</style>
 </body>
 </html>
 <style id="pink-button-overrides">
