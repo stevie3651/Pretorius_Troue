@@ -882,7 +882,7 @@ P%;
 </style>
 <script>
   // Petals (limit number for performance) — start below countdown section only
-  const PETAL_LIMIT = 12;
+  const PETAL_LIMIT = 20;
   let petals = 0;
   const overlay = document.getElementById('petal-overlay');
   const countdownSection = document.getElementById('countdown-title').closest('section');
@@ -951,7 +951,7 @@ document.addEventListener('click', function(e){
 
 <script>
   (function(){
-    const PETAL_LIMIT = 16;
+    const PETAL_LIMIT = 20;
     const EMOJIS = ['🤍','🌻','💍'];
     const overlay = document.getElementById('petal-overlay');
     const startSec = document.getElementById('geskenke');
@@ -1324,6 +1324,27 @@ document.addEventListener('click', function(e){
     font-size: 15px !important;
   }
 }
+</style>
+
+
+<style id="rounded-countdown-sec">
+/* Rounded edges for the sunflower background section */
+.countdown-sec{
+  border-radius: 22px !important;
+  overflow: hidden !important; /* clip the background neatly */
+  box-shadow: 0 10px 25px rgba(0,0,0,.10);
+}
+</style>
+
+<style id="uniform-section-spacing">
+/* Make spacing consistent above and below each section */
+section{
+  padding: clamp(1.25rem, 4vw, 2.25rem) 0.75rem !important;
+  margin: clamp(1.25rem, 4vw, 2.25rem) auto !important;
+}
+/* Remove extra margins that individual elements might add inside sections */
+.section-title{ margin-top: 0 !important; margin-bottom: 1rem !important; }
+.countdown-sec{ margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; margin-bottom: clamp(1.25rem, 4vw, 2.25rem) !important; }
 </style>
 
 </body>
