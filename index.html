@@ -1779,6 +1779,49 @@ document.addEventListener('click', function(e){
     }
   }
 </style>
+
+<!-- COUNTDOWN BELOW HEADING ON MOBILE -->
+<style id="countdown-below-heading-mobile">
+  @media (max-width: 560px){
+    /* Assuming heading and countdown are inside .countdown-sec */
+    .countdown-sec{
+      display:flex !important;
+      flex-direction:column !important;
+      align-items:center !important;
+      padding-top: 0 !important;
+    }
+    .countdown-sec h2, .countdown-sec h3, .countdown-sec h1{
+      margin-bottom: 10px !important;
+    }
+    .countdown-sec .countdown-inner{
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      transform: none !important;
+      margin: 0 auto !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      width: auto !important;
+    }
+    #countdown{ gap: 6px !important; }
+    #countdown .cd-box{
+      min-width: 52px !important;
+      padding: 8px 10px !important;
+      border-radius: 12px !important;
+      background: #ffffff !important;
+      box-shadow: 0 6px 14px rgba(0,0,0,.10) !important;
+      font-size: clamp(13px, 3.9vw, 16px) !important;
+    }
+    #countdown .cd-box span{
+      margin-top: 2px !important;
+      font-size: clamp(10px, 3.3vw, 12px) !important;
+      opacity: .85;
+    }
+  }
+</style>
 </body>
 </html>
 <style id="pink-button-overrides">
