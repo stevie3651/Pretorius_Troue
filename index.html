@@ -1347,6 +1347,70 @@ section{
 .countdown-sec{ margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; margin-bottom: clamp(1.25rem, 4vw, 2.25rem) !important; }
 </style>
 
+
+
+<!-- === MOBILE GAP + OVERLAY FIXES (added by ChatGPT) === -->
+<style id="mobile-gap-override">
+  /* Close the white gap below the sunflower section on phones */
+  @media (max-width: 520px){
+    .countdown-sec{
+      min-height: 320px !important;   /* shorter section */
+      padding-top: 0.5rem !important;
+      padding-bottom: 0 !important;
+      margin-bottom: 0 !important;
+    }
+    #trou-inligting{
+      margin-top: .5rem !important;    /* pull the next block up */
+    }
+    #countdown .cd-box{
+      min-width: 44px !important;
+      padding: 8px 9px !important;
+      font-size: 14px !important;
+    }
+  }
+  /* Ensure the petal overlay never forces vertical scrolling by mistake */
+  #petal-overlay{ position: absolute !important; }
+</style>
+
+<script id="petal-overlay-measure-fix">
+// Recompute the petal overlay height without using its previous height in the measurement
+(function(){
+  const overlay = document.getElementById('petal-overlay');
+  const startSec = document.getElementById('geskenke');
+  if(!overlay || !startSec) return;
+
+  function fixOverlay(){
+    // Temporarily collapse to avoid feedback where its own height inflates the page
+    overlay.style.height = '0px';
+    const s = startSec.getBoundingClientRect();
+    const topAbs = window.scrollY + s.top;
+
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    );
+
+    const height = Math.max(0, docHeight - topAbs);
+    overlay.style.position = 'absolute';
+    overlay.style.top = topAbs + 'px';
+    overlay.style.left = 0;
+    overlay.style.right = 0;
+    overlay.style.pointerEvents = 'none';
+    overlay.style.overflow = 'hidden';
+    overlay.style.zIndex = 3;
+    overlay.style.height = height + 'px';
+  }
+
+  ['load','resize','scroll'].forEach(evt => window.addEventListener(evt, fixOverlay, {passive:true}));
+  fixOverlay();
+})();
+</script>
+<!-- === END FIXES === -->
+
 </body>
 </html>
 <style id="pink-button-overrides">
