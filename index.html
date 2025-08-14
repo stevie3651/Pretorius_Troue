@@ -1301,6 +1301,31 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
+
+<style id="mobile-gap-and-countdown-fix">
+/* === Mobile-specific fixes === */
+@media (max-width: 520px){
+  /* Close big white gap below the sunflower section */
+  .countdown-sec{
+    min-height: 380px !important;   /* was ~600px; shrink on phones */
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 0 !important;
+  }
+  /* Sit the blocks just under "Tel Saam Ons Die" */
+  .countdown-sec .countdown-inner{
+    top: 19% !important;            /* move higher on phones */
+    width: 92% !important;
+  }
+  /* Make the blocks a touch smaller on phones so they don't cover the script text */
+  #countdown .cd-box{
+    min-width: 46px !important;
+    padding: 8px 10px !important;
+    font-size: 15px !important;
+  }
+}
+</style>
+
 </body>
 </html>
 <style id="pink-button-overrides">
