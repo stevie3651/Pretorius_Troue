@@ -296,7 +296,7 @@
 
   /* Collapsible panel for alternative accommodation */
   .collapsible{overflow:hidden; max-height:0; transition:max-height .35s ease; margin-top:.75rem}
-  .collapsible.open{max-height:1200px} /* large enough for content */
+  .collapsible.open{max-height:2000px} /* large enough for content */
   .suite-card h4{margin:0 0 .25rem}
   .suite-card a{color:#C0CBC2; font-weight:700; text-decoration:underline}
 
@@ -466,19 +466,19 @@ header.hero{ overflow: hidden !important; }
 /* === Countdown card width/rounding to match Inligting === */
 .countdown-sec{
   position: relative;
-  background: none !important;
+  background: url('thumb-1920-677024.jpeg') no-repeat center top/contain;
   padding: clamp(8px, 2vw, 16px) 0;
 }
 .countdown-card{
   position: relative;
   max-width: 1000px;          /* match .glass-card */
   margin: 0 auto;
-  height: clamp(560px, 80svh, 880px);
-  background: url('thumb-1920-677024.jpeg') no-repeat center / contain;
-  border: 2px solid #ffffff;
+  min-height: clamp(320px, 52svh, 560px);
+  background: transparent;
+  border: none;
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,.12);
+  box-shadow: none;
 }
 .countdown-card .countdown-inner{
   position: absolute;
@@ -580,148 +580,6 @@ header.hero{ overflow: hidden !important; }
     padding: clamp(1rem, 2.5vw, 2rem) 0.5rem !important;
     margin-top: clamp(1rem, 2.5vw, 2rem) !important;
   }
-</style>
-
-<style id="pc-wide-optimizations">
-/* === Desktop/Wide optimizations (>=1024px) === */
-@media (min-width: 1024px){
-  /* Slightly increase spacing for breathing room on big screens */
-  section{ padding: clamp(2.5rem, 4vw, 5rem) 1rem !important; }
-
-  /* Center all main cards and content */
-  .glass-card, .rsvp-container{
-    margin-left:auto !important;
-    margin-right:auto !important;
-    text-align: center !important;
-  }
-
-  /* Center headings and paragraphs inside Inligting */
-  #trou-inligting h3,
-  #trou-inligting p,
-  #trou-inligting .section-title{
-    text-align: center !important;
-  }
-
-  /* Keep the split columns but ensure they sit in the middle */
-  #trou-inligting .info-split{
-    grid-template-columns: 1fr 2px 1fr;
-    justify-content: center !important;
-  }
-
-  /* Ensure countdown block is perfectly centered */
-  .countdown-card{ margin-left:auto !important; margin-right:auto !important; }
-}
-
-/* Remove conflicting left-align overrides specifically on desktop */
-@media (min-width: 1024px){
-  #trou-inligting h3 { text-align: center !important; }
-  #trou-inligting .info-split > div { text-align: center !important; }
-  .section-title.akkommodasie-left { text-align: center !important; }
-}
-
-/* Make Geskenke section the petal zone only */
-#geskenke{ position: relative; }
-#geskenke #petal-overlay{
-  position:absolute !important;
-  inset:0 !important;
-  pointer-events:none !important;
-  z-index: 3 !important;
-  overflow: hidden !important;
-}
-
-</style>
-
-<style id="block-width-widening">
-/* Wider blocks with gentle gutters + rounded edges */
-:root{ --page-gutter: clamp(12px, 3vw, 36px); }
-
-/* Apply to common block containers */
-.glass-card,
-.suite-card,
-.countdown-card,
-.rsvp-container {
-  width: calc(100% - (var(--page-gutter) * 2)) !important;
-  max-width: none !important;
-  margin-left: var(--page-gutter) !important;
-  margin-right: var(--page-gutter) !important;
-  border-radius: clamp(16px, 2vw, 28px) !important;
-  overflow: hidden;
-}
-
-/* Ensure sections themselves stretch nicely while preserving breathing room */
-section {
-  padding-left: var(--page-gutter);
-  padding-right: var(--page-gutter);
-}
-
-/* Make sure the Inligting split stays centered but uses full width */
-#trou-inligting .info-split{
-  justify-content: center;
-  width: 100%;
-}
-
-/* Petal overlay must sit on top of content */
-#geskenke{ position: relative; }
-#geskenke #petal-overlay{
-  position:absolute; inset:0;
-  pointer-events:none;
-  z-index: 999;
-  overflow: hidden;
-}
-</style>
-
-<style id="hero-countdown-fixes">
-/* Full hero image visible + countdown centered */
-.countdown-sec{
-  display:flex; align-items:center; justify-content:center;
-}
-.countdown-card{
-  background-color: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  display:flex; align-items:center; justify-content:center;
-  padding: 0 !important;
-}
-.countdown-inner{ 
-  display:flex; align-items:center; justify-content:center; 
-  padding: clamp(12px, 1.5vw, 18px);
-  border-radius: 18px;
-  background: rgba(255,255,255,0.35);
-  backdrop-filter: blur(6px);
-}
-/* Prevent accidental overscroll from any absolute/fixed layers */
-html, body{ overscroll-behavior-y: contain; }
-</style>
-
-<style id="mobile-countdown-fix">
-/* Keep the hero beautiful on phones and keep the timer off the title */
-@media (max-width: 560px){
-  .countdown-sec{
-    /* Start the timer lower so it doesn't cover the text at the top */
-    align-items: flex-start;
-    padding-top: clamp(56px, 12svh, 88px);
-    height: clamp(520px, 90svh, 640px);
-  }
-  .countdown-inner{
-    padding: 6px 8px;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-    background: rgba(255,255,255,0.30);
-  }
-  #countdown{ gap: 4px; }
-  #countdown .cd-box{
-    min-width: 44px;
-    padding: 6px 8px;
-    border-radius: 10px;
-    /* Much smaller numbers on phones */
-    font-size: clamp(14px, 4.2vw, 16px);
-    box-shadow: 0 4px 10px rgba(0,0,0,.12);
-  }
-  #countdown .cd-box span{
-    margin-top: 2px;
-    font-size: clamp(9px, 3.2vw, 11px);
-  }
-}
 </style>
 
 </head>
@@ -965,16 +823,13 @@ html, body{ overscroll-behavior-y: contain; }
 /* Sunflower background section and precise countdown placement */
 .countdown-sec{
   position: relative;
-  background: url('thumb-1920-677024.jpeg') no-repeat center/contain;
+  background: url('thumb-1920-677024.jpeg') no-repeat center top/contain;
   /* keep the section reasonably short so we stay close to the wreath */
-  height: clamp(560px, 80svh, 880px);
+  min-height: 600px;
 }
 
 /* Place the countdown inside the wreath, above the "Pretorius Troue" text */
-.countdown-sec .countdown-inner{
-  position: absolute;
-  left: 50%;
-  top: 33%;
+P%;
   transform: translate(-50%, -50%);
   width: min(520px, 84%);
   text-align: center;
@@ -998,7 +853,7 @@ html, body{ overscroll-behavior-y: contain; }
   text-align: center;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: clamp(14px, 4.2vw, 22px);
+  font-size: clamp(12px, 3.5vw, 18px);
   box-shadow: 0 6px 14px rgba(0,0,0,0.10);
 }
 #countdown .cd-box span{
@@ -1010,7 +865,7 @@ html, body{ overscroll-behavior-y: contain; }
 
 /* Tiny phones */
 @media (max-width: 420px){
-  .countdown-sec{ min-height: 340px; }
+  .countdown-sec{ min-height: 600px; }
   .countdown-sec .countdown-inner{ top: 30%; width: 90%; }
   #countdown{ gap: 6px; }
   #countdown .cd-box{
@@ -1446,353 +1301,6 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
-
-<script>
-// === Limit falling petals to the Geskenke section only, and center experience on desktop ===
-(function(){
-  const geskenke = document.querySelector('#geskenke');
-  if(!geskenke) return;
-
-  // Reuse or create the overlay, but move it into #geskenke so petals only fall there
-  let overlay = document.querySelector('#petal-overlay');
-  if(!overlay){
-    overlay = document.createElement('div');
-    overlay.id = 'petal-overlay';
-  }
-  geskenke.appendChild(overlay);
-
-  let timer = null;
-  let active = 0;
-  const MAX_ACTIVE = 16;         // cap concurrent petals
-  const EMOJIS = ['🌸','💮','💖','🌺','🌷','💐'];
-  const rand = (a,b)=>Math.random()*(b-a)+a;
-
-  function spawnPetal(){
-    if(active >= MAX_ACTIVE) return;
-    const p = document.createElement('span');
-    p.className = 'falling-petal';
-    p.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
-    // random horizontal start inside overlay
-    p.style.left = rand(0, 100) + '%';
-    // random duration and slight size variance
-    p.style.setProperty('--dur', rand(7, 12) + 's');
-    p.style.fontSize = rand(16, 26) + 'px';
-    overlay.appendChild(p);
-    active++;
-    // Clean up when animation ends
-    p.addEventListener('animationend', () => {
-      p.remove();
-      active--;
-    });
-  }
-
-  function start(){
-    if(timer) return;
-    // gentle rate
-    timer = setInterval(() => {
-      for(let i=0;i<3;i++) spawnPetal();
-    }, 1200);
-  }
-  function stop(){
-    if(timer){
-      clearInterval(timer);
-      timer = null;
-    }
-    // remove any remaining petals
-    overlay.querySelectorAll('.falling-petal').forEach(el => el.remove());
-    active = 0;
-  }
-
-  // Only run petals when Geskenke is at least 40% in view
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry => {
-      if(entry.isIntersecting && entry.intersectionRatio >= 0.4){
-        start();
-      }else{
-        stop();
-      }
-    });
-  }, { threshold: [0, 0.4, 0.75, 1] });
-  io.observe(geskenke);
-
-  // Defensive: also stop on page hidden
-  document.addEventListener('visibilitychange', () => {
-    if(document.hidden) stop();
-  });
-})();
-</script>
-
-
-<script id="petal-visibility-tweak">
-// Make the petals easier to trigger and ensure they render on top
-(function(){
-  const geskenke = document.querySelector('#geskenke');
-  if(!geskenke) return;
-  const overlay = document.querySelector('#petal-overlay');
-  if(overlay){
-    overlay.style.zIndex = '999';
-  }
-  // Reconnect the observer with a lower threshold so it starts sooner
-  if(window.__petalObserver) {
-    try { window.__petalObserver.disconnect(); } catch(e){}
-  }
-  window.__petalObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry => {
-      const ev = new CustomEvent('petal-visibility', { detail: { visible: entry.isIntersecting && entry.intersectionRatio >= 0.1 }});
-      document.dispatchEvent(ev);
-    });
-  }, { threshold: [0, 0.1, 0.5, 1] });
-  window.__petalObserver.observe(geskenke);
-
-  // Hook into the earlier script if present
-  document.addEventListener('petal-visibility', (e)=>{
-    const visible = e.detail.visible;
-    const startEvt = new Event(visible ? 'petals-start' : 'petals-stop');
-    document.dispatchEvent(startEvt);
-  });
-
-  // If the earlier script didn't listen for our events, try to restart by toggling visibility
-  setTimeout(()=>{
-    const rect = geskenke.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    const ev = new CustomEvent('petal-visibility', { detail: { visible: inView }});
-    document.dispatchEvent(ev);
-  }, 200);
-})();
-</script>
-
-
-<!-- FINAL FIX: lock hero photo to one screen & improve mobile countdown placement -->
-<style id="final-photo-and-countdown-fixes">
-  /* Do not allow vertical scrolling inside the hero photos */
-  header.hero{
-    height: 100svh !important;
-    overflow: hidden !important;
-    touch-action: pan-x !important;     /* allow horizontal swipes only on the hero */
-    overscroll-behavior: contain !important;
-  }
-  .hero-track{ height: 100% !important; }
-  .hero-track img{
-    height: 100svh !important;
-    object-fit: cover !important;
-  }
-  /* Defensive: prevent any accidental page bounce caused by the hero */
-  html, body{ overscroll-behavior-y: contain !important; }
-
-  /* MOBILE countdown: sit lower + smaller so it doesn't cover "Tel saam ons die" */
-  @media (max-width: 560px){
-    .countdown-sec{
-      height: 80svh !important;
-      padding-top: clamp(72px, 14svh, 120px) !important; /* push the timer down */
-      align-items: flex-start !important;
-    }
-    .countdown-sec .countdown-inner{
-      top: 50% !important;              /* lower inside the sunflower/wreath */
-      transform: translate(-50%, -50%) !important;
-      padding: 6px 8px !important;
-      border-radius: 12px !important;
-      background: rgba(255,255,255,0.30) !important;
-      backdrop-filter: blur(4px) !important;
-    }
-    #countdown{ gap: 4px !important; }
-    #countdown .cd-box{
-      min-width: 44px !important;
-      padding: 6px 8px !important;
-      font-size: clamp(12px, 3.6vw, 15px) !important;
-      border-radius: 10px !important;
-      box-shadow: 0 4px 10px rgba(0,0,0,.12) !important;
-    }
-    #countdown .cd-box span{
-      margin-top: 2px !important;
-      font-size: clamp(9px, 3.2vw, 11px) !important;
-    }
-  }
-</style>
-
-<!-- SINGLE SCROLLBAR FIX -->
-<style id="single-scrollbar-fix">
-  /* Only the main page can scroll vertically */
-  html, body{
-    height:100% !important;
-    overflow-x:hidden !important;
-    overflow-y:auto !important;
-  }
-
-  /* Prevent nested sections from creating their own vertical scrollbars */
-  header.hero,
-  .hero,
-  .hero-track,
-  .countdown-sec,
-  .section,
-  section,
-  main,
-  .page,
-  .container,
-  .wrapper{
-    overflow-y:hidden !important;
-    max-height:100svh; /* if any fills the screen, don't exceed viewport */
-  }
-
-  /* Keep intended horizontal scroll in top nav only */
-  .top-nav{
-    overflow-x:auto !important;
-    overflow-y:hidden !important;
-    -webkit-overflow-scrolling:touch;
-  }
-
-  /* Images inside hero should cover without adding scrollbars */
-  .hero-track img{
-    height:100svh !important;
-    width:100% !important;
-    object-fit:cover !important;
-    display:block;
-  }
-
-  /* Defensive fix: any element that accidentally sets overflow: auto; */
-  [style*="overflow: auto"],
-  [style*="overflow:auto"]{
-    overflow-y:hidden !important;
-  }
-</style>
-
-<!-- HERO IMAGE NO-ZOOM OVERRIDE -->
-<style id="hero-no-zoom">
-  /* Keep hero section one screen high, no internal scroll */
-  header.hero{
-    height:100svh !important;
-    overflow:hidden !important;
-    background: var(--hero-bg, #0000); /* transparent by default */
-  }
-
-  /* Center image within the hero and allow letterboxing instead of cropping */
-  .hero-track{
-    height:100% !important;
-    display:flex !important;
-    align-items:center !important;
-    justify-content:center !important;
-    overflow:hidden !important;
-    background: var(--hero-bg, #0000);
-  }
-
-  /* Show the entire photo without zooming/cropping */
-  .hero-track img{
-    max-height:100% !important;
-    max-width:100% !important;
-    height:auto !important;
-    width:auto !important;
-    object-fit:contain !important;   /* <— no crop */
-    object-position:center center !important;
-    display:block !important;
-    margin:0 auto !important;
-    background:transparent !important;
-  }
-
-  /* Optional: pick a soft background behind letterbox gaps */
-  body{
-    --hero-bg: #e9ecef; /* light neutral; change to match your theme */
-  }
-
-  /* Ensure only the page scrolls */
-  html, body{
-    height:100% !important;
-    overflow-x:hidden !important;
-    overflow-y:auto !important;
-  }
-</style>
-
-<!-- iOS MOBILE SCROLL PASS-THROUGH FIX -->
-<style id="ios-hero-scroll-pass">
-  /* Let vertical swipes on the hero bubble to the page scroll */
-  header.hero{
-    touch-action: pan-y !important;        /* allow vertical gestures */
-    -ms-touch-action: pan-y !important;
-    overscroll-behavior: auto !important;  /* don't trap overscroll */
-    overflow-x: hidden !important;         /* still no horizontal spill */
-    overflow-y: visible !important;        /* no inner scrolling, but allow hit-test */
-    pointer-events: auto !important;
-  }
-  .hero-track{
-    overflow: visible !important;
-  }
-
-  /* Keep the body as the only scrolling container */
-  html, body{
-    height:auto !important;
-    min-height:100%;
-    overflow-y:auto !important;
-    overflow-x:hidden !important;
-  }
-
-  /* Slightly tighten mobile spacing above the countdown so it's visible sooner */
-  @media (max-width: 560px){
-    .countdown-sec{
-      padding-top: clamp(56px, 12svh, 100px) !important;
-    }
-  }
-</style>
-
-<!-- MOBILE COUNTDOWN POLISH: no blur band, no overlap, tighter chips -->
-<style id="mobile-countdown-polish">
-  @media (max-width: 560px){
-    /* Let the banner text breathe; countdown sits below it */
-    .countdown-sec{
-      padding-top: clamp(88px, 18svh, 140px) !important;
-      align-items: center !important;
-    }
-    /* Remove the big frosted pill background on mobile */
-    .countdown-sec .countdown-inner{
-      position: static !important;
-      top: auto !important;
-      left: 50% !important;
-      transform: none !important;
-      margin: 12px auto 0 !important;
-      background: transparent !important;
-      backdrop-filter: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      width: auto !important;
-    }
-    /* Tighter, card-like chips for each time unit */
-    #countdown{ gap: 6px !important; }
-    #countdown .cd-box{
-      min-width: 52px !important;
-      padding: 8px 10px !important;
-      border-radius: 12px !important;
-      background: #ffffff !important;
-      box-shadow: 0 6px 14px rgba(0,0,0,.10) !important;
-      font-size: clamp(13px, 3.9vw, 16px) !important;
-    }
-    #countdown .cd-box span{
-      margin-top: 2px !important;
-      font-size: clamp(10px, 3.3vw, 12px) !important;
-      opacity: .85;
-    }
-  }
-</style>
-
-<!-- MOBILE COUNTDOWN POSITION TWEAK -->
-<style id="mobile-countdown-position-tweak">
-  @media (max-width: 560px){
-    .countdown-sec{
-      padding-top: clamp(48px, 10svh, 90px) !important; /* move up */
-    }
-  }
-</style>
-
-<!-- MOBILE COUNTDOWN: ORIGINAL LOOK + SLIGHT TRANSPARENCY, NO BLUR -->
-<style id="mobile-countdown-transparency">
-  @media (max-width: 560px){
-    .countdown-sec .countdown-inner{
-      /* keep original placement/shape feel */
-      background: rgba(255,255,255,0.85) !important; /* slight transparency */
-      border-radius: 24px !important;
-      padding: 12px 16px !important;
-      box-shadow: 0 10px 26px rgba(0,0,0,.12) !important;
-      backdrop-filter: none !important; /* remove blur */
-    }
-  }
-</style>
 </body>
 </html>
 <style id="pink-button-overrides">
@@ -1843,28 +1351,5 @@ document.addEventListener('click', function(e){
   /* Make anchors behave nicely when centered text is used */
   #alternative-accommodation .suite-card a {
     display: inline-block;
-  }
-</style>
-<!-- === FINAL OVERRIDE: kill the justify that forces left; lock true center on desktop === -->
-<style id="final-center-override">
-  /* This rule overrides the late `.section-title { text-align: justify !important; }` */
-  #trou-inligting .section-title,
-  #algemene-vrae .section-title,
-  #geskenke .section-title,
-  #rsvp .section-title{
-    text-align: center !important;
-    text-align-last: center !important;
-    -moz-text-align-last: center !important;
-  }
-
-  @media (min-width:1024px){
-    /* Center all content in these sections */
-    #trou-inligting, #algemene-vrae, #geskenke, #rsvp{ text-align:center !important; }
-    #trou-inligting *, #algemene-vrae *, #geskenke *, #rsvp *{
-      text-align: inherit;
-    }
-
-    /* Make the Algemene Vrae rows span the full card width */
-    #algemene-vrae .dropdown-toggle{ display:block !important; width:100% !important; margin:0 !important; }
   }
 </style>
