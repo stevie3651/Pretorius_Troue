@@ -1780,65 +1780,16 @@ document.addEventListener('click', function(e){
   }
 </style>
 
-<!-- MOBILE COUNTDOWN: TOP-ALIGNED BLOCKS, ROUNDED CONTAINER, NO BLUR -->
-<style id="mobile-countdown-top-align">
+<!-- MOBILE COUNTDOWN: ORIGINAL LOOK + SLIGHT TRANSPARENCY, NO BLUR -->
+<style id="mobile-countdown-transparency">
   @media (max-width: 560px){
-    /* Container: larger again, rounded, no blur */
     .countdown-sec .countdown-inner{
-      position: relative !important;
-      top: auto !important;
-      left: 50% !important;
-      transform: translateX(-50%) !important;
-      display: flex !important;
-      flex-direction: column !important;
-      justify-content: flex-start !important; /* content starts at the top */
-      align-items: center !important;
-      width: min(92vw, 560px) !important;
-      min-height: 132px !important;
-      padding: 12px 14px !important;
-      border-radius: 18px !important;   /* rounded corners restored */
-      background: #ffffff !important;    /* solid white; no blur */
-      box-shadow: 0 8px 20px rgba(0,0,0,.12) !important;
-      backdrop-filter: none !important;
-    }
-
-    /* Make sure any heading inside the container has a tiny bottom gap */
-    .countdown-sec .countdown-inner h1,
-    .countdown-sec .countdown-inner h2,
-    .countdown-sec .countdown-inner h3{
-      margin: 0 0 6px 0 !important;
-      line-height: 1.2 !important;
-      text-align: center !important;
-    }
-
-    /* Place the countdown blocks right beneath the top text */
-    #countdown{
-      width: 100% !important;
-      margin-top: 6px !important;       /* very close to the top text */
-      display: flex !important;
-      flex-wrap: nowrap !important;
-      justify-content: center !important;
-      align-items: flex-start !important;
-      gap: 6px !important;
-    }
-
-    /* Tidy, compact chips */
-    #countdown .cd-box{
-      min-width: 56px !important;
-      padding: 8px 10px !important;
-      border-radius: 12px !important;
-      background: #ffffff !important;
-      box-shadow: 0 6px 14px rgba(0,0,0,.10) !important;
-      font-size: clamp(13px, 3.8vw, 16px) !important;
-    }
-
-    /* Labels slightly smaller and not pushed down */
-    #countdown .cd-box span{
-      display:block !important;
-      margin-top: 0 !important;         /* keep close to the numbers */
-      font-size: clamp(10px, 3.2vw, 12px) !important;
-      line-height: 1.1 !important;
-      opacity: .9;
+      /* keep original placement/shape feel */
+      background: rgba(255,255,255,0.85) !important; /* slight transparency */
+      border-radius: 24px !important;
+      padding: 12px 16px !important;
+      box-shadow: 0 10px 26px rgba(0,0,0,.12) !important;
+      backdrop-filter: none !important; /* remove blur */
     }
   }
 </style>
