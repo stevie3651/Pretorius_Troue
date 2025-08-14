@@ -1699,6 +1699,37 @@ document.addEventListener('click', function(e){
     overflow-y:auto !important;
   }
 </style>
+
+<!-- iOS MOBILE SCROLL PASS-THROUGH FIX -->
+<style id="ios-hero-scroll-pass">
+  /* Let vertical swipes on the hero bubble to the page scroll */
+  header.hero{
+    touch-action: pan-y !important;        /* allow vertical gestures */
+    -ms-touch-action: pan-y !important;
+    overscroll-behavior: auto !important;  /* don't trap overscroll */
+    overflow-x: hidden !important;         /* still no horizontal spill */
+    overflow-y: visible !important;        /* no inner scrolling, but allow hit-test */
+    pointer-events: auto !important;
+  }
+  .hero-track{
+    overflow: visible !important;
+  }
+
+  /* Keep the body as the only scrolling container */
+  html, body{
+    height:auto !important;
+    min-height:100%;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+  }
+
+  /* Slightly tighten mobile spacing above the countdown so it's visible sooner */
+  @media (max-width: 560px){
+    .countdown-sec{
+      padding-top: clamp(56px, 12svh, 100px) !important;
+    }
+  }
+</style>
 </body>
 </html>
 <style id="pink-button-overrides">
