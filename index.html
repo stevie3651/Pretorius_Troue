@@ -1583,7 +1583,7 @@ document.addEventListener('click', function(e){
   @media (max-width: 560px){
     .countdown-sec{
       height: 80svh !important;
-      padding-top: clamp(120px, 14svh, 120px) !important; /* push the timer down */
+      padding-top: clamp(72px, 14svh, 120px) !important; /* push the timer down */
       align-items: flex-start !important;
     }
     .countdown-sec .countdown-inner{
@@ -1780,45 +1780,17 @@ document.addEventListener('click', function(e){
   }
 </style>
 
-<!-- COUNTDOWN BELOW HEADING ON MOBILE -->
-<style id="countdown-below-heading-mobile">
+<!-- COUNTDOWN LABEL POSITION FIX -->
+<style id="countdown-labels-up">
   @media (max-width: 560px){
-    /* Assuming heading and countdown are inside .countdown-sec */
-    .countdown-sec{
-      display:flex !important;
-      flex-direction:column !important;
-      align-items:center !important;
-      padding-top: 0 !important;
-    }
-    .countdown-sec h2, .countdown-sec h3, .countdown-sec h1{
-      margin-bottom: 10px !important;
-    }
-    .countdown-sec .countdown-inner{
-      position: relative !important;
-      top: auto !important;
-      left: auto !important;
-      transform: none !important;
-      margin: 0 auto !important;
-      background: transparent !important;
-      backdrop-filter: none !important;
-      box-shadow: none !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      width: auto !important;
-    }
-    #countdown{ gap: 6px !important; }
-    #countdown .cd-box{
-      min-width: 52px !important;
-      padding: 8px 10px !important;
-      border-radius: 12px !important;
-      background: #ffffff !important;
-      box-shadow: 0 6px 14px rgba(0,0,0,.10) !important;
-      font-size: clamp(13px, 3.9vw, 16px) !important;
-    }
     #countdown .cd-box span{
-      margin-top: 2px !important;
-      font-size: clamp(10px, 3.3vw, 12px) !important;
-      opacity: .85;
+      display: block;
+      font-size: clamp(9px, 2.8vw, 11px) !important; /* slightly smaller */
+      margin-top: -2px !important; /* move up within the block */
+      line-height: 1.1 !important;
+    }
+    #countdown .cd-box{
+      padding-bottom: 6px !important; /* tighter overall block height */
     }
   }
 </style>
