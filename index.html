@@ -1580,7 +1580,7 @@ document.addEventListener('click', function(e){
   html, body{ overscroll-behavior-y: contain !important; }
 
   /* MOBILE countdown: sit lower + smaller so it doesn't cover "Tel saam ons die" */
-  @media (max-width: 500px){
+  @media (max-width: 560px){
     .countdown-sec{
       height: 80svh !important;
       padding-top: clamp(72px, 14svh, 120px) !important; /* push the timer down */
@@ -1775,7 +1775,7 @@ document.addEventListener('click', function(e){
 <style id="mobile-countdown-position-tweak">
   @media (max-width: 560px){
     .countdown-sec{
-      padding-top: clamp(68px, 14svh, 110px) !important; /* move up */
+      padding-top: clamp(48px, 10svh, 90px) !important; /* move up */
     }
   }
 </style>
