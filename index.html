@@ -1411,6 +1411,26 @@ section{
 </script>
 <!-- === END FIXES === -->
 
+
+<style id="countdown-full-round">
+  /* Make the countdown section's background fully rounded and remove bottom gap */
+  .countdown-sec {
+    border-radius: 20px !important; /* all corners rounded */
+    overflow: hidden !important;
+    background-color: transparent !important; /* keep background from image only */
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .countdown-sec img, .countdown-sec .bg-image {
+    display: block;
+    border-radius: 20px !important;
+  }
+  /* Ensure next section overlaps margin if necessary */
+  #trou-inligting {
+    margin-top: 0 !important;
+  }
+</style>
+
 </body>
 </html>
 <style id="pink-button-overrides">
