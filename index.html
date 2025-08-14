@@ -1730,6 +1730,46 @@ document.addEventListener('click', function(e){
     }
   }
 </style>
+
+<!-- MOBILE COUNTDOWN POLISH: no blur band, no overlap, tighter chips -->
+<style id="mobile-countdown-polish">
+  @media (max-width: 560px){
+    /* Let the banner text breathe; countdown sits below it */
+    .countdown-sec{
+      padding-top: clamp(88px, 18svh, 140px) !important;
+      align-items: center !important;
+    }
+    /* Remove the big frosted pill background on mobile */
+    .countdown-sec .countdown-inner{
+      position: static !important;
+      top: auto !important;
+      left: 50% !important;
+      transform: none !important;
+      margin: 12px auto 0 !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      width: auto !important;
+    }
+    /* Tighter, card-like chips for each time unit */
+    #countdown{ gap: 6px !important; }
+    #countdown .cd-box{
+      min-width: 52px !important;
+      padding: 8px 10px !important;
+      border-radius: 12px !important;
+      background: #ffffff !important;
+      box-shadow: 0 6px 14px rgba(0,0,0,.10) !important;
+      font-size: clamp(13px, 3.9vw, 16px) !important;
+    }
+    #countdown .cd-box span{
+      margin-top: 2px !important;
+      font-size: clamp(10px, 3.3vw, 12px) !important;
+      opacity: .85;
+    }
+  }
+</style>
 </body>
 </html>
 <style id="pink-button-overrides">
