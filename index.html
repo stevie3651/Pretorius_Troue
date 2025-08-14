@@ -1468,6 +1468,30 @@ section{
   }
 </style>
 
+
+<style id="desktop-countdown-fixes">
+  /* Desktop/wide screens: show full artwork without cropping */
+  @media (min-width: 900px){
+    .countdown-sec{
+      background-size: contain !important;   /* don't zoom in */
+      background-position: center top !important;
+      background-repeat: no-repeat !important;
+      min-height: 520px !important;          /* keep a nice aspect */
+      padding-top: 24px !important;
+      padding-bottom: 24px !important;
+    }
+    /* If an <img> is used inside as the bg carrier, constrain it */
+    .countdown-sec img,
+    .countdown-sec .bg-image{
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: center top !important;
+    }
+    #countdown{ margin-top: 8px !important; }
+  }
+</style>
+
 </body>
 </html>
 <style id="pink-button-overrides">
