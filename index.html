@@ -582,6 +582,24 @@ header.hero{ overflow: hidden !important; }
   }
 </style>
 
+
+<style>
+/* Match spacing between dropdown text and next button */
+#algemene-vrae .dropdown-content {
+  margin-bottom: 0.75rem; /* same as .dropdown-toggle's top margin */
+}
+</style>
+
+
+<style>
+/* Ensure petals fall in front of all blocks from Geskenkregister */
+#petal-overlay {
+  position: absolute !important;
+  z-index: 9999 !important; /* high enough to be above all blocks */
+  pointer-events: none !important;
+}
+</style>
+
 </head>
 <body>
 <!-- NAV -->
@@ -733,7 +751,7 @@ header.hero{ overflow: hidden !important; }
 <p>Ons volg nie die tradisionele gebruik van ’n bruid &amp; bruidegom kant nie. Julle is welkom om te sit waar julle gemaklik voel.</p>
 <p>By die onthaal sal daar ’n sitkaart beskikbaar wees wat aandui by watter tafel elke gas geplaas is.</p>
 </div>
-<div class="dropdown-toggle left-align">Wat trek ek aan?</div>
+  <div class="dropdown-toggle left-align">Wat trek ek aan?</div>
 <div class="dropdown-content">
 <p>Kleredrag: Semi-Formeel.</p>
 <p>Vir die dames: 'n Netjiese rok of 'n stylvolle broekpak.</p>
