@@ -179,7 +179,7 @@
 
   .countdown{
     margin:1rem auto 0; display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   .cd-box{
     background-color: transparent; border-radius:16px; min-width:84px;
     padding:.9rem .95rem; text-align:center;
@@ -456,11 +456,11 @@ header.hero{ overflow: hidden !important; }
 #countdown, #countdown .countdown-card, .countdown-bg {
   border-radius: 22px;
   overflow: hidden;
-}
+ margin-bottom: 0; padding-bottom: 0; }
 /* Optional: soft shadow to match the style */
 #countdown.rounded, .countdown-bg.rounded {
   box-shadow: 0 8px 18px rgba(0,0,0,.08);
-}
+ margin-bottom: 0; padding-bottom: 0; }
 </style>
 <style id="countdown-card-override">
 /* === Countdown card width/rounding to match Inligting === */
@@ -468,7 +468,7 @@ header.hero{ overflow: hidden !important; }
   position: relative;
   background: url('thumb-1920-677024.jpeg') no-repeat center top/contain;
   padding: clamp(8px, 2vw, 16px) 0;
-}
+ margin-bottom: 0; padding-bottom: 0; }
 .countdown-card{
   position: relative;
   max-width: 1000px;          /* match .glass-card */
@@ -479,7 +479,7 @@ header.hero{ overflow: hidden !important; }
   border-radius: 22px;
   overflow: hidden;
   box-shadow: none;
-}
+ margin-bottom: 0; padding-bottom: 0; }
 .countdown-card .countdown-inner{
   position: absolute;
   left: 50%;
@@ -487,13 +487,13 @@ header.hero{ overflow: hidden !important; }
   transform: translate(-50%, -50%);
   width: min(520px, 88%);
   text-align: center;
-}
+ margin-bottom: 0; padding-bottom: 0; }
 @media (max-width: 420px){
-  .countdown-card{ min-height: 340px; }
-  .countdown-card .countdown-inner{ top: 30%; width: 92%; }
+  .countdown-card{ min-height: 340px;  margin-bottom: 0; padding-bottom: 0; }
+  .countdown-card .countdown-inner{ top: 30%; width: 92%;  margin-bottom: 0; padding-bottom: 0; }
 }
 @media (min-width: 900px){
-  .countdown-card .countdown-inner{ top: 36%; width: 540px; }
+  .countdown-card .countdown-inner{ top: 36%; width: 540px;  margin-bottom: 0; padding-bottom: 0; }
 }
 </style>
 <style id="countdown-spacing-fix">
@@ -501,7 +501,7 @@ header.hero{ overflow: hidden !important; }
 .countdown-sec{
   padding: clamp(2rem, 5vw, 4rem) 1rem !important; /* same as default section padding */
   margin-top: clamp(2rem, 5vw, 4rem);              /* add the missing gap beneath the hero */
-}
+ margin-bottom: 0; padding-bottom: 0; }
 </style>
 
 <style id="rsvp-button-size-override">
@@ -579,7 +579,7 @@ header.hero{ overflow: hidden !important; }
   .countdown-sec{
     padding: clamp(1rem, 2.5vw, 2rem) 0.5rem !important;
     margin-top: clamp(1rem, 2.5vw, 2rem) !important;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
 </style>
 
 
@@ -844,7 +844,7 @@ header.hero{ overflow: hidden !important; }
   background: url('thumb-1920-677024.jpeg') no-repeat center top/contain;
   /* keep the section reasonably short so we stay close to the wreath */
   min-height: 600px;
-}
+ margin-bottom: 0; padding-bottom: 0; }
 
 /* Place the countdown inside the wreath, above the "Pretorius Troue" text */
 P%;
@@ -883,8 +883,8 @@ P%;
 
 /* Tiny phones */
 @media (max-width: 420px){
-  .countdown-sec{ min-height: 600px; }
-  .countdown-sec .countdown-inner{ top: 30%; width: 90%; }
+  .countdown-sec{ min-height: 600px;  margin-bottom: 0; padding-bottom: 0; }
+  .countdown-sec .countdown-inner{ top: 30%; width: 90%;  margin-bottom: 0; padding-bottom: 0; }
   #countdown{ gap: 6px; }
   #countdown .cd-box{
     min-width: 48px;
@@ -895,7 +895,7 @@ P%;
 
 /* Wider screens: nudge slightly lower to stay inside the wreath */
 @media (min-width: 900px){
-  .countdown-sec .countdown-inner{ top: 36%; width: 540px; }
+  .countdown-sec .countdown-inner{ top: 36%; width: 540px;  margin-bottom: 0; padding-bottom: 0; }
 }
 </style>
 <script>
@@ -1329,12 +1329,12 @@ document.addEventListener('click', function(e){
     padding-top: 0.75rem !important;
     padding-bottom: 0.5rem !important;
     margin-bottom: 0 !important;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   /* Sit the blocks just under "Tel Saam Ons Die" */
   .countdown-sec .countdown-inner{
     top: 19% !important;            /* move higher on phones */
     width: 92% !important;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   /* Make the blocks a touch smaller on phones so they don't cover the script text */
   #countdown .cd-box{
     min-width: 46px !important;
@@ -1351,7 +1351,7 @@ document.addEventListener('click', function(e){
   border-radius: 22px !important;
   overflow: hidden !important; /* clip the background neatly */
   box-shadow: 0 10px 25px rgba(0,0,0,.10);
-}
+ margin-bottom: 0; padding-bottom: 0; }
 </style>
 
 <style id="uniform-section-spacing">
@@ -1362,7 +1362,7 @@ section{
 }
 /* Remove extra margins that individual elements might add inside sections */
 .section-title{ margin-top: 0 !important; margin-bottom: 1rem !important; }
-.countdown-sec{ margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; margin-bottom: clamp(1.25rem, 4vw, 2.25rem) !important; }
+.countdown-sec{ margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; margin-bottom: clamp(1.25rem, 4vw, 2.25rem) !important;  margin-bottom: 0; padding-bottom: 0; }
 </style>
 
 
@@ -1376,7 +1376,7 @@ section{
       padding-top: 0.5rem !important;
       padding-bottom: 0 !important;
       margin-bottom: 0 !important;
-    }
+     margin-bottom: 0; padding-bottom: 0; }
     #trou-inligting{
       margin-top: .5rem !important;    /* pull the next block up */
     }
@@ -1438,11 +1438,11 @@ section{
     background-color: transparent !important; /* keep background from image only */
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   .countdown-sec img, .countdown-sec .bg-image {
     display: block;
     border-radius: 20px !important;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   /* Ensure next section overlaps margin if necessary */
   #trou-inligting {
     margin-top: 0 !important;
@@ -1462,7 +1462,7 @@ section{
     background-position: center !important;
     background-repeat: no-repeat !important;
     margin-bottom: 12px !important;             /* small, card-like spacing */
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   /* Ensure any background <img> inside doesn't add fake space at the bottom */
   .countdown-sec img,
   .countdown-sec .bg-image{
@@ -1471,7 +1471,7 @@ section{
     height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
-  }
+   margin-bottom: 0; padding-bottom: 0; }
   /* Pull next section up to close the visible gap */
   #trou-inligting{ margin-top: 12px !important; }
   /* Fit countdown boxes neatly on mobile inside the new card */
@@ -1497,7 +1497,7 @@ section{
       min-height: 520px !important;          /* keep a nice aspect */
       padding-top: 24px !important;
       padding-bottom: 24px !important;
-    }
+     margin-bottom: 0; padding-bottom: 0; }
     /* If an <img> is used inside as the bg carrier, constrain it */
     .countdown-sec img,
     .countdown-sec .bg-image{
@@ -1505,7 +1505,7 @@ section{
       height: auto !important;
       object-fit: contain !important;
       object-position: center top !important;
-    }
+     margin-bottom: 0; padding-bottom: 0; }
     #countdown{ margin-top: 8px !important; }
   }
 </style>
