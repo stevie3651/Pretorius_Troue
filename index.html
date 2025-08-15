@@ -900,31 +900,7 @@ P%;
   .countdown-sec .countdown-inner{ top: 36%; width: 540px;  margin-bottom: 0; padding-bottom: 0; }
 }
 </style>
-<script>
-  // Petals (limit number for performance) — start below countdown section only
-  const PETAL_LIMIT = 20;
-  let petals = 0;
-  const overlay = document.getElementById('petal-overlay');
-  const countdownSection = document.getElementById('countdown-title').closest('section');
-  function getCountdownTop(){
-    const rect = countdownSection.getBoundingClientRect();
-    return Math.max(0, Math.min(window.innerHeight, rect.top));
-  }
-  function spawnPetal(){
-    if (petals >= PETAL_LIMIT || !overlay) return;
-    const startY = getCountdownTop();
-    const p = document.createElement('div');
-    p.className='falling-petal';
-    p.style.left = Math.random()*100 + 'vw';
-    p.style.top = startY + 'px';
-    p.style.setProperty('--dur', (6 + Math.random()*5) + 's');
-    p.textContent = ['💍','🌻','🤍','🌻'][Math.floor(Math.random()*4)];
-    overlay.appendChild(p);
-    petals++;
-    setTimeout(()=>{ p.remove(); petals--; }, 10000);
-  }
-  setInterval(spawnPetal, 900);
-</script>
+
 <script id="countdown-js">
 (function(){
   function ensure(){
@@ -1380,7 +1356,7 @@ section{
       margin-bottom: 0 !important;
      margin-bottom: 0; padding-bottom: 0; }
     #trou-inligting{
-      margin-top: .5rem !important;    /* pull the next block up */
+      margin-top: 0px;    /* pull the next block up */
     }
     #countdown .cd-box{
       min-width: 44px !important;
@@ -1392,43 +1368,7 @@ section{
   #petal-overlay{ position: absolute !important; }
 </style>
 
-<script id="petal-overlay-measure-fix">
-// Recompute the petal overlay height without using its previous height in the measurement
-(function(){
-  const overlay = document.getElementById('petal-overlay');
-  const startSec = document.getElementById('geskenke');
-  if(!overlay || !startSec) return;
 
-  function fixOverlay(){
-    // Temporarily collapse to avoid feedback where its own height inflates the page
-    overlay.style.height = '0px';
-    const s = startSec.getBoundingClientRect();
-    const topAbs = window.scrollY + s.top;
-
-    const docHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      document.body.offsetHeight,
-      document.documentElement.offsetHeight,
-      document.body.clientHeight,
-      document.documentElement.clientHeight
-    );
-
-    const height = Math.max(0, docHeight - topAbs);
-    overlay.style.position = 'absolute';
-    overlay.style.top = topAbs + 'px';
-    overlay.style.left = 0;
-    overlay.style.right = 0;
-    overlay.style.pointerEvents = 'none';
-    overlay.style.overflow = 'hidden';
-    overlay.style.zIndex = 3;
-    overlay.style.height = height + 'px';
-  }
-
-  ['load','resize','scroll'].forEach(evt => window.addEventListener(evt, fixOverlay, {passive:true}));
-  fixOverlay();
-})();
-</script>
 <!-- === END FIXES === -->
 
 
@@ -1447,7 +1387,7 @@ section{
    margin-bottom: 0; padding-bottom: 0; }
   /* Ensure next section overlaps margin if necessary */
   #trou-inligting {
-    margin-top: 0 !important;
+    margin-top: 0px;
   }
 </style>
 
@@ -1475,7 +1415,7 @@ section{
     padding: 0 !important;
    margin-bottom: 0; padding-bottom: 0; }
   /* Pull next section up to close the visible gap */
-  #trou-inligting{ margin-top: 12px !important; }
+  #trou-inligting{ margin-top: 0px; }
   /* Fit countdown boxes neatly on mobile inside the new card */
   @media (max-width: 520px){
     #countdown{ margin-top: 8px !important; }
@@ -1511,6 +1451,52 @@ section{
     #countdown{ margin-top: 8px !important; }
   }
 </style>
+
+
+<script id="petal-overlay-fullpage">
+(function(){
+  const overlay = document.getElementById('petal-overlay');
+  const startSec = document.getElementById('geskenke');
+  if(!overlay || !startSec) return;
+
+  function positionOverlay(){
+    const s = startSec.getBoundingClientRect();
+    const topAbs = window.scrollY + s.top;
+    const docHeight = Math.max(
+      document.body.scrollHeight, document.documentElement.scrollHeight,
+      document.body.offsetHeight, document.documentElement.offsetHeight,
+      document.body.clientHeight, document.documentElement.clientHeight
+    );
+    const height = Math.max(0, docHeight - topAbs);
+    overlay.style.position = 'absolute';
+    overlay.style.top = topAbs + 'px';
+    overlay.style.left = 0;
+    overlay.style.right = 0;
+    overlay.style.height = height + 'px';
+    overlay.style.pointerEvents = 'none';
+    overlay.style.overflow = 'hidden';
+    overlay.style.zIndex = 9999;
+  }
+
+  function spawnPetal(){
+    if(!overlay) return;
+    const EMOJIS = ['🤍','🌻','💍'];
+    const p = document.createElement('div');
+    p.className = 'falling-petal';
+    p.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.top = '0px';
+    p.style.setProperty('--dur', (7 + Math.random()*4) + 's');
+    overlay.appendChild(p);
+    p.addEventListener('animationend', () => p.remove(), { once:true });
+  }
+
+  window.addEventListener('load', positionOverlay);
+  window.addEventListener('resize', positionOverlay);
+  window.addEventListener('scroll', positionOverlay);
+  setInterval(spawnPetal, 850);
+})();
+</script>
 
 </body>
 </html>
