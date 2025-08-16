@@ -716,6 +716,14 @@ header.hero{ overflow: hidden !important; }
   @keyframes floaty{ 50%{ transform: translateY(-2px) } }
 </style>
 
+
+<style id="hero-to-countdown-spacing">
+  /* Increase top gap of countdown section so it matches the bottom gap */
+  .countdown-sec {
+    margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; /* same as bottom */
+  }
+</style>
+
 </head>
 
 <body>
@@ -1630,32 +1638,6 @@ section{
     }
     #countdown{ margin-top: 8px !important; }
   }
-</style>
-
-
-<style id="equal-spacing-all-blocks">
-/* === Equal spacing between ALL sections === */
-section {
-  padding-top: clamp(2.5rem, 5vw, 3rem) !important;
-  padding-bottom: clamp(2.5rem, 5vw, 3rem) !important;
-  margin-top: clamp(2.5rem, 5vw, 3rem) !important;
-  margin-bottom: clamp(2.5rem, 5vw, 3rem) !important;
-}
-/* Remove extra margins from section-title to avoid conflicts */
-.section-title {
-  margin-top: 0 !important;
-  margin-bottom: 1.5rem !important;
-}
-/* Remove extra margins specific to countdown */
-.countdown-sec {
-  margin-top: clamp(2.5rem, 5vw, 3rem) !important;
-  margin-bottom: clamp(2.5rem, 5vw, 3rem) !important;
-}
-/* Remove blur/shadow from countdown boxes */
-#countdown .cd-box {
-  box-shadow: none !important;
-  border: 1px solid rgba(0,0,0,0.08) !important;
-}
 </style>
 
 </body>
