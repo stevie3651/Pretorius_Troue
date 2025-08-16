@@ -19,11 +19,12 @@
 }
 .falling-petal{
   position:absolute;
-  top:-24px;               /* start just above the overlay */
+  top:0;
   font-size:1.3rem;
   opacity:.9;
-  will-change: transform, opacity;
-  animation: fall var(--dur,9s) linear forwards;
+  will-change: top, opacity;
+  animation: fallY var(--dur,8s) linear forwards;
+  pointer-events:none;
 }
 @keyframes fall{
   90% { transform: translateY(100%); opacity:.9; }
@@ -265,7 +266,15 @@
   /* ---------- FALLING PETALS (limited for performance) ---------- */
   #falling-zone{ position:relative; z-index:3 }
   #petal-overlay{ position:fixed; inset:0; pointer-events:none; z-index:3; }
-  .falling-petal{ position:absolute; top:-20px; font-size:1.3rem; opacity:.8; pointer-events:none; animation:fall var(--dur,8s) linear infinite }
+  .falling-petal{
+  position:absolute;
+  top:0;
+  font-size:1.3rem;
+  opacity:.9;
+  will-change: top, opacity;
+  animation: fallY var(--dur,8s) linear forwards;
+  pointer-events:none;
+}
   @keyframes fall{ to{ transform: translateY(105svh) rotate(360deg); opacity:.1 } }
 
   /* ---------- ONE consolidated mobile query ---------- */
@@ -666,7 +675,17 @@ header.hero{ overflow: hidden !important; }
   }
 </style>
 
+
+<style id="petal-fallY-override">
+@keyframes fallY{
+  to{
+    top: calc(var(--ovh, 100vh) + 30px);
+    opacity:.05;
+  }
+}
+</style>
 </head>
+
 <body>
 <!-- NAV -->
 <nav class="top-nav">
@@ -816,6 +835,7 @@ header.hero{ overflow: hidden !important; }
 <p>“Kies gerus ’n sitplek, nie ’n kant nie.”</p>
 <p>Ons volg nie die tradisionele gebruik van ’n bruid &amp; bruidegom kant nie. Julle is welkom om te sit waar julle gemaklik voel.</p>
 <p>By die onthaal sal daar ’n sitkaart beskikbaar wees wat aandui by watter tafel elke gas geplaas is.</p></div>
+<br>
 <div class="dropdown-toggle left-align\">Wat trek ek aan?</div>
 <div class="dropdown-content">
 <p>Kleredrag: Semi-Formeel.</p>
@@ -982,6 +1002,8 @@ P%;
     p.style.top = startY + 'px';
     p.style.setProperty('--dur', (6 + Math.random()*5) + 's');
     p.textContent = ['💍','🌻','🤍','🌻'][Math.floor(Math.random()*4)];
+    p.style.setProperty('--ovh', overlay.clientHeight + 'px');
+      p.style.setProperty('--ovh', overlay.clientHeight + 'px');
     overlay.appendChild(p);
     petals++;
     setTimeout(()=>{ p.remove(); petals--; }, 10000);
@@ -1079,6 +1101,7 @@ document.addEventListener('click', function(e){
       p.style.top = '0px';
       p.style.setProperty('--dur', (7 + Math.random()*4) + 's');
 
+      p.style.setProperty('--ovh', overlay.clientHeight + 'px');
       overlay.appendChild(p);
       petals++;
 
