@@ -684,6 +684,38 @@ header.hero{ overflow: hidden !important; }
   }
 }
 </style>
+
+<style id="speech-bubble-below-css">
+  .bubble-below{
+    display:inline-block;
+    background: rgba(255,255,255,0); /* fully transparent fill */
+    color:#000;
+    padding:.35rem .6rem;
+    border-radius:999px;
+    font-size:.85rem;
+    line-height:1;
+    border:1px solid rgba(0,0,0,0.08);
+    box-shadow:0 6px 14px rgba(0,0,0,.10);
+    pointer-events:none;
+    white-space:nowrap;
+    margin-top:.3rem;
+    position:relative;
+    animation: bubble-pop .9s ease-out 1, floaty 2.2s ease-in-out infinite;
+  }
+  .bubble-below::before{
+    content:"";
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform: translateX(-50%);
+    width:0; height:0;
+    border:6px solid transparent;
+    border-bottom-color: rgba(255,255,255,0); /* transparent to match bubble */
+  }
+  @keyframes bubble-pop{ 0%{ transform:scale(.8); opacity:0 } 60%{ transform:scale(1.05); opacity:1 } 100%{ transform:scale(1)} }
+  @keyframes floaty{ 50%{ transform: translateY(-2px) } }
+</style>
+
 </head>
 
 <body>
@@ -771,9 +803,11 @@ header.hero{ overflow: hidden !important; }
 <h3 style="text-align:left;">📍 Waar?</h3>
 <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Trou Venue</strong> gehou.</p>
 <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
-<p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" rel="noopener" target="_blank" style="color:#000; text-decoration-color:#000;">➤ Maak oop in Google Maps</a></p>
-<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste word vriendelik versoek om hul eie verblyf te reël.<br\>Verblyf is beskikbaar op die trouperseel.</strong> <br><br><a class="glow-link" href="https://www.dehavenoost.co.za/accommodation" id="de-haven-oost-link" rel="noopener" target="_blank">De Haven Oost<span class="speech-bubble bubble-link" aria-hidden="true">Klik op my</span></a></p>
-<div class="dropdown-toggle" speech-target>Akkommodasie by De Haven Oost<span class="speech-bubble bubble-inside" aria-hidden="true">Klik op my</span></div>
+<p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" id="maps-link" rel="noopener" target="_blank" style="color:#000; text-decoration-color:#000;">➤ Maak oop in Google Maps</a>
+<br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
+<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste word vriendelik versoek om hul eie verblyf te reël.<br\>Verblyf is beskikbaar op die trouperseel.</strong> <br><br><a class="glow-link" href="https://www.dehavenoost.co.za/accommodation" id="de-haven-oost-link" rel="noopener" target="_blank">De Haven Oost</a>
+<br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
+<div class="dropdown-toggle" speech-target>Akkommodasie by De Haven Oost<span class="speech-bubble bubble-inside" aria-hidden="true">Klik op die pink</span></div>
 <div class="dropdown-content" id="de-haven-oost-list" style="display:none">
 <div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Maksimum 2 Gaste</p><p>1 Dubbelbed. Bad. Tee &amp; Koffie Stasie.</p></div>
 <div class="suite-card"><h4>Suite E–H</h4><p><strong>R2 340.00</strong> – Maksimum 3 Gaste</p><p>1 Dubbelbed + 1 Enkelbed. Stort. Yskassie &amp; Mikrogolfoond.</p></div>
