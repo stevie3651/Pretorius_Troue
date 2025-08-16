@@ -600,6 +600,72 @@ header.hero{ overflow: hidden !important; }
 }
 </style>
 
+
+<style id="speech-bubbles-css">
+  .speech-bubble{
+    display:inline-block;
+    background: rgba(255,255,255,0); /* lightly transparent */
+    color:#000;
+    padding:.4rem .6rem;
+    border-radius:999px;
+    font-size:.9rem;
+    line-height:1;
+    border:1px solid rgba(0,0,0,0.06);
+    box-shadow:0 6px 14px rgba(0,0,0,.10);
+    pointer-events:none; /* never block clicks */
+    white-space:nowrap;
+    animation: bubble-pop .9s ease-out 1, floaty 2.2s ease-in-out infinite;
+  }
+  @keyframes bubble-pop{ 0%{ transform:scale(.8); opacity:0 } 60%{ transform:scale(1.05); opacity:1 } 100%{ transform:scale(1)} }
+  @keyframes floaty{ 50%{ transform: translateY(-2px) } }
+  /* Link bubble positioning (to the right of the link) */
+  #de-haven-oost-link{ position:relative; display:inline-block; }
+  #de-haven-oost-link .bubble-link{
+    position:absolute;
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #de-haven-oost-link .bubble-link::after{
+    content:"";
+    position:absolute;
+    left:-10px; top:50%;
+    transform: translateY(-50%);
+    width:0; height:0;
+    border:6px solid transparent;
+    border-right-color: rgba(255,255,255,0);
+  }
+  /* Button bubble positioning (outside, to the right of the pink button) */
+  .dropdown-toggle.speech-target{ position:relative; }
+  .dropdown-toggle.speech-target .bubble-inside{
+    position:absolute;
+    right:-10px; top:50%;
+    transform: translate(100%,-50%);
+  }
+  .dropdown-toggle.speech-target .bubble-inside::after{
+    content:"";
+    position:absolute;
+    right:100%; top:50%;
+    transform: translateY(-50%);
+    width:0; height:0;
+    border:6px solid transparent;
+    border-right-color: rgba(255,255,255,0);
+  }
+  /* Small screens: place bubbles inline to avoid overflow */
+  @media (max-width:520px){
+    #de-haven-oost-link .bubble-link{
+      position:static; transform:none;
+      margin-left:.4rem;
+    }
+    #de-haven-oost-link .bubble-link::after{ display:none; }
+    .dropdown-toggle.speech-target .bubble-inside{
+      position:static; transform:none;
+      margin-left:.5rem;
+    }
+    .dropdown-toggle.speech-target .bubble-inside::after{ display:none; }
+  }
+</style>
+
 </head>
 <body>
 <!-- NAV -->
@@ -687,8 +753,8 @@ header.hero{ overflow: hidden !important; }
 <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Trou Venue</strong> gehou.</p>
 <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
 <p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" rel="noopener" target="_blank" style="color:#000; text-decoration-color:#000;">➤ Maak oop in Google Maps</a></p>
-<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste is self verantwoordelik vir die reëlings van hulle verblyf.<br>Verblyf is beskikbaar op die trouperseel.</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/accommodation" rel="noopener" target="_blank"><br>De Haven Oost</a></p>
-<div class="dropdown-toggle">Akkommodasie by De Haven Oost</div>
+<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste word vriendelik versoek om hul eie verblyf te reël.<br\>Verblyf is beskikbaar op die trouperseel.</strong> <a class="glow-link" href="https://www.dehavenoost.co.za/accommodation" id="de-haven-oost-link" rel="noopener" target="_blank">De Haven Oost<span class="speech-bubble bubble-link" aria-hidden="true">Klik op my</span></a></p>
+<div class="dropdown-toggle" speech-target>Akkommodasie by De Haven Oost<span class="speech-bubble bubble-inside" aria-hidden="true">Klik op my</span></div>
 <div class="dropdown-content" id="de-haven-oost-list" style="display:none">
 <div class="suite-card"><h4>Suite A</h4><p><strong>R1 560.00</strong> – Maksimum 2 Gaste</p><p>1 Dubbelbed. Bad. Tee &amp; Koffie Stasie.</p></div>
 <div class="suite-card"><h4>Suite E–H</h4><p><strong>R2 340.00</strong> – Maksimum 3 Gaste</p><p>1 Dubbelbed + 1 Enkelbed. Stort. Yskassie &amp; Mikrogolfoond.</p></div>
