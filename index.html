@@ -508,8 +508,8 @@ header.hero{ overflow: hidden !important; }
 <style id="countdown-spacing-fix">
 /* Ensure countdown section spacing matches other sections and sits lower under the hero */
 .countdown-sec{
-  padding: clamp(2rem, 5vw, 4rem) 1rem !important; /* same as default section padding */
-  margin-top: clamp(2rem, 5vw, 4rem);              /* add the missing gap beneath the hero */
+  padding: clamp(5rem, 5vw, 4rem) 5rem !important; /* same as default section padding */
+  margin-top: clamp(5rem, 5vw, 5rem);              /* add the missing gap beneath the hero */
 }
 </style>
 
@@ -714,14 +714,6 @@ header.hero{ overflow: hidden !important; }
   }
   @keyframes bubble-pop{ 0%{ transform:scale(.8); opacity:0 } 60%{ transform:scale(1.05); opacity:1 } 100%{ transform:scale(1)} }
   @keyframes floaty{ 50%{ transform: translateY(-2px) } }
-</style>
-
-
-<style id="hero-to-countdown-spacing">
-  /* Increase top gap of countdown section so it matches the bottom gap */
-  .countdown-sec {
-    margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; /* same as bottom */
-  }
 </style>
 
 </head>
