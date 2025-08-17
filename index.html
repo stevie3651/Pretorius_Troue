@@ -468,7 +468,7 @@ header.hero{ overflow: hidden !important; }
 }
 /* Optional: soft shadow to match the style */
 #countdown.rounded, .countdown-bg.rounded {
-  box-shadow: 0 8px 18px rgba(0,0,0,.08);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0);
 }
 </style>
 <style id="countdown-card-override">
@@ -531,7 +531,7 @@ header.hero{ overflow: hidden !important; }
     padding:.6rem .9rem !important;                    /* mirrors the RSVP override */
     border-radius:999px !important;
     border:none !important;
-    box-shadow: 0 8px 18px rgba(0,0,0,.15) !important;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0) !important;
     margin-top:.35rem !important;
   }
 </style>
@@ -720,7 +720,8 @@ header.hero{ overflow: hidden !important; }
 <style id="hero-to-countdown-spacing">
   /* Increase top gap of countdown section so it matches the bottom gap */
   .countdown-sec {
-    margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; /* same as bottom */
+    margin-top: clamp(5rem, 4vw, 5rem) !important; /* same as bottom */
+    box-shadow: none !important;
   }
 </style>
 
@@ -1026,13 +1027,13 @@ P%;
   font-family: 'Playfair Display', serif;
   font-weight: 700;
   font-size: clamp(12px, 3.5vw, 18px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0);
 }
 #countdown .cd-box span{
   display: block;
   margin-top: 4px;
   font-size: .65em;
-  color: #444;
+  color: #110000;
 }
 
 /* Tiny phones */
@@ -1506,8 +1507,8 @@ document.addEventListener('click', function(e){
 /* Rounded edges for the sunflower background section */
 .countdown-sec{
   border-radius: 22px !important;
-  overflow: hidden !important; /* clip the background neatly */
-  box-shadow: 0 10px 25px rgba(0,0,0,.10);
+  overflow: none !important; /* clip the background neatly */
+  box-shadow: none !important; /* remove any box shadow */
 }
 </style>
 
@@ -1595,6 +1596,7 @@ section{
     background-color: transparent !important; /* keep background from image only */
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
+    box-shadow: none !important;
   }
   .countdown-sec img, .countdown-sec .bg-image {
     display: block;
@@ -1612,9 +1614,9 @@ section{
   .countdown-sec{
     border-radius: 24px !important;            /* match card curvature */
     overflow: hidden !important;                /* clip background to radius */
-    box-shadow: 0 14px 28px rgba(0,0,0,.08), 
-                0 10px 10px rgba(0,0,0,.04) !important;
-    border: 1px solid rgba(255,255,255,.7) !important; /* soft white edge like other blocks */
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0), 
+                0 10px 10px rgba(0, 0, 0, 0) !important;
+    border: 1px solid rgba(255, 255, 255, 0) !important; /* soft white edge like other blocks */
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
