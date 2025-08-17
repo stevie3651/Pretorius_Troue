@@ -179,7 +179,7 @@
   
 
   .countdown{
-    margin:1rem auto 0; display:flex; gap:2rem; flex-wrap:wrap; justify-content:center;
+    margin:1rem auto 0; display:flex; gap:.75rem; flex-wrap:wrap; justify-content:center;
   }
   .cd-box{
     background-color: transparent; border-radius:16px; min-width:84px;
@@ -508,8 +508,8 @@ header.hero{ overflow: hidden !important; }
 <style id="countdown-spacing-fix">
 /* Ensure countdown section spacing matches other sections and sits lower under the hero */
 .countdown-sec{
-  padding: clamp(5rem, 5vw, 4rem) 5rem !important; /* same as default section padding */
-  margin-top: clamp(5rem, 5vw, 5rem);              /* add the missing gap beneath the hero */
+  padding: clamp(2rem, 5vw, 4rem) 1rem !important; /* same as default section padding */
+  margin-top: clamp(2rem, 5vw, 4rem);              /* add the missing gap beneath the hero */
 }
 </style>
 
@@ -716,6 +716,38 @@ header.hero{ overflow: hidden !important; }
   @keyframes floaty{ 50%{ transform: translateY(-2px) } }
 </style>
 
+
+<style id="hero-to-countdown-spacing">
+  /* Increase top gap of countdown section so it matches the bottom gap */
+  .countdown-sec {
+    margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; /* same as bottom */
+  }
+</style>
+
+
+<style id="center-justify-fix">
+/* Center and justify all subtext in Algemene Vrae */
+#algemene-vrae .dropdown-content p,
+#algemene-vrae .dropdown-content div,
+#algemene-vrae .dropdown-content span,
+#algemene-vrae .dropdown-content label {
+  text-align: center !important;
+  text-align-last: center !important;
+  -moz-text-align-last: center !important;
+  text-justify: inter-word !important;
+}
+
+/* Apply same style across all info sections for consistency */
+#trou-inligting p, #trou-inligting div, #trou-inligting span, #trou-inligting label,
+#geskenke p, #geskenke div, #geskenke span, #geskenke label,
+#rsvp p, #rsvp div, #rsvp span, #rsvp label {
+  text-align: center !important;
+  text-align-last: center !important;
+  -moz-text-align-last: center !important;
+  text-justify: inter-word !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -773,7 +805,7 @@ header.hero{ overflow: hidden !important; }
 <span class="hero-heart">&amp;</span>
 <span>Chané</span>
 </h1>
-<p class="hero-date">28 November 2025 om 16:00 uur</p>
+<p class="hero-date">28 November 2025 om 16:00 uur.</p>
 </div>
 </header>
 <!-- COUNTDOWN -->
@@ -797,7 +829,7 @@ header.hero{ overflow: hidden !important; }
 <div>
 <h3 style="text-align:left;">🗓 Wanneer?</h3>
 <p><strong>Vrydag, 28 November 2025</strong></p>
-<p>om 16:00 uur.</p>
+<p>om 16:00 uur</p>
 <div>
 <div aria-hidden="true" class="v-divider"></div>
 <div>
@@ -866,14 +898,14 @@ header.hero{ overflow: hidden !important; }
 </div>
 <div class="dropdown-toggle">Waar moet ek sit?</div>
 <div class="dropdown-content">
-<p>“Kies gerus ’n sitplek, nie ’n kant nie.”<p style="text-align: justify; text-justify: inter-word;"><p></p>
-<p>By die seremonie sal ons nie die tradisionele gebruik van ’n bruid en bruidegom kant volg nie. Gaste is dus welkom om hul sitplekke te kies waar dit vir hulle die gemaklikste is.<p style="text-align: justify; text-justify: inter-word;"><p></p>
-<p>Ons nooi ons gaste uit om by die onthaal ’n sitplek van hul voorkeur in te neem.<p style="text-align: justify; text-justify: inter-word;"><p></p><br></div>
+<p>“Kies gerus ’n sitplek, nie ’n kant nie.”</p>
+<p>By die seremonie sal ons nie die tradisionele gebruik van ’n bruid en bruidegom kant volg nie. Gaste is dus welkom om hul sitplekke te kies waar dit vir hulle die gemaklikste is.</p>
+<p>Ons nooi ons gaste uit om by die onthaal ’n sitplek van hul voorkeur in te neem.</p><br></div>
 <div class="dropdown-toggle left-align\">Wat trek ek aan?</div>
 <div class="dropdown-content">
-<p>Kleredrag: Semi-Formeel.<p style="text-align: justify; text-justify: inter-word;"><p></p>
-<p>Vir die dames: 'n Netjiese rok of 'n stylvolle broekpak.<p style="text-align: justify; text-justify: inter-word;"><p></p>
-<p>Vir die mans: ’n Netjiese chino of formele broek, gekombineer met ’n knoophemp. ’n Pakbaadjie en das/strikdas is nie verpligtend nie, maar word verwelkom.<p style="text-align: justify; text-justify: inter-word;"><p></p><br>
+<p>Kleredrag: Semi-Formeel.</p>
+<p>Vir die dames: 'n Netjiese rok of 'n stylvolle broekpak.</p>
+<p>Vir die mans: ’n Netjiese chino of formele broek, gekombineer met ’n knoophemp. ’n Pakbaadjie en das/strikdas is nie verpligtend nie, maar word verwelkom.</p><br>
 </div>
 <div class="dropdown-toggle left-align">Ander vrae?</div>
 <div class="dropdown-content">
@@ -889,7 +921,8 @@ header.hero{ overflow: hidden !important; }
 <div style="margin-top:.25rem">
   <p class="gift-poem">'n Geskenkie is nie oorbodig, maar 'n geldjie is meer wat ons benodig. Spaar jou voete die loop, ons sal eerder self wil koop.</p>
   <p>Indien julle eerder 'n geskenkie wil gee:</p>
-<a href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" rel="noopener" st yle="color: black; font-weight:700; text-decoration:underline" target="_blank">Geskenkregister</a><br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
+<a href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" rel="noopener" style="color: black; font-weight:700; text-decoration:underline" target="_blank">Geskenkregister</a></p>
+<br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
 </div>
 </section>
 <!-- RSVP -->
