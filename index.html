@@ -720,7 +720,7 @@ header.hero{ overflow: hidden !important; }
 <style id="hero-to-countdown-spacing">
   /* Increase top gap of countdown section so it matches the bottom gap */
   .countdown-sec {
-    margin-top: clamp(5rem, 4vw, 5rem) !important; /* same as bottom */
+    margin-top: clamp(5rem, 5vw, 5rem) !important; /* same as bottom */
     box-shadow: none !important;
   }
 </style>
@@ -1594,9 +1594,9 @@ section{
     border-radius: 20px !important; /* all corners rounded */
     overflow: hidden !important;
     background-color: transparent !important; /* keep background from image only */
-    padding-bottom: 0 !important;
-    margin-bottom: 0 !important;
-    box-shadow: none !important;
+    padding-bottom: 5px !important; /* remove extra padding */
+    margin-bottom: 5px !important; /* small gap to next section */
+    
   }
   .countdown-sec img, .countdown-sec .bg-image {
     display: block;
@@ -1620,7 +1620,8 @@ section{
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
-    margin-bottom: 12px !important;             /* small, card-like spacing */
+    margin-bottom: 40px !important;   
+    margin-top: 80px !important;   /* space above the countdown block */          /* small, card-like spacing */
   }
   /* Ensure any background <img> inside doesn't add fake space at the bottom */
   .countdown-sec img,
