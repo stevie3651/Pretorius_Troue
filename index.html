@@ -512,7 +512,6 @@ header.hero{ overflow: hidden !important; }
   margin-top: clamp(2rem, 5vw, 4rem);              /* add the missing gap beneath the hero */
 }
 </style>
-
 <style id="rsvp-button-size-override">
   /* Smaller 'Stuur RSVP' button */
   #rsvpForm button.primary,
@@ -535,8 +534,6 @@ header.hero{ overflow: hidden !important; }
     margin-top:.35rem !important;
   }
 </style>
-
-
 <style id="akkommodasie-center-fix">
   /* Center all text and cards specifically under the Akkommodasie section */
   #trou-inligting .section-title.akkommodasie-left + div,
@@ -545,7 +542,6 @@ header.hero{ overflow: hidden !important; }
     text-align-last: center !important;
   }
 </style>
-
 <style id="gift-poem-style">
 /* Elegant cursive styling for the gift poem */
 .gift-poem{
@@ -571,14 +567,13 @@ header.hero{ overflow: hidden !important; }
   text-decoration-color: #000 !important;
 }
 </style>
-<style id='suite-card-pink'>
+<style id="suite-card-pink">
 /* Pink background for suite cards in both sections */
 #de-haven-oost-list .suite-card,
 #alternative-accommodation .suite-card {
   background-color: #facbcb !important;
 }
 </style>
-
 <style id="spacing-halved">
   /* Halve general section padding */
   section {
@@ -590,16 +585,12 @@ header.hero{ overflow: hidden !important; }
     margin-top: clamp(1rem, 2.5vw, 2rem) !important;
   }
 </style>
-
-
 <style>
 /* Match spacing between dropdown text and next button */
 #algemene-vrae .dropdown-content {
   margin-bottom: 0.75rem; /* same as .dropdown-toggle's top margin */
 }
 </style>
-
-
 <style>
 /* Ensure petals fall in front of all blocks from Geskenkregister */
 #petal-overlay {
@@ -608,8 +599,6 @@ header.hero{ overflow: hidden !important; }
   pointer-events: none !important;
 }
 </style>
-
-
 <style id="speech-bubbles-css">
   .speech-bubble{
     display:inline-block;
@@ -674,8 +663,6 @@ header.hero{ overflow: hidden !important; }
     .dropdown-toggle.speech-target .bubble-inside::after{ display:none; }
   }
 </style>
-
-
 <style id="petal-fallY-override">
 @keyframes fallY{
   to{
@@ -684,7 +671,6 @@ header.hero{ overflow: hidden !important; }
   }
 }
 </style>
-
 <style id="speech-bubble-below-css">
   .bubble-below{
     display:inline-block;
@@ -715,8 +701,6 @@ header.hero{ overflow: hidden !important; }
   @keyframes bubble-pop{ 0%{ transform:scale(.8); opacity:0 } 60%{ transform:scale(1.05); opacity:1 } 100%{ transform:scale(1)} }
   @keyframes floaty{ 50%{ transform: translateY(-2px) } }
 </style>
-
-
 <style id="hero-to-countdown-spacing">
   /* Increase top gap of countdown section so it matches the bottom gap */
   .countdown-sec {
@@ -724,8 +708,6 @@ header.hero{ overflow: hidden !important; }
     box-shadow: none !important;
   }
 </style>
-
-
 <style id="center-justify-fix">
 /* Center and justify all subtext in Algemene Vrae */
 #algemene-vrae .dropdown-content p,
@@ -748,9 +730,35 @@ header.hero{ overflow: hidden !important; }
   text-justify: inter-word !important;
 }
 </style>
-
-</head>
-
+<style>
+html { scroll-behavior: smooth; }
+#fotos {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(to right, #f0f4f8, #e0eafc);
+  border-radius: 12px;
+  margin-top: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1s ease, transform 1s ease;
+}
+#fotos.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.photo-preview {
+  margin-top: 40px;
+}
+.photo-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+</style></head>
 <body>
 <!-- NAV -->
 <nav class="top-nav">
@@ -780,7 +788,6 @@ header.hero{ overflow: hidden !important; }
 <img alt="" src="hero15.jpeg"/>
 <img alt="" src="hero16.jpeg"/>
 <img alt="" src="hero17.jpeg"/>
-
 <!-- duplicates -->
 <img alt="" loading="lazy" src="hero1.jpeg"/>
 <img alt="" loading="lazy" src="hero2.jpeg"/>
@@ -813,12 +820,12 @@ header.hero{ overflow: hidden !important; }
 <!-- COUNTDOWN -->
 <!-- COUNTDOWN -->
 <section aria-labelledby="countdown-title" class="countdown-sec" id="countdown-sec">
-  <h2 class="visually-hidden" id="countdown-title">Tot Ons Groot Dag</h2>
-  <div class="countdown-card">
-    <div class="countdown-inner">
-      <div aria-live="polite" class="countdown rounded" id="countdown" role="timer"></div>
-    </div>
-  </div>
+<h2 class="visually-hidden" id="countdown-title">Tot Ons Groot Dag</h2>
+<div class="countdown-card">
+<div class="countdown-inner">
+<div aria-live="polite" class="countdown rounded" id="countdown" role="timer"></div>
+</div>
+</div>
 </section>
 <div id="falling-zone"></div>
 <div id="petal-overlay"></div>
@@ -837,11 +844,11 @@ header.hero{ overflow: hidden !important; }
 <h3 style="text-align:left;">📍Waar?</h3>
 <p>Die trou seremonie en onthaal word by <strong>De Haven Oost Trou Venue</strong> gehou.</p>
 <p><strong>Adres:</strong> Estate 39 Kaalfontein</p>
-<p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" id="maps-link" rel="noopener" target="_blank" style="color:#000; text-decoration-color:#000;">➤ Maak oop in Google Maps</a>
-<br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
-<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste word vriendelik versoek om hul eie verblyf te reël.<br\> Verblyf is beskikbaar op die trouperseel.</strong> <br><br><a class="glow-link" href="https://www.dehavenoost.co.za/accommodation" id="de-haven-oost-link" rel="noopener" target="_blank">De Haven Oost</a>
-<br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
-<div class="dropdown-toggle" speech-target>Akkommodasie by De Haven Oost<span class="speech-bubble bubble-inside" aria-hidden="true">Klik op die pink</span></div>
+<p><a class="glow-link" href="https://maps.app.goo.gl/wE9pZuhqFHFtbSP6A" id="maps-link" rel="noopener" style="color:#000; text-decoration-color:#000;" target="_blank">➤ Maak oop in Google Maps</a>
+<br/><span aria-hidden="true" class="speech-bubble bubble-below">Klik op my</span></p>
+<h2 class="section-title akkommodasie-left" style="text-align:left; margin-top:1rem">🏠  Akkommodasie?</h2><div style="text-align:center;"><p><strong><p></p>Gaste word vriendelik versoek om hul eie verblyf te reël.<br\> Verblyf is beskikbaar op die trouperseel.</br\></strong> <br/><br/><a class="glow-link" href="https://www.dehavenoost.co.za/accommodation" id="de-haven-oost-link" rel="noopener" target="_blank">De Haven Oost</a>
+<br/><span aria-hidden="true" class="speech-bubble bubble-below">Klik op my</span></p>
+<div class="dropdown-toggle" speech-target="">Akkommodasie by De Haven Oost<span aria-hidden="true" class="speech-bubble bubble-inside">Klik op die pink</span></div>
 <div class="dropdown-content" id="de-haven-oost-list" style="display:none">
 <div class="suite-card"><h4>Suite E–H</h4><p><strong>R2 340.00</strong> – Maksimum 3 Gaste</p><p>1 Dubbelbed + 1 Enkelbed. Stort. Yskassie &amp; Mikrogolfoond.</p></div>
 <div class="suite-card"><h4>Suite B</h4><p><strong>R3 120.00</strong> – Maksimum 4 Gaste</p><p>1 Dubbelbed + 2 Enkelbeddens. Yskassie &amp; Mikrogolfoond.</p></div>
@@ -851,15 +858,15 @@ header.hero{ overflow: hidden !important; }
 <p><strong>Alternatiewe akkommodasie is ook beskikbaar, wat nie ver van die trouperseel geleë is nie.</strong></p>
 <div class="dropdown-toggle">Alternatiewe Akkommodasie</div>
 <div class="dropdown-content" id="alternative-accommodation" style="display:none">
-<div class="suite-card"><strong>Liebencharm Guest House</strong><br/>
-    Kontak: 083 417 5873<br/>
-    E-pos: <a href="mailto:elsabe.liebencharm@gmail.com">elsabe.liebencharm@gmail.com</a><br/>
-    Afstand: 3.4 km</div>
-<div class="suite-card"><strong>Diamantvallei</strong><br/>
+<div class="suite-card"><strong>Liebencharm Guest House</strong><br>
+    Kontak: 083 417 5873<br>
+    E-pos: <a href="mailto:elsabe.liebencharm@gmail.com">elsabe.liebencharm@gmail.com</a><br>
+    Afstand: 3.4 km</br></br></br></div>
+<div class="suite-card"><strong>Diamantvallei</strong><br>
     Webtuiste: <a href="https://www.diamantvallei.co.za" rel="noopener" target="_blank">www.diamantvallei.co.za</a><br/>
     Kontak: 012 941 9296<br/>
     E-pos: <a href="mailto:info@diamantvallei.co.za">info@diamantvallei.co.za</a><br/>
-    Afstand: 5 km</div>
+    Afstand: 5 km</br></div>
 <div class="suite-card"><strong>Die Skaapkraal</strong><br/>
     Webtuiste: <a href="https://www.dieskaapkraal.co.za" rel="noopener" target="_blank">www.dieskaapkraal.co.za</a><br/>
     Kontak: 082 929 4977<br/>
@@ -887,33 +894,33 @@ header.hero{ overflow: hidden !important; }
 </div>
 </div></div>
 </div>
-</div></section>
+</div></div></div></section>
 <!-- FAQ + Accommodation -->
 <section aria-labelledby="faq-title" id="algemene-vrae">
 <div class="glass-card">
 <h2 class="section-title" id="faq-title">Algemene Vrae</h2>
 <div class="dropdown-toggle">Wanneer kan ons arriveer?</div>
 <div class="dropdown-content">
-<br><center><p>Gaste is welkom om vanaf 15:00 uur by die trouperseel te arriveer.</center> 
-<center>Die seremonie sal om 16:00 uur begin, en ons versoek vriendelik dat alle gaste teen 15:50 uur hul sitplekke inneem.</center></p>
-<p>Gaste wat op die perseel oorslaap, kan vanaf 14:00 uur by die akkommodasie inboek.</p><br>
+<br/><center><p>Gaste is welkom om vanaf 15:00 uur by die trouperseel te arriveer.</p></center>
+<center>Die seremonie sal om 16:00 uur begin, en ons versoek vriendelik dat alle gaste teen 15:50 uur hul sitplekke inneem.</center>
+<p>Gaste wat op die perseel oorslaap, kan vanaf 14:00 uur by die akkommodasie inboek.</p><br/>
 </div>
 <div class="dropdown-toggle">Waar moet ek sit?</div>
 <div class="dropdown-content">
 <center><p>“Kies gerus ’n sitplek, nie ’n kant nie.”</p></center>
 <center>By die seremonie asook die onthaal nooi ons, ons gaste uit om ’n sitplek van hulle eie keuse te neem.</center><p>
-<center><p>Ons volg nie die tradisionele gebruik van ’n bruid en bruidegom kant nie.</center></p><br></div>
+<center><p>Ons volg nie die tradisionele gebruik van ’n bruid en bruidegom kant nie.</p></center></p><br/></div>
 <div class="dropdown-toggle left-align\">Wat trek ek aan?</div>
 <div class="dropdown-content">
 <p>Kleredrag:<strong> Semi-Formeel.</strong></p>
 <center><p>Vir die dames: 'n Netjiese rok of 'n stylvolle broekpak.</p></center>
 <center><p>Vir die mans: ’n Netjiese chino of formele broek, gekombineer met ’n knoophemp.</p></center>
-<center>’n Pakbaadjie en das/strikdas is nie verpligtend nie, maar word verwelkom.</p><br></center>
+<center>’n Pakbaadjie en das/strikdas is nie verpligtend nie, maar word verwelkom.<br/></center>
 </div>
 <div class="dropdown-toggle left-align">Ander vrae?</div>
 <div class="dropdown-content">
 <p>Indien daar enige ander vrae is, bel of stuur gerus ’n boodskap aan Chané of Stephan.</p>
-<p><strong>Chané:</strong> 066 207 2851<br/><strong>Stephan:</strong> 079 112 6024</p>
+<p><strong>Chané:</strong> 066 207 2851<br><strong>Stephan:</strong> 079 112 6024</br></p>
 </div>
 </div>
 </section>
@@ -922,27 +929,27 @@ header.hero{ overflow: hidden !important; }
 <div class="glass-card">
 <h2 class="section-title" id="gift-title">Geskenkregister</h2>
 <div style="margin-top:.25rem">
-  <p class="gift-poem">'n Geskenkie is nie oorbodig, maar 'n geldjie is meer wat ons benodig. Spaar jou voete die loop, ons sal eerder self wil koop.</p>
-  <p>Indien julle eerder 'n geskenkie wil gee:</p>
-<p><a class="glow-link" href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" id="maps-link" rel="noopener" target="_blank" style="color:#000; text-decoration-color:#000;">➤ Geskenkregister</a>
-<br><span class="speech-bubble bubble-below" aria-hidden="true">Klik op my</span></p>
+<p class="gift-poem">'n Geskenkie is nie oorbodig, maar 'n geldjie is meer wat ons benodig. Spaar jou voete die loop, ons sal eerder self wil koop.</p>
+<p>Indien julle eerder 'n geskenkie wil gee:</p>
+<p><a class="glow-link" href="https://www.myregistry.com/wedding-registry/chan-jacobs-and-stephan-pretorius-no-prefrence-fs/4911299" id="maps-link" rel="noopener" style="color:#000; text-decoration-color:#000;" target="_blank">➤ Geskenkregister</a>
+<br/><span aria-hidden="true" class="speech-bubble bubble-below">Klik op my</span></p>
 </div>
-</section>
+</div></section>
 <!-- RSVP -->
 <section aria-labelledby="rsvp-title" id="rsvp">
 <div class="rsvp-container">
 <h2 id="rsvp-title">RSVP</h2>
 <strong>Ons vra dat gaste teen 31 September 2025 sal RSVP.</strong>
 <div>
-  <br>
+<br/>
 <form action="https://formspree.io/f/mkgzqawq" id="rsvpForm" method="POST">
 <label>Jou naam:</label>
 <input name="name" required="" type="text"/>
 <div id="guestsWrapper">
-  <label>Naam van gas/gaste vir wie jy RSVP:</label>
-  <input type="text" name="guests[]" placeholder="Bv. Stephan Pretorius" required />
+<label>Naam van gas/gaste vir wie jy RSVP:</label>
+<input name="guests[]" placeholder="Bv. Stephan Pretorius" required="" type="text"/>
 </div>
-<button  id="addGuestBtn"   style="background:#FFD7D7; color:#000000; border:none; border-radius:999px" type="button">➕ Voeg nog 'n gas by</button>
+<button id="addGuestBtn" style="background:#FFD7D7; color:#000000; border:none; border-radius:999px" type="button">➕ Voeg nog 'n gas by</button>
 <label>Enige spesiale boodskap:</label>
 <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
 <button class="primary" type="submit">💌 Stuur RSVP</button>
@@ -952,7 +959,7 @@ header.hero{ overflow: hidden !important; }
 <p>Ons het jou RSVP ontvang en kan nie wag om julle te sien nie!</p>
 </div>
 </div>
-</section>
+</div></section>
 <script>
   // Dropdowns
   document.querySelectorAll('.dropdown-toggle').forEach(t => {
@@ -1122,7 +1129,6 @@ document.addEventListener('click', function(e){
   content.style.display = isOpen ? 'none' : 'block';
 });
 </script>
-
 <script>
   (function(){
     const PETAL_LIMIT = 20;
@@ -1189,7 +1195,6 @@ document.addEventListener('click', function(e){
     setInterval(spawnPetal, 850);
   })();
 </script>
-
 <style id="justify-overrides">
 /* === Justify all buttons, headings, and text from “Trou Inligting” down === */
 #trou-inligting, #algemene-vrae, #geskenke, #rsvp {
@@ -1358,8 +1363,6 @@ document.addEventListener('click', function(e){
   text-align-last: center !important;
 }
 </style>
-
-
 <script id="add-guest-js">
 (function(){
   const wrapper = document.getElementById('guestsWrapper');
@@ -1413,9 +1416,6 @@ document.addEventListener('click', function(e){
   }
 })();
 </script>
-    
-
-
 <!-- UNIVERSAL INTERACTIVITY HOTFIX -->
 <style id="universal-interactivity-fix">
   /* Ensure interactive dropdowns sit above decorative layers */
@@ -1438,7 +1438,6 @@ document.addEventListener('click', function(e){
     z-index: 10;
   }
 </style>
-
 <script id="universal-dropdown-handler">
 (function(){
   function getContent(toggle){
@@ -1476,7 +1475,6 @@ document.addEventListener('click', function(e){
   });
 })();
 </script>
-
 <style id="mobile-gap-and-countdown-fix">
 /* === Mobile-specific fixes === */
 @media (max-width: 520px){
@@ -1500,8 +1498,6 @@ document.addEventListener('click', function(e){
   }
 }
 </style>
-
-
 <style id="rounded-countdown-sec">
 /* Rounded edges for the sunflower background section */
 .countdown-sec{
@@ -1510,7 +1506,6 @@ document.addEventListener('click', function(e){
   box-shadow: none !important; /* remove any box shadow */
 }
 </style>
-
 <style id="uniform-section-spacing">
 /* Make spacing consistent above and below each section */
 section{
@@ -1521,9 +1516,6 @@ section{
 .section-title{ margin-top: 0 !important; margin-bottom: 1rem !important; }
 .countdown-sec{ margin-top: clamp(1.25rem, 4vw, 2.25rem) !important; margin-bottom: clamp(1.25rem, 4vw, 2.25rem) !important; }
 </style>
-
-
-
 <!-- === MOBILE GAP + OVERLAY FIXES (added by ChatGPT) === -->
 <style id="mobile-gap-override">
   /* Close the white gap below the sunflower section on phones */
@@ -1546,7 +1538,6 @@ section{
   /* Ensure the petal overlay never forces vertical scrolling by mistake */
   #petal-overlay{ position: absolute !important; }
 </style>
-
 <script id="petal-overlay-measure-fix">
 // Recompute the petal overlay height without using its previous height in the measurement
 (function(){
@@ -1585,8 +1576,6 @@ section{
 })();
 </script>
 <!-- === END FIXES === -->
-
-
 <style id="countdown-full-round">
   /* Make the countdown section's background fully rounded and remove bottom gap */
   .countdown-sec {
@@ -1606,8 +1595,6 @@ section{
     margin-top: 0 !important;
   }
 </style>
-
-
 <style id="countdown-like-card">
   /* Make countdown look like the Algemene Vrae card */
   .countdown-sec{
@@ -1644,8 +1631,6 @@ section{
     }
   }
 </style>
-
-
 <style id="desktop-countdown-fixes">
   /* Desktop/wide screens: show full artwork without cropping */
   @media (min-width: 900px){
@@ -1668,8 +1653,20 @@ section{
     #countdown{ margin-top: 8px !important; }
   }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const fotosSection = document.getElementById('fotos');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fotosSection.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.3 });
 
-</body>
+  observer.observe(fotosSection);
+});
+</script><section id="fotos"><h2>Share Your Memories!</h2><p>Scan the QR code below to upload your wedding photos to our shared album.</p><img alt="Upload Wedding Photos QR Code" src="wedding_photos_qr.png" style="display: block; margin: 0 auto; max-width: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"/><p><a href="https://1drv.ms/a/c/1758b54239c5ddd9/EruzQ9IOA19Hsxq400jur4ABg-SqOeKa5hXmBWiAeFUwWg" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;" target="_blank">Click here to upload photos</a></p><h3>Photo Preview</h3><div class="photo-preview"><div class="photo-grid"><img alt="Preview 1" src="images/photo1.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"/><img alt="Preview 2" src="images/photo2.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"/><img alt="Preview 3" src="images/photo3.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"/></div></div></section></body>
 </html>
 <style id="pink-button-overrides">
   /* Unified darker baby pink controls */
@@ -1705,7 +1702,6 @@ section{
     background-color: var(--accentPinkHover) !important;
   }
 </style>
-
 <style id="alt-accom-link-fix">
   /* Force black, centered links inside the Alternatiewe Akkommodasie dropdown */
   #alternative-accommodation,
