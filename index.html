@@ -748,15 +748,27 @@ html { scroll-behavior: smooth; }
   opacity: 1;
   transform: scale(1);
 }
-.photo-preview {
-  margin-top: 40px;
-}
-.photo-grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+.upload-button {
+  display: inline-block;
   margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+.upload-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+}
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
 }
 </style></head>
 <body>
@@ -766,7 +778,7 @@ html { scroll-behavior: smooth; }
 <a href="#trou-inligting">Inligting</a>
 <a href="#algemene-vrae">Vrae</a>
 <a href="#geskenke">Register</a>
-<a href="#rsvp">RSVP</a>
+<a href="#rsvp">RSVP</a><a class="" href="#fotos">Fotos</a>
 </nav>
 <!-- HERO -->
 <header aria-label="Foto-skyfie van paartjie" class="hero" id="tuis">
@@ -953,7 +965,7 @@ html { scroll-behavior: smooth; }
 <label>Enige spesiale boodskap:</label>
 <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
 <button class="primary" type="submit">💌 Stuur RSVP</button>
-</form>
+</form><section id="fotos"><h2>Share Your Memories!</h2><p>Scan the QR code below to upload your wedding photos to our shared album.</p><img alt="Upload Wedding Photos QR Code" src="wedding_photos_qr.png" style="display: block; margin: 0 auto; max-width: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"/><p><a class="upload-button" href="https://1drv.ms/a/c/1758b54239c5ddd9/EruzQ9IOA19Hsxq400jur4ABg-SqOeKa5hXmBWiAeFUwWg" target="_blank">Click here to upload photos</a></p></section>
 <div id="thankYou" style="display:none; text-align:center; margin-top:1rem">
 <h3 style="color:#C0CBC2; font-size: clamp(1.2rem, 5vw, 1.6rem)">Dankie! 💍</h3>
 <p>Ons het jou RSVP ontvang en kan nie wag om julle te sien nie!</p>
@@ -1666,7 +1678,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   observer.observe(fotosSection);
 });
-</script><section id="fotos"><h2>Share Your Memories!</h2><p>Scan the QR code below to upload your wedding photos to our shared album.</p><img alt="Upload Wedding Photos QR Code" src="wedding_photos_qr.png" style="display: block; margin: 0 auto; max-width: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"/><p><a href="https://1drv.ms/a/c/1758b54239c5ddd9/EruzQ9IOA19Hsxq400jur4ABg-SqOeKa5hXmBWiAeFUwWg" style="display: inline-block; margin-top: 20px; padding: 12px 24px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 6px; font-weight: bold;" target="_blank">Click here to upload photos</a></p><h3>Photo Preview</h3><div class="photo-preview"><div class="photo-grid"><img alt="Preview 1" src="images/photo1.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"/><img alt="Preview 2" src="images/photo2.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"/><img alt="Preview 3" src="images/photo3.jpg" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);"/></div></div></section></body>
+</script></body>
 </html>
 <style id="pink-button-overrides">
   /* Unified darker baby pink controls */
