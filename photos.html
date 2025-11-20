@@ -1,48 +1,34 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>Upload & View Wedding Photos</title>
-  <link href='https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap' rel='stylesheet'>
-  <script src='https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js'></script>
-  <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Photo Gallery</title>
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.jsstyle>
     body {
-      font-family: 'Playfair Display', serif;
-      background: #fff8f0;
-      color: #5a4a42;
+      font-family: Arial, sans-serif;
       text-align: center;
-      margin: 20px;
+      background-color: #fdf6f0;
     }
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      color: #a67c52;
-      margin-bottom: 10px;
+      font-family: 'Brush Script MT', cursive;
+      color: #6b4f4f;
     }
-    p {
-      font-size: 18px;
-      margin-bottom: 20px;
+    #gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
     }
-    .upload-section {
-      margin: 20px auto;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-      padding: 10px;
-    }
-    .gallery img {
-      width: 100%;
+    #gallery img {
+     ;
       height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .gallery img:hover {
-      transform: scale(1.05);
+    .upload-btn {
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -50,23 +36,40 @@
   <h1>Upload & View Wedding Photos</h1>
   <p>Share your favorite moments with us! Upload your photos below and see them appear in the gallery.</p>
 
-  <!-- Uploadcare Widget -->
-  <div class='upload-section'>
-    <input type='hidden' role='uploadcare-uploader' data-public-key='3d5d16c4d044cb2a72bf' data-multiple='true' />
-  </div>
+  <!-- Uploadcare widget -->
+  <input type="hidden" role="uploadcare-uploader" data-public-key="3d5d16c4d044cb2a72bf" />
 
-  <h2>Gallery</h2>
-  <div class='gallery' id='gallery'></div>
+  <div id="gallery">Loading gallery...</div>
 
   <script>
-    const galleryDiv = document.getElementById('gallery');
-    const widget = uploadcare.Widget('[role=uploadcare-uploader]');
+    // Initialize Uploadcare
+    uploadcare.start({ publicKey: '3d5d16c4d044cb2a72bf' });
 
-    widget.onUploadComplete(function(fileInfo) {
-      const img = document.createElement('img');
-      img.src = fileInfo.cdnUrl;
-      galleryDiv.appendChild(img);
-    });
+    // Fetch gallery images from Uploadcare API
+    async function fetchGallery() {
+      try {
+        const response = await fetch('https://api.uploadcare.com/files/', {
+          headers: {
+            'Authorization': 'Uploadcare.Simple 3d5d16c4d044cb2a72bf:e2cde24e2a3660542546',
+            'Accept': 'application/vnd.uploadcare-v0.5+json'
+          }
+        });
+        const data = await response.json();
+        const galleryDiv = document.getElementById('gallery');
+        galleryDiv.innerHTML = '';
+        data.results.forEach(file => {
+          const img = document.createElement('img');
+          img.src = file.original_file_url;
+          galleryDiv.appendChild(img);
+        });
+      } catch (error) {
+        console.error('Error fetching gallery:', error);
+      }
+    }
+
+    // Refresh gallery every 10 seconds
+    fetchGallery();
+    setInterval(fetchGallery, 10000);
   </script>
 </body>
 </html>
