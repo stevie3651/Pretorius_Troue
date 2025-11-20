@@ -4,72 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Photo Gallery</title>
-  <!-- Uploadcare Widget -->
-  <script src="https://ucarecdn.com/libs/widgetre.full.min.js</script>
-  <style>
+  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.jsstyle>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdf6f0;
-      margin: 0;
-      padding: 20px;
+      font-family: Arial, sans-serif;
       text-align: center;
+      background-color: #fdf6f0;
     }
     h1 {
       font-family: 'Brush Script MT', cursive;
       color: #6b4f4f;
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    p {
-      color: #333;
-      font-size: 1.2rem;
-    }
-    .upload-btn {
-      margin: 20px auto;
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: #6b4f4f;
-      color: #fff;
-      font-size: 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .upload-btn:hover {
-      background-color: #8c6f6f;
     }
     #gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
     }
-    .photo-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      padding: 10px;
-    }
-    .photo-card img {
-      width: 100%;
+    #gallery img {
+     ;
       height: auto;
-      border-radius: 6px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .download-link {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 16px;
-      background-color: #6b4f4f;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-    .download-link:hover {
-      background-color: #8c6f6f;
+    .upload-btn {
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -78,14 +37,15 @@
   <p>Share your favorite moments with us! Upload your photos below and see them appear in the gallery.</p>
 
   <!-- Uploadcare widget -->
-  <input type="hidden" role="uploadcare-uploader" data-public-key="3d5d16c4d044cb2a72bf" id="uploader" />
+  <input type="hidden" role="uploadcare-uploader" data-public-key="3d5d16c4d044cb2a72bf" />
 
-  <h3>Gallery</h3>
   <div id="gallery">Loading gallery...</div>
 
   <script>
+    // Initialize Uploadcare
     uploadcare.start({ publicKey: '3d5d16c4d044cb2a72bf' });
 
+    // Fetch gallery images from Uploadcare API
     async function fetchGallery() {
       try {
         const response = await fetch('https://api.uploadcare.com/files/', {
@@ -97,34 +57,17 @@
         const data = await response.json();
         const galleryDiv = document.getElementById('gallery');
         galleryDiv.innerHTML = '';
-        if (data.results.length === 0) {
-          galleryDiv.innerText = 'No photos uploaded yet.';
-          return;
-        }
         data.results.forEach(file => {
-          const card = document.createElement('div');
-          card.className = 'photo-card';
-
           const img = document.createElement('img');
           img.src = file.original_file_url;
-
-          const downloadLink = document.createElement('a');
-          downloadLink.href = file.original_file_url;
-          downloadLink.download = '';
-          downloadLink.className = 'download-link';
-          downloadLink.innerText = 'Download';
-
-          card.appendChild(img);
-          card.appendChild(downloadLink);
-          galleryDiv.appendChild(card);
+          galleryDiv.appendChild(img);
         });
       } catch (error) {
         console.error('Error fetching gallery:', error);
-        document.getElementById('gallery').innerText = 'Failed to load gallery.';
       }
     }
 
-    // Initial load and auto-refresh every 10 seconds
+    // Refresh gallery every 10 seconds
     fetchGallery();
     setInterval(fetchGallery, 10000);
   </script>
