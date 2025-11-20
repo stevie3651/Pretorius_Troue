@@ -1,238 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Photo Gallery</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Wedding Photo Gallery</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- LIGHTBOX (SimpleLightbox) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.js"></script>
+<!-- Uploadcare -->
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
 
-  <style>
+<!-- Lightbox -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.js"></script>
+
+<style>
     body {
-      font-family: 'Playfair Display', serif;
-      background: #fff8f0;
-      color: #5a4a42;
-      text-align: center;
-      margin: 20px;
+        font-family: 'Playfair Display', serif;
+        background: #fff5e9;
+        color: #6b4e34;
+        text-align: center;
+        margin: 0;
+        padding: 0;
     }
 
     h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 48px;
-      color: #a67c52;
-      margin-bottom: 10px;
+        font-family: "Great Vibes", cursive;
+        font-size: 56px;
+        margin-top: 40px;
+        color: #b38752;
     }
 
-    .name-box {
-      margin: 15px auto;
-      width: 90%;
-      max-width: 350px;
-      text-align: left;
+    p.subtitle {
+        font-size: 18px;
+        margin-top: -10px;
+        color: #7a5a3a;
     }
 
-    .name-box input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #caa275;
-      font-size: 16px;
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        margin-top: 20px;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-      margin-top: 30px;
-      padding: 10px;
+    .input-group {
+        margin: 20px auto;
+        text-align: left;
+        width: 100%;
+        max-width: 400px;
     }
 
-    .photo-card {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    .input-group label {
+        font-size: 18px;
+        color: #7a5a3a;
+        margin-bottom: 6px;
+        display: block;
     }
 
-    .photo-card img {
-      width: 100%;
-      border-radius: 10px;
-      cursor: pointer;
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 2px solid #d4b08c;
+        background: #fffdf9;
+        font-size: 16px;
+        color: #5d4a3a;
     }
 
-    .uploader-name {
-      margin-top: 8px;
-      font-style: italic;
-      color: #7a6047;
-      font-size: 15px;
+    #upload-btn {
+        margin-top: 10px;
+        padding: 12px 22px;
+        font-size: 18px;
+        background: #b38752;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
     }
-
-    .download-btn {
-      display: inline-block;
-      margin-top: 6px;
-      padding: 6px 10px;
-      background: #a67c52;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
+    #upload-btn:hover {
+        background: #966d3b;
     }
 
     #download-all {
-      margin: 20px 0;
-      padding: 10px 18px;
-      font-size: 16px;
-      background: #a67c52;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+        margin-top: 10px;
+        padding: 12px 22px;
+        font-size: 17px;
+        background: #b38752;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .gallery {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+        padding-bottom: 40px;
+    }
+
+    .photo-card {
+        background: white;
+        border-radius: 14px;
+        padding: 14px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+        transition: 0.3s;
+    }
+
+    .photo-card:hover {
+        transform: scale(1.02);
+    }
+
+    .photo-card img {
+        width: 100%;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    .uploader-name {
+        margin-top: 10px;
+        font-style: italic;
+        color: #6b4e34;
+        font-size: 15px;
+    }
+
+    .download-btn {
+        display: inline-block;
+        margin-top: 6px;
+        padding: 7px 12px;
+        background: #b38752;
+        color: white;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
     }
 
     #loading {
-      font-size: 18px;
-      margin-top: 20px;
-      color: #a67c52;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #b38752;
     }
-  </style>
-</head>
+</style>
 
+</head>
 <body>
 
-  <h1>Wedding Photo Gallery</h1>
-  <p>Upload your photos, enter your name, and view the full gallery below.</p>
+<h1>Wedding Photo Gallery</h1>
+<p class="subtitle">Share your beautiful moments with us 💍✨</p>
 
-  <!-- USER NAME INPUT -->
-  <div class="name-box">
-    <label>Your Name:</label>
-    <input type="text" id="username" placeholder="Enter your name">
-  </div>
+<div class="container">
 
-  <!-- UPLOADCARE -->
-  <input
+    <div class="input-group">
+        <label>Your Name:</label>
+        <input type="text" id="username" placeholder="Enter your name">
+    </div>
+
+    <button id="upload-btn">Select Photos to Upload</button>
+
+    <button id="download-all">Download All Photos</button>
+
+    <p id="loading">Loading gallery...</p>
+
+    <div class="gallery" id="gallery"></div>
+
+</div>
+
+<!-- Hidden Uploadcare Widget -->
+<input type="hidden" id="uploader"
     role="uploadcare-uploader"
-    type="hidden"
     data-public-key="3d5d16c4d044cb2a72bf"
-    data-multiple="true"
-  >
+    data-multiple="true">
 
-  <button id="download-all">Download All Photos</button>
-
-  <div id="loading">Loading photos...</div>
-  <div class="gallery" id="gallery"></div>
-
-  <script>
-    const galleryDiv = document.getElementById("gallery");
-    const loadingText = document.getElementById("loading");
+<script>
     const PUBLIC_KEY = "3d5d16c4d044cb2a72bf";
-
-    // LIGHTBOX
+    const galleryDiv = document.getElementById("gallery");
     let lightbox;
 
     function refreshLightbox() {
-      if (lightbox) lightbox.refresh();
-      else lightbox = new SimpleLightbox(".gallery a");
+        if (lightbox) lightbox.refresh();
+        else lightbox = new SimpleLightbox(".gallery a");
+    }
+
+    // OPEN UPLOAD WIDGET
+    document.getElementById("upload-btn").onclick = () => {
+        const widget = uploadcare.Widget("#uploader");
+        widget.openDialog();
+    };
+
+    // ADD PHOTO CARD
+    function addCard(file) {
+        const name = file.metadata?.uploader || "Anonymous";
+
+        const card = document.createElement("div");
+        card.className = "photo-card";
+
+        card.innerHTML = `
+            <a href="https://ucarecdn.com/${file.uuid}/-/preview/">
+                <img src="https://ucarecdn.com/${file.uuid}/-/preview/">
+            </a>
+            <div class="uploader-name">Uploaded by: <b>${name}</b></div>
+            <a class="download-btn" href="https://ucarecdn.com/${file.uuid}/" download>
+                Download
+            </a>
+        `;
+
+        galleryDiv.prepend(card);
     }
 
     // LOAD EXISTING IMAGES
     async function loadGallery() {
-      try {
         const res = await fetch("https://api.uploadcare.com/files/?limit=200&ordering=-datetime_uploaded", {
-          headers: {
-            "Accept": "application/vnd.uploadcare-v0.5+json",
-            "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
-          }
+            headers: {
+                "Accept": "application/vnd.uploadcare-v0.5+json",
+                "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
+            }
         });
 
         const data = await res.json();
-        loadingText.style.display = "none";
+        document.getElementById("loading").style.display = "none";
 
-        data.results.forEach(file => {
-          if (file.is_image && file.is_ready) addPhotoToGallery(file);
+        data.results.forEach(addCard);
+        refreshLightbox();
+    }
+
+    // WHEN FILE IS UPLOADED
+    uploadcare.Widget("#uploader").onUploadComplete(async (file) => {
+        const username = document.getElementById("username").value || "Anonymous";
+
+        // Save metadata
+        await fetch(`https://api.uploadcare.com/files/${file.uuid}/metadata/`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/vnd.uploadcare-v0.5+json",
+                "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
+            },
+            body: JSON.stringify({ uploader: username })
         });
 
+        file.metadata = { uploader: username };
+        addCard(file);
         refreshLightbox();
-      } catch {
-        loadingText.innerText = "Failed to load gallery.";
-      }
-    }
-
-    // SHOW IMAGES IN GALLERY
-    function addPhotoToGallery(file) {
-      const name = file.metadata?.uploader || "Unknown";
-
-      const card = document.createElement("div");
-      card.className = "photo-card";
-
-      card.innerHTML = `
-        <a href="https://ucarecdn.com/${file.uuid}/-/preview/">
-          <img src="https://ucarecdn.com/${file.uuid}/-/preview/">
-        </a>
-
-        <div class="uploader-name">Uploaded by: <b>${name}</b></div>
-
-        <a class="download-btn" href="https://ucarecdn.com/${file.uuid}/" download>
-          Download
-        </a>
-      `;
-
-      galleryDiv.appendChild(card);
-    }
-
-    // UPLOAD WIDGET
-    const widget = uploadcare.Widget("[role=uploadcare-uploader]");
-
-    widget.onUploadComplete(async function(fileInfo) {
-      const username = document.getElementById("username").value.trim() || "Anonymous";
-
-      // Store metadata (username)
-      await fetch(`https://api.uploadcare.com/files/${fileInfo.uuid}/metadata/`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/vnd.uploadcare-v0.5+json",
-          "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
-        },
-        body: JSON.stringify({ uploader: username })
-      });
-
-      // Add new image immediately
-      const newFile = {
-        uuid: fileInfo.uuid,
-        is_image: true,
-        is_ready: true,
-        metadata: { uploader: username }
-      };
-
-      addPhotoToGallery(newFile);
-      refreshLightbox();
     });
 
-    // DOWNLOAD ALL — ZIP
-    document.getElementById("download-all").addEventListener("click", async () => {
-      const res = await fetch("https://api.uploadcare.com/files/?limit=200", {
-        headers: {
-          "Accept": "application/vnd.uploadcare-v0.5+json",
-          "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
-        }
-      });
+    // DOWNLOAD ALL
+    document.getElementById("download-all").onclick = async () => {
+        const res = await fetch("https://api.uploadcare.com/files/?limit=200", {
+            headers: {
+                "Accept": "application/vnd.uploadcare-v0.5+json",
+                "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
+            }
+        });
+        const data = await res.json();
+        const uuids = data.results.map(f => f.uuid);
 
-      const data = await res.json();
-      const uuids = data.results.map(f => f.uuid);
+        if (uuids.length === 0) return alert("No images available.");
 
-      if (uuids.length === 0) return alert("No images to download");
-
-      const zipUrl = `https://api.uploadcare.com/convert/document/?archive=zip&files=${uuids.join(",")}`;
-
-      window.location.href = zipUrl;
-    });
+        window.location.href =
+            `https://api.uploadcare.com/convert/document/?archive=zip&files=${uuids.join(",")}`;
+    };
 
     loadGallery();
-  </script>
+</script>
 
 </body>
 </html>
