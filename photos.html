@@ -6,14 +6,14 @@
 <title>Wedding Photo Gallery</title>
 
 <!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap
 
 <!-- Uploadcare -->
-<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<script/ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js
 
 <!-- Lightbox -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.1/simple-lightbox.min.js"></script>
+ple-lightbox.min.js"></script>
 
 <style>
     body {
@@ -69,7 +69,7 @@
         color: #5d4a3a;
     }
 
-    #upload-btn {
+    #upload-btn, #confirm-upload, #download-all {
         margin-top: 10px;
         padding: 12px 22px;
         font-size: 18px;
@@ -80,19 +80,19 @@
         cursor: pointer;
         transition: 0.3s;
     }
-    #upload-btn:hover {
+    #upload-btn:hover, #confirm-upload:hover, #download-all:hover {
         background: #966d3b;
     }
 
-    #download-all {
-        margin-top: 10px;
-        padding: 12px 22px;
-        font-size: 17px;
-        background: #b38752;
-        color: white;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
+    #confirm-upload {
+        display: none;
+    }
+
+    #success-message {
+        margin-top: 15px;
+        font-size: 18px;
+        color: green;
+        display: none;
     }
 
     .gallery {
@@ -144,6 +144,15 @@
         font-size: 18px;
         color: #b38752;
     }
+
+    .progress-bar {
+        height: 6px;
+        background: #b38752;
+        margin-top: 8px;
+        border-radius: 4px;
+        width: 0%;
+        transition: width 0.3s;
+    }
 </style>
 
 </head>
@@ -160,9 +169,10 @@
     </div>
 
     <button id="upload-btn">Select Photos to Upload</button>
-
+    <button id="confirm-upload">Confirm Upload</button>
     <button id="download-all">Download All Photos</button>
 
+    <p id="success-message">✅ Photos uploaded successfully!</p>
     <p id="loading">Loading gallery...</p>
 
     <div class="gallery" id="gallery"></div>
@@ -179,6 +189,7 @@
     const PUBLIC_KEY = "3d5d16c4d044cb2a72bf";
     const galleryDiv = document.getElementById("gallery");
     let lightbox;
+    const widget = uploadcare.Widget("#uploader");
 
     function refreshLightbox() {
         if (lightbox) lightbox.refresh();
@@ -187,9 +198,17 @@
 
     // OPEN UPLOAD WIDGET
     document.getElementById("upload-btn").onclick = () => {
-        const widget = uploadcare.Widget("#uploader");
         widget.openDialog();
     };
+
+    // Show confirm button after files are selected
+    widget.onDialogOpen(dialog => {
+        dialog.done(files => {
+            if (files) {
+                document.getElementById("confirm-upload").style.display = "inline-block";
+            }
+        });
+    });
 
     // ADD PHOTO CARD
     function addCard(file) {
@@ -199,11 +218,11 @@
         card.className = "photo-card";
 
         card.innerHTML = `
-            <a href="https://ucarecdn.com/${file.uuid}/-/preview/">
-                <img src="https://ucarecdn.com/${file.uuid}/-/preview/">
+            https://ucarecdn.com/${file.uuid}/-/preview/
+                <img src="https://uc/${file.uuid}/-/preview/
             </a>
             <div class="uploader-name">Uploaded by: <b>${name}</b></div>
-            <a class="download-btn" href="https://ucarecdn.com/${file.uuid}/" download>
+            https://ucarecdn.com/${file.uuid}/
                 Download
             </a>
         `;
@@ -227,25 +246,45 @@
         refreshLightbox();
     }
 
-    // WHEN FILE IS UPLOADED
-    uploadcare.Widget("#uploader").onUploadComplete(async (file) => {
-        const username = document.getElementById("username").value || "Anonymous";
+    // CONFIRM UPLOAD
+    document.getElementById("confirm-upload").onclick = async () => {
+        const files = await widget.value();
+        if (!files || files.length === 0) return alert("No files selected.");
 
-        // Save metadata
-        await fetch(`https://api.uploadcare.com/files/${file.uuid}/metadata/`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/vnd.uploadcare-v0.5+json",
-                "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
-            },
-            body: JSON.stringify({ uploader: username })
-        });
+        for (const file of files) {
+            const username = document.getElementById("username").value || "Anonymous";
 
-        file.metadata = { uploader: username };
-        addCard(file);
+            // Progress bar
+            const progressBar = document.createElement("div");
+            progressBar.className = "progress-bar";
+            document.getElementById("confirm-upload").after(progressBar);
+
+            file.progress(info => {
+                progressBar.style.width = (info.progress * 100) + "%";
+            });
+
+            await fetch(`https://api.uploadcare.com/files/${file.uuid}/metadata/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/vnd.uploadcare-v0.5+json",
+                    "Authorization": "Uploadcare.Simple " + PUBLIC_KEY + ":"
+                },
+                body: JSON.stringify({ uploader: username })
+            });
+
+            file.metadata = { uploader: username };
+            addCard(file);
+        }
+
         refreshLightbox();
-    });
+        document.getElementById("confirm-upload").style.display = "none";
+        document.getElementById("success-message").style.display = "block";
+
+        setTimeout(() => {
+            document.getElementById("success-message").style.display = "none";
+        }, 3000);
+    };
 
     // DOWNLOAD ALL
     document.getElementById("download-all").onclick = async () => {
