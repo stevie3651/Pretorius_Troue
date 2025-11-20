@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upload & View Wedding Photos</title>
-  https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js</script>
+  <!-- Correct Uploadcare script -->
+  <script src="https://ucarecdn.com/libs/widget/3.x/upload.js</script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,10 +21,19 @@
     p {
       color: #333;
     }
+    .upload-btn {
+      margin: 20px 0;
+    }
     #gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      margin-top: 20px;
+    }
+    #gallery img {
+      width: 200px;
+      height: auto;
+      margin: 10px;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
@@ -34,7 +44,9 @@
   <p>Share your favorite moments with us! Upload your photos below and see them appear in the gallery.</p>
 
   <!-- Uploadcare widget -->
-  <input type="hidden" role="uploadcare-uploader" data-public-key="3d5d16c4d044cb2a72bf" />
+  <div class="upload-btn">
+    <input type="hidden" role="uploadcare-uploader" data-public-key="3d5d16c4d044cb2a72bf" />
+  </div>
 
   <h3>Gallery</h3>
   <div id="gallery">Loading gallery...</div>
@@ -53,6 +65,10 @@
         const data = await response.json();
         const galleryDiv = document.getElementById('gallery');
         galleryDiv.innerHTML = '';
+        if (data.results.length === 0) {
+          galleryDiv.innerText = 'No photos uploaded yet.';
+          return;
+        }
         data.results.forEach(file => {
           const img = document.createElement('img');
           img.src = file.original_file_url;
