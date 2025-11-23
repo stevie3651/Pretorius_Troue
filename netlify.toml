@@ -1,0 +1,8 @@
+[build]
+  publish = "."                 # if you later host your site on Netlify
+  functions = "netlify/functions"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
