@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wedding Photo Gallery</title>
-  
-  <!-- Correct Google Fonts linking (will not print as text) -->
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -19,35 +19,23 @@
       --muted: #7a6a58;
     }
     *{ box-sizing: border-box; }
-    body{
-      margin:0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Playfair Display", serif;
-    }
+    body{ margin:0; background: var(--bg); color: var(--text); font-family: "Playfair Display", serif; }
     .container{ max-width: 960px; margin: 2rem auto; padding: 0 1rem; text-align: center; }
     .title{ font-family: "Great Vibes", cursive; font-size: 3rem; margin: 0.5rem 0; }
-    .subtitle{ color: var(--muted); margin: 0 0 1.25rem; }
-
+    .subtitle{ color: var(--muted); margin: 0 0 1rem; }
     .label{ display:block; margin: 0.5rem 0; }
     .input-row{ display:flex; justify-content:center; }
-    .input-row input{
-      width: 380px; max-width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #d1bfa9; border-radius: 8px; outline: none;
-    }
+    .input-row input{ width: 380px; max-width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #d1bfa9; border-radius: 8px; outline: none; }
     .input-row input:focus{ border-color: var(--accent); }
-
     .buttons{ display:flex; gap: 0.75rem; justify-content:center; margin: 1rem 0 1.25rem; flex-wrap: wrap; }
     .btn{ appearance:none; border:none; border-radius: 8px; padding: 0.6rem 1rem; cursor:pointer; background: var(--accent); color:#fff; font-weight:700; }
     .btn.secondary{ background: var(--accent-dark); }
     .btn[disabled]{ opacity:0.6; cursor:not-allowed; }
-
     .status{ color: var(--muted); margin: 0.5rem 0 1rem; min-height: 1.25rem; }
-
     .gallery{ display:grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap:12px; align-items:start; }
     .card{ position:relative; border-radius:10px; overflow:hidden; background:#fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
     .card img{ width:100%; height:160px; object-fit:cover; display:block; }
     .card .meta{ position:absolute; left:0; bottom:0; width:100%; background: linear-gradient(transparent, rgba(0,0,0,0.6)); color:#fff; padding:0.25rem 0.5rem; font-size:0.8rem; text-align:left; }
-    .card .remove{ position:absolute; top:6px; right:6px; background: rgba(0,0,0,0.6); color:#fff; border:none; border-radius:6px; padding:0.25rem 0.35rem; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -67,90 +55,140 @@
 
     <p id="status" class="status">Loading gallery...</p>
     <section id="gallery" class="gallery" aria-live="polite"></section>
+    <div style="margin-top:1rem"><button id="loadMoreBtn" class="btn" style="display:none">Load more</button></div>
   </main>
 
-  <script>
-    // --- Configuration (adjust if you add a backend) ---
-    const ENDPOINTS = {
-      upload: '/upload.php',
-      list:   '/list.php',
-      zip:    '/zip.php'
-    };
+  <!-- JSZip for client-side zip download -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 
+  <!-- Constants: fill with user's values -->
+  <script>
+    const CLOUD_NAME = "dt3tszqb8";
+    const UPLOAD_PRESET = "Wedding Gallery"; // Cloudinary unsigned preset name
+    const GALLERY_API_URL = "https://tubular-mandazi-c4ae92.netlify.app/.netlify/functions/gallery"; // Netlify function URL
+  </script>
+
+  <script>
+    // DOM
     const fileInput = document.getElementById('fileInput');
     const uploadBtn = document.getElementById('uploadBtn');
     const downloadAllBtn = document.getElementById('downloadAllBtn');
     const usernameInput = document.getElementById('username');
     const galleryEl = document.getElementById('gallery');
     const statusEl = document.getElementById('status');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
 
-    let selectedFiles = []; // locally selected but not yet uploaded
-    let serverPhotos = [];  // existing photos from server
+    let selectedFiles = [];
+    let serverPhotos = [];
+    let nextCursor = null;
 
-    function createCard({src, name, removable=false, onRemove}) {
+    function createCard({ src, name }) {
       const card = document.createElement('div'); card.className = 'card';
       const img = document.createElement('img'); img.src = src; img.alt = name || 'photo'; card.appendChild(img);
       const meta = document.createElement('div'); meta.className = 'meta'; meta.textContent = name || ''; card.appendChild(meta);
-      if (removable) { const btn = document.createElement('button'); btn.className = 'remove'; btn.textContent = '×'; btn.addEventListener('click', (e)=>{ e.stopPropagation(); onRemove?.(); }); card.appendChild(btn); }
       return card;
     }
 
-    function renderLocalPreviews(){
+    function renderLocalPreviews() {
       const localSectionId = 'local-previews';
       let localSection = document.getElementById(localSectionId);
       if (!localSection) { localSection = document.createElement('div'); localSection.id = localSectionId; galleryEl.prepend(localSection); }
       localSection.innerHTML = '';
-      selectedFiles.forEach((file, idx)=>{
+      selectedFiles.forEach(file => {
         const reader = new FileReader();
-        reader.onload = (e)=>{
-          const card = createCard({ src: e.target.result, name: file.name, removable:true, onRemove:()=>{ selectedFiles.splice(idx,1); renderLocalPreviews(); uploadBtn.disabled = selectedFiles.length===0 || !usernameInput.value.trim(); } });
-          localSection.appendChild(card);
-        };
+        reader.onload = e => { localSection.appendChild(createCard({ src: e.target.result, name: file.name })); };
         reader.readAsDataURL(file);
       });
       statusEl.textContent = selectedFiles.length ? `Ready to upload ${selectedFiles.length} photo(s)` : (serverPhotos.length ? '' : 'No photos yet — be the first to share!');
     }
 
-    async function loadServerGallery(){
-      try{
-        statusEl.textContent = 'Loading gallery...';
-        const res = await fetch(ENDPOINTS.list);
-        if (!res.ok) throw new Error('list not available');
-        const data = await res.json();
-        serverPhotos = Array.isArray(data) ? data : (data.files || []);
-        const serverSectionId = 'server-photos';
-        let serverSection = document.getElementById(serverSectionId);
-        if (!serverSection) { serverSection = document.createElement('div'); serverSection.id = serverSectionId; galleryEl.appendChild(serverSection); }
-        serverSection.innerHTML = '';
-        serverPhotos.forEach(p=> serverSection.appendChild(createCard({ src: p.url, name: p.name, removable:false })) );
-        statusEl.textContent = serverPhotos.length ? `Showing ${serverPhotos.length} photo(s)` : 'No photos yet — be the first to share!';
-        downloadAllBtn.disabled = serverPhotos.length === 0;
-      }catch(err){ statusEl.textContent = 'Gallery will appear after upload.'; downloadAllBtn.disabled = true; }
-    }
-
-    async function uploadSelected(){
+    async function uploadSelected() {
       const username = usernameInput.value.trim();
       if (!username) { alert('Please enter your name.'); return; }
       if (!selectedFiles.length) { alert('Please select photos first.'); return; }
+
       uploadBtn.disabled = true; statusEl.textContent = 'Uploading...';
-      const form = new FormData(); form.append('username', username);
-      selectedFiles.forEach(f=> form.append('photos[]', f, f.name));
-      try{
-        const res = await fetch(ENDPOINTS.upload, { method:'POST', body:form });
-        if (!res.ok) throw new Error('upload failed');
-        const data = await res.json();
-        statusEl.textContent = (data && data.message) ? data.message : 'Upload complete!';
-        selectedFiles = []; renderLocalPreviews(); await loadServerGallery();
-      }catch(err){ statusEl.textContent = 'Upload failed (backend not configured).'; }
-      finally{ uploadBtn.disabled = selectedFiles.length===0 || !usernameInput.value.trim(); }
+      try {
+        for (const file of selectedFiles) {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('upload_preset', UPLOAD_PRESET);
+          // Attach context (optional): username
+          formData.append('context', `username=${username}`);
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: 'POST', body: formData });
+          if (!res.ok) throw new Error('Cloudinary upload failed');
+          await res.json(); // we could use secure_url here, but we reload gallery from API
+        }
+        statusEl.textContent = 'Upload complete!';
+        selectedFiles = []; renderLocalPreviews();
+        // Reload full gallery
+        await resetAndLoadGallery();
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Upload failed.';
+      } finally {
+        uploadBtn.disabled = selectedFiles.length === 0 || !usernameInput.value.trim();
+      }
     }
 
-    fileInput.addEventListener('change', ()=>{ selectedFiles = Array.from(fileInput.files || []); renderLocalPreviews(); uploadBtn.disabled = selectedFiles.length===0 || !usernameInput.value.trim(); });
-    usernameInput.addEventListener('input', ()=>{ uploadBtn.disabled = selectedFiles.length===0 || !usernameInput.value.trim(); });
-    uploadBtn.addEventListener('click', uploadSelected);
+    async function loadServerGallery(cursor=null) {
+      try {
+        statusEl.textContent = 'Loading gallery...';
+        const url = cursor ? `${GALLERY_API_URL}?next_cursor=${encodeURIComponent(cursor)}` : GALLERY_API_URL;
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Gallery API failed (${res.status})`);
+        const data = await res.json();
+        const files = data.files || [];
+        nextCursor = data.next_cursor || null;
+        files.forEach(p => galleryEl.appendChild(createCard({ src: p.url, name: p.name })));
+        serverPhotos = serverPhotos.concat(files);
+        statusEl.textContent = serverPhotos.length ? `Showing ${serverPhotos.length} photo(s)` : 'No photos yet — be the first to share!';
+        downloadAllBtn.disabled = serverPhotos.length === 0;
+        loadMoreBtn.style.display = nextCursor ? 'inline-block' : 'none';
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Could not load gallery.';
+        downloadAllBtn.disabled = true;
+      }
+    }
 
-    // Initial load
-    loadServerGallery();
+    async function resetAndLoadGallery(){
+      serverPhotos = []; nextCursor = null; galleryEl.innerHTML = '';
+      const local = document.getElementById('local-previews'); if (local) local.remove();
+      await loadServerGallery();
+    }
+
+    async function downloadAllClientZip() {
+      if (typeof JSZip === 'undefined') { alert('JSZip library not loaded.'); return; }
+      if (!serverPhotos.length) { alert('No photos to download.'); return; }
+      statusEl.textContent = 'Preparing zip...';
+      const zip = new JSZip();
+      // Fetch each image and add to zip
+      for (const p of serverPhotos) {
+        const resp = await fetch(p.url);
+        if (!resp.ok) continue;
+        const blob = await resp.blob();
+        const ext = (blob.type && blob.type.split('/')[1]) || 'jpg';
+        const base = p.name || `photo-${Date.now()}`;
+        zip.file(`${base}.${ext}`, blob);
+      }
+      const blobZip = await zip.generateAsync({ type: 'blob' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blobZip);
+      a.download = 'wedding-photos.zip';
+      a.click();
+      statusEl.textContent = 'Zip ready — downloading.';
+    }
+
+    // Events
+    fileInput.addEventListener('change', () => { selectedFiles = Array.from(fileInput.files || []); renderLocalPreviews(); uploadBtn.disabled = selectedFiles.length === 0 || !usernameInput.value.trim(); });
+    usernameInput.addEventListener('input', () => { uploadBtn.disabled = selectedFiles.length === 0 || !usernameInput.value.trim(); });
+    uploadBtn.addEventListener('click', uploadSelected);
+    downloadAllBtn.addEventListener('click', downloadAllClientZip);
+    loadMoreBtn.addEventListener('click', () => { if (nextCursor) loadServerGallery(nextCursor); });
+
+    // Initial
+    resetAndLoadGallery();
   </script>
 </body>
 </html>
