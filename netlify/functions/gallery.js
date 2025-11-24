@@ -10,15 +10,15 @@ exports.handler = async (event) => {
 
   try {
     const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-    const apiKey    = process.env.CLOUDINARY_API_KEY;
-    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+    const Key    = process.env.CLOUDINARY__KEY;
+    const Secret = process.env.CLOUDINARY__SECRET;
 
     // Use exact folder name from env; default to "Wedding Gallery"
     const folderEnv = process.env.CLOUDINARY_FOLDER;
     const folder = (folderEnv && folderEnv.trim().length) ? folderEnv.trim() : 'Wedding Gallery';
 
     const { next_cursor } = event.queryStringParameters || {};
-    const endpoint = `https://api.cloudinary.com/v1_1/${cloudName}/resources/search`;
+    const endpoint = `https://.cloudinary.com/v1_1/${cloudName}/resources/search`;
 
     // Quote the folder in the expression because it contains a space
     const expression = `resource_type:image AND type:upload AND folder=\\\"${folder}\\\"`;
@@ -31,7 +31,7 @@ exports.handler = async (event) => {
     });
     if (next_cursor) params.append('next_cursor', next_cursor);
 
-    const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64');
+    const auth = Buffer.from(`${Key}:${Secret}`).toString('base64');
 
     const resp = await fetch(endpoint, {
       method: 'POST',
