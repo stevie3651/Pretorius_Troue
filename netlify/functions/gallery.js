@@ -1,4 +1,3 @@
-
 // netlify/functions/gallery.js
 exports.handler = async (event) => {
   const headers = {
@@ -6,38 +5,40 @@ exports.handler = async (event) => {
     'Access-Control-Allow-Methods': 'GET, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
   };
+
   if (event.httpMethod === 'OPTIONS') return { statusCode: 200, headers };
 
   try {
     const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-    const Key    = process.env.CLOUDINARY__KEY;
-    const Secret = process.env.CLOUDINARY__SECRET;
+    const Key    = process.env.CLOUDINARY_KEY;
+    const Secret = process.env.CLOUDINARY_SECRET;
 
-    // Use exact folder name from env; default to "Wedding Gallery"
     const folderEnv = process.env.CLOUDINARY_FOLDER;
-    const folder = (folderEnv && folderEnv.trim().length) ? folderEnv.trim() : 'Wedding Gallery';
+    const folder = (folderEnv && folderEnv.trim()) ? folderEnv.trim() : "Wedding Gallery";
 
     const { next_cursor } = event.queryStringParameters || {};
-    const endpoint = `https://.cloudinary.com/v1_1/${cloudName}/resources/search`;
 
-    // Quote the folder in the expression because it contains a space
-    const expression = `resource_type:image AND type:upload AND folder=\\\"${folder}\\\"`;
+    // FIXED API URL
+    const endpoint = `https://api.cloudinary.com/v1_1/${cloudName}/resources/search`;
+
+    // FIXED EXPRESSION
+    const expression = `resource_type:image AND type:upload AND folder="${folder}"`;
 
     const params = new URLSearchParams({
       expression,
-      max_results: '100',
-      // Cloudinary expects sort_by as a JSON array string
-      sort_by: JSON.stringify([{ created_at: 'desc' }]),
+      max_results: "100",
+      sort_by: JSON.stringify([{ created_at: "desc" }]),
     });
-    if (next_cursor) params.append('next_cursor', next_cursor);
+
+    if (next_cursor) params.append("next_cursor", next_cursor);
 
     const auth = Buffer.from(`${Key}:${Secret}`).toString('base64');
 
     const resp = await fetch(endpoint, {
-      method: 'POST',
+      method: "POST",
       headers: {
         Authorization: `Basic ${auth}`,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        "Content-Type": "application/x-www-form-urlencoded",
       },
       body: params.toString(),
     });
@@ -57,8 +58,14 @@ exports.handler = async (event) => {
       created_at: r.created_at,
     }));
 
-    return { statusCode: 200, headers, body: JSON.stringify({ files, next_cursor: data.next_cursor || null }) };
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ files, next_cursor: data.next_cursor || null }),
+    };
+
   } catch (err) {
     console.error(err);
-    return { statusCode: 500, headers, body: JSON.stringify({ error: 'Server error' }) };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: "Server error" }) };
   }
+};
