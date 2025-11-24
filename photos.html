@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wedding Photo Gallery</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (linked correctly) -->
   https://fonts.googleapis.com
   https://fonts.gstatic.com
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&air+Display:wght@400;700&display=swap
+  https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&display=swap
 
   <style>
     :root{
@@ -106,17 +106,17 @@
     </div>
   </main>
 
-  <!-- JSZip for client-side zip -->
+  <!-- JSZip for client-side "Download All" -->
   https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js</script>
 
   <!-- Configuration -->
   <script>
-    // Cloudinary + Netlify configuration
     const CLOUD_NAME = "dt3tszqb8";
-    const UPLOAD_PRESET = "Wedding Gallery"; // your unsigned preset name (must match in Cloudinary)
+    const UPLOAD_PRESET = "Wedding Gallery"; // must match your Cloudinary unsigned preset name exactly
     const GALLERY_API_URL = "https://tubular-mandazi-c4ae92.netlify.app/.netlify/functions/gallery"; // Netlify function URL
   </script>
 
+  <!-- App logic -->
   <script>
     // DOM refs
     const fileInput = document.getElementById('fileInput');
@@ -167,10 +167,10 @@
           const formData = new FormData();
           formData.append('file', file);
           formData.append('upload_preset', UPLOAD_PRESET);
-          // Optional context for later: who uploaded
+          // Optional: keep who uploaded (shows in asset context)
           formData.append('context', `username=${username}`);
 
-          // If you decide to use tag-based listing, uncomment the next line
+          // If you decide to use tag-based listing later, uncomment:
           // formData.append('tags', 'wedding_gallery');
 
           const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
@@ -178,9 +178,8 @@
             body: formData
           });
           if (!res.ok) throw new Error('Cloudinary upload failed');
-          await res.json(); // we reload gallery from the API after
+          await res.json();
         }
-
         statusEl.textContent = 'Upload complete!';
         selectedFiles = [];
         renderLocalPreviews();
@@ -193,7 +192,7 @@
       }
     }
 
-    // Load gallery from Netlify function
+    // Load gallery via Netlify function
     async function loadServerGallery(cursor = null) {
       try {
         statusEl.textContent = 'Loading gallery...';
@@ -244,8 +243,8 @@
           const ext = (blob.type && blob.type.split('/')[1]) || 'jpg';
           const base = p.name || `photo-${Date.now()}`;
           zip.file(`${base}.${ext}`, blob);
-        } catch (e) {
-          console.warn('Skip file on error:', p.url);
+        } catch {
+          /* skip on fetch error */
         }
       }
       const blobZip = await zip.generateAsync({ type: 'blob' });
@@ -269,7 +268,7 @@
     downloadAllBtn.addEventListener('click', downloadAllClientZip);
     loadMoreBtn.addEventListener('click', () => { if (nextCursor) loadServerGallery(nextCursor); });
 
-    // Initial load
+    // Initial
     resetAndLoadGallery();
   </script>
 </body>
