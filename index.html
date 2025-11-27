@@ -9,30 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Playfair+Display:wght@400;600&amp;family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <style>
 
-.glow-upload {
-  display: inline-block;
-  margin-top: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #0056b3;
-  text-decoration: none;
-  position: relative;
-  animation: glow 2.5s ease-in-out infinite;
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-
-@keyframes glow {
-  0% { text-shadow: 0 0 0px rgba(0, 123, 255, 0.6); }
-  50% { text-shadow: 0 0 12px rgba(0, 123, 255, 0.9); }
-  100% { text-shadow: 0 0 0px rgba(0, 123, 255, 0.6); }
-}
-
-.glow-upload:hover {
-  transform: scale(1.04);
-}
-
-  
 /* --- Falling petals (scoped to overlay) --- */
 #petal-overlay{
   position:absolute;       /* JS will place it between the two sections */
@@ -756,22 +732,7 @@ header.hero{ overflow: hidden !important; }
 </style>
 <style>
 html { scroll-behavior: smooth; }
-#fotos {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(to right, #f0f4f8, #e0eafc);
-  border-radius: 12px;
-  margin-top: 40px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 1s ease, transform 1s ease;
-}
-#fotos.visible {
-  opacity: 1;
-  transform: scale(1);
-}
+
 .upload-button {
   display: inline-block;
   margin-top: 20px;
@@ -802,7 +763,7 @@ html { scroll-behavior: smooth; }
 <a href="#trou-inligting">Inligting</a>
 <a href="#algemene-vrae">Vrae</a>
 <a href="#geskenke">Register</a>
-<a href="#rsvp">RSVP</a><a class="" href="#fotos">Fotos</a>
+<a href="#rsvp">RSVP</a>
 </nav>
 <!-- HERO -->
 <header aria-label="Foto-skyfie van paartjie" class="hero" id="tuis">
@@ -989,13 +950,6 @@ html { scroll-behavior: smooth; }
 <label>Enige spesiale boodskap:</label>
 <textarea name="message" rows="4">Ons sien uit daarna om saam met julle te vier!</textarea>
 <button class="primary" type="submit">💌 Stuur RSVP</button>
-</form><section id="fotos"><h2>Share Your Memories!</h2><p>Scan the QR code below to upload your wedding photos to our shared album.</p><img alt="Upload Wedding Photos QR Code" src="wedding_photos_qr.png" style="display: block; margin: 0 auto; max-width: 300px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);"/><p><a class="upload-button" href="<p>
-  <a class="glow-upload" 
-     href="https://1drv.ms/f/c/1758b54239c5ddd9/IgCamQNdteTVS4xX_OMwWdukAXi7haghyGsZWXZhX_srfoo?e=5hUoXS" 
-     target="_blank">
-     Upload Wedding Photos
-  </a>
-</p>
 <div id="thankYou" style="display:none; text-align:center; margin-top:1rem">
 <h3 style="color:#C0CBC2; font-size: clamp(1.2rem, 5vw, 1.6rem)">Dankie! 💍</h3>
 <p>Ons het jou RSVP ontvang en kan nie wag om julle te sien nie!</p>
@@ -1696,18 +1650,6 @@ section{
   }
 </style>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const fotosSection = document.getElementById('fotos');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        fotosSection.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.3 });
-
-  observer.observe(fotosSection);
-});
 </script></body>
 </html>
 <style id="pink-button-overrides">
